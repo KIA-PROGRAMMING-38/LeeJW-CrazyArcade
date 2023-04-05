@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -9,16 +10,8 @@ public class PlayerMovement : MonoBehaviour
     [Range(1f, 10f)]
     private float _speed = 3f;
 
-
-    //private PlayerInput _input;
-    //private Rigidbody2D _rb;
-
-    //private void Awake()
-    //{
-    //    _input = GetComponent<PlayerInput>();
-    //}
-
     float _moveSpeed;
+
     void Update()
     {
         _moveSpeed = _speed * Time.deltaTime;
@@ -39,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position -= transform.right * _moveSpeed;
+
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
