@@ -7,10 +7,7 @@ public class UserInput : MonoBehaviour
 {
     private float mouseX;
     private float mouseY;
-    void Start()
-    {
-        
-    }
+    
     void Update()
     {
         mouseX = Input.GetAxis("Mouse X");
