@@ -26,5 +26,6 @@ namespace Assets.Script
         {
             SceneManager.LoadScene(NameOfScenes.GamePlay);
         }
+       
     }
 }
