@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     private float _speed = 3f;
 
     float _moveSpeed;
-
     void Update()
     {
         _moveSpeed = _speed * Time.deltaTime;
@@ -28,15 +27,19 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetKey(KeyCode.UpArrow))
         {
             transform.position += transform.up * _moveSpeed;
+         
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position -= transform.right * _moveSpeed;
+         
 
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.position += transform.right * _moveSpeed;
+          
+
         }
 
     }
