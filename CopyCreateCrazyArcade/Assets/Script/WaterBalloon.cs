@@ -18,23 +18,24 @@ public class WaterBalloon : MonoBehaviour
 
     void Update()
     {
-        //elapsedTime += Time.deltaTime;
+        elapsedTime += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _collider.isTrigger = true;
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    _collider.isTrigger = true;
 
-            Debug.Log("Ç³¼±µÎµÎµÎ");
-        }
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-        }
+        //}
 
         if (elapsedTime >= 3)
         {
             anim.SetBool("BoomBalloon", true);
-
-            elapsedTime = 0;
+            
+            if(elapsedTime >= 3.5)
+            {
+                Destroy(gameObject);
+                elapsedTime = 0;
+                    
+            }
         }
 
 
