@@ -12,10 +12,10 @@ public class WaterBalloon : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        anim= GetComponent<Animator>();
-        _collider= GetComponent<Collider2D>();
+        anim = GetComponent<Animator>();
+        _collider = GetComponent<Collider2D>();
     }
-    
+
     void Update()
     {
         //elapsedTime += Time.deltaTime;
@@ -32,21 +32,19 @@ public class WaterBalloon : MonoBehaviour
 
         if (elapsedTime >= 3)
         {
-            anim.SetBool("BoomBalloon",true);
+            anim.SetBool("BoomBalloon", true);
 
             elapsedTime = 0;
         }
 
 
     }
-
+    
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-        Debug.Log("온 트리거");
-        _collider.isTrigger=false;
-
+            _collider.isTrigger = false;
         }
     }
 }
