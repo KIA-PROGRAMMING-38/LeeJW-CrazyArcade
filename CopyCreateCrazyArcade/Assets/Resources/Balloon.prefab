@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2460834896304116717}
   - component: {fileID: 4170885265491557718}
   - component: {fileID: 9068932498045576029}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Balloon
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,7 +66,7 @@ Animation:
   m_GameObject: {fileID: 2460834896304116704}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 2fd07377a419bd043bbe3031e50f53c2, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations: []
   m_WrapMode: 0
   m_PlayAutomatically: 1
