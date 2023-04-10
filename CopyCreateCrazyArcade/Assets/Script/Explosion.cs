@@ -7,15 +7,12 @@ namespace Assets.Script
 {
     public class Explosion : MonoBehaviour
     {
-         Animator _anim;
+        // Animator _anim;
 
         private void Awake()
         {
-            _anim = GetComponent<Animator>();
-            _anim.SetBool("boolExplosion" , true);
-            _anim.SetFloat("blendX", 0);
-            _anim.SetFloat("blendY", 0);
-
+            // _anim = GetComponent<Animator>();
+            // _anim.SetBool("boolExplosion" , true);
             Debug.Log("AWake");
         }
 
@@ -30,10 +27,17 @@ namespace Assets.Script
 
                 _elpasedTime = 0;
             }
-        }
 
+        }
+        
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            
+            if(collision.gameObject.CompareTag("Player"))
+            {
+                Debug.Log("피격됨");
+            }
+
         }
     }
 

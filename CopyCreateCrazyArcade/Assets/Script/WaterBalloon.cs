@@ -9,7 +9,7 @@ public class WaterBalloon : MonoBehaviour
     Rigidbody2D _rb;
     Animator anim;
     Collider2D _collider;
-    private GameObject _explosion;
+     GameObject _explosion;
 
     private void Awake()
     {
@@ -29,26 +29,19 @@ public class WaterBalloon : MonoBehaviour
 
         if (elapsedTime >= 3)
         {
+            BoomBalloon();
+               
+        }
 
-            anim.SetBool("BoomBalloon", true);
-            Debug.Log("익스플로전");
-            if(_isExplosion )
-            {
-               // Instantiate(_explosion,transform.position,transform.rotation);
 
-                _isExplosion = false;
-            }
-
-            if (elapsedTime >= 3.5)
-            {
-                _isExplosion = true;
-                Destroy(gameObject);
-                elapsedTime = 0;
-
-            }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Explosion"))
+        {
+            BoomBalloon();
         }
     }
-
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -59,13 +52,13 @@ public class WaterBalloon : MonoBehaviour
 
 
     }
+    void BoomBalloon()
+    {
+        Instantiate(_explosion, transform.position, transform.rotation);
+        _isExplosion = false;
+        Destroy(gameObject);
+        elapsedTime = 0;
+        _isExplosion = true;
+    }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Balloon"))
-    //    {
-    //        // 시간이 지나지않았더라도 물풍선이 다른 물풍선에 물줄기를 맞췄을때
-    //        // 다른 물풍선 또한 터져야하는 로직 구현 할것.
-    //    }
-    //}
 }

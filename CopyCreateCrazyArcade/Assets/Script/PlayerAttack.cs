@@ -31,7 +31,6 @@ public class PlayerAttack : MonoBehaviour
         // 현재 포지션을 셀포지션으로
         selfposition = MapManager.Instance.LocalToCellPosition(transform);
 
-        MapManager.Instance.CheckTileOnObject(_positionX);
         if (_input.Attack() && _isBalloonOnTile)
         {
             
