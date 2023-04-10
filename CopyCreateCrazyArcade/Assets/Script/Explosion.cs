@@ -1,27 +1,49 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Assets.Script
 {
+
     public class Explosion : MonoBehaviour
     {
-        // Animator _anim;
+        private float _explosionActiveTime = 0.36f;
+
+        private float _elpasedTime;
+
+        private const int _upBubble = 2;
+        private const int _downBubble = 3;
+        private const int _leftBubble = 4;
+        private const int _rightBubble = 5;
+
+        private Vector2 currentColliderScalX = new Vector2(2.4f, 1f);
+        private Vector2 currentColliderScalY = new Vector2(1f, 2.4f);
+
+        //item 구현시 itemPowerCount 로 변경할것
+        private int itemCount = 2;
 
         private void Awake()
         {
-            // _anim = GetComponent<Animator>();
-            // _anim.SetBool("boolExplosion" , true);
-            Debug.Log("AWake");
-        }
+            currentColliderScalX.x += itemCount;
+            currentColliderScalY.y += itemCount;
 
-        private float _elpasedTime;
+            transform.GetChild(_upBubble).localPosition = new Vector2(0, itemCount);
+            transform.GetChild(_downBubble).localPosition = new Vector2(0, -itemCount);
+
+            transform.GetChild(_leftBubble).localPosition = new Vector2(-itemCount,0);
+            transform.GetChild(_rightBubble).localPosition = new Vector2(itemCount,0);
+
+            transform.GetChild(0).localScale = currentColliderScalY;
+            transform.GetChild(1).localScale = currentColliderScalX;
+        }
         private void Update()
         {
             _elpasedTime += Time.deltaTime;
 
-            if(_elpasedTime >= 0.5f)
+            if (_elpasedTime >= _explosionActiveTime)
             {
                 Destroy(gameObject);
 
@@ -29,16 +51,7 @@ namespace Assets.Script
             }
 
         }
-        
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            
-            if(collision.gameObject.CompareTag("Player"))
-            {
-                Debug.Log("피격됨");
-            }
 
-        }
     }
 
 

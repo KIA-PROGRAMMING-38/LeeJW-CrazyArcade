@@ -1,3 +1,4 @@
+using Assets.Script;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -7,21 +8,20 @@ public class PlayerMovement : MonoBehaviour
 {
     PlayerInput _input;
 
-    [SerializeField]
-    [Range(1f, 10f)]
-    private float _speed = 3f;
-
+    PlayerStatus _status;
 
     private void Awake()
     {
         _input = GetComponent<PlayerInput>();   
+        _status = GetComponent<PlayerStatus>();
     }
+    
+    private float _moveSpeed;
 
-    float _moveSpeed;
     void Update()
     {
-        _moveSpeed = _speed * Time.deltaTime;
-
+        _moveSpeed = _status.currentSpeed * Time.deltaTime;
+        
         CharacterMovement();
     }
 

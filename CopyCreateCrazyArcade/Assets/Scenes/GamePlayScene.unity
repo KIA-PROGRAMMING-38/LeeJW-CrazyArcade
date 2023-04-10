@@ -3132,6 +3132,7 @@ GameObject:
   - component: {fileID: 1654016038}
   - component: {fileID: 1654016037}
   - component: {fileID: 1654016036}
+  - component: {fileID: 1654016043}
   - component: {fileID: 1654016035}
   - component: {fileID: 1654016034}
   m_Layer: 0
@@ -3153,7 +3154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155226c6e019e6842858268b6afc9459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
 --- !u!114 &1654016035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3318,6 +3318,20 @@ Transform:
   m_Father: {fileID: 194671563}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1654016043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654016033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c457b3bde6a589349b0b663b345e3d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPower: 0
+  currentAttackCount: 0
 --- !u!1 &1700813197
 GameObject:
   m_ObjectHideFlags: 0
@@ -3544,6 +3558,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1251844327042255761, guid: 54e24c5119bc4b848936c60b2b00db58, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2295881908552748480, guid: 54e24c5119bc4b848936c60b2b00db58, type: 3}
       propertyPath: m_Name
       value: Explosion
@@ -3606,6 +3624,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2295881910112572761, guid: 54e24c5119bc4b848936c60b2b00db58, type: 3}
       propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715320082988893333, guid: 54e24c5119bc4b848936c60b2b00db58, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4076665214182438293, guid: 54e24c5119bc4b848936c60b2b00db58, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5190780169741610912, guid: 54e24c5119bc4b848936c60b2b00db58, type: 3}
