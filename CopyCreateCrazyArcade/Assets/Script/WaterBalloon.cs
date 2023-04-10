@@ -21,6 +21,7 @@ public class WaterBalloon : MonoBehaviour
 
     }
     private bool _isExplosion = true;
+
     void Update()
     {
         elapsedTime += Time.deltaTime;

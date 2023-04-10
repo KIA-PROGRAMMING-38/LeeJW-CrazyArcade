@@ -23,28 +23,45 @@ public class PlayerAttack : MonoBehaviour
 
     private Vector3 selfposition;
 
+    private bool _isBalloonOnTile = true;
+
     void Update()
     {
+
         // 현재 포지션을 셀포지션으로
         selfposition = MapManager.Instance.LocalToCellPosition(transform);
-       
-        if (_input.Attack())
-        {
 
-            // 맵 끝 에 설치할 경우 예외처리\
+        MapManager.Instance.CheckTileOnObject(_positionX);
+        if (_input.Attack() && _isBalloonOnTile)
+        {
             
-            if ( selfposition.x == -10f)
+            // 맵 끝 에 설치할 경우 예외처리\
+
+            if (selfposition.x == -10f)
             {
                 selfposition.x = -9f;
             }
-            if (_raycast.collider.name != "Balloon(Clone)")
-            {
-                Instantiate(_Balloon, selfposition, transform.rotation);
-            }
+
+            Instantiate(_Balloon, selfposition, transform.rotation);
+
 
         }
 
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Attack"))
+        {
+            _isBalloonOnTile = false;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Attack"))
+        {
+            _isBalloonOnTile = true;
+        }
+    }
 
 }

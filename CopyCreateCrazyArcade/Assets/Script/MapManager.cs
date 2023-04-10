@@ -27,11 +27,13 @@ namespace Assets.Script
 
         private static MapManager s_instance;
         private Grid _grid;
-        
+        public Tilemap _tilemap;
+
         void Awake()
         {
             _grid = GetComponent<Grid>();
-|
+            _tilemap = GetComponent<Tilemap>();
+
             if (s_instance == null)
             {
                 s_instance = this;
@@ -51,5 +53,12 @@ namespace Assets.Script
 
         }
 
+
+       public void CheckTileOnObject(Vector3Int position)
+        {
+            GameObject tileObjects = _tilemap.GetInstantiatedObject(position);
+
+            Debug.Log(tileObjects);
+        }
     }
 }
