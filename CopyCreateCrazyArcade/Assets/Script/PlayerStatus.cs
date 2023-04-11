@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Assets.Script
 {
@@ -23,13 +24,12 @@ namespace Assets.Script
         {
             currentSpeed = 8;
         }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Explosion"))
+           if(collision.gameObject.CompareTag("Explosion"))
             {
-                // 게임 이 끝날 수 있게 설정할것.
-                Debug.Log("아야야");
-
+                Debug.Log($"{name} : 공격당했다 ");
             }
         }
 

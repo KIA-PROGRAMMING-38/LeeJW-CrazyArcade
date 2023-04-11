@@ -27,12 +27,10 @@ namespace Assets.Script
 
         private static MapManager s_instance;
         private Grid _grid;
-        public Tilemap _tilemap;
 
         void Awake()
         {
             _grid = GetComponent<Grid>();
-            _tilemap = GetComponent<Tilemap>();
 
             if (s_instance == null)
             {
@@ -53,12 +51,16 @@ namespace Assets.Script
 
         }
 
+        
 
-       public void CheckTileOnObject(Vector3Int position)
-        {
-            GameObject tileObjects = _tilemap.GetInstantiatedObject(position);
+        public Vector3Int Lo(Vector3 worldpo) => _grid.WorldToCell(worldpo);
 
-            Debug.Log(tileObjects);
-        }
+
+       //public void CheckTileOnObject(Vector3Int position)
+       // {
+       //     GameObject tileObjects = _tilemap.GetInstantiatedObject(position);
+
+       //     Debug.Log(tileObjects);
+       // }
     }
 }
