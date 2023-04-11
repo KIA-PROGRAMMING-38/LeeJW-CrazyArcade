@@ -53,14 +53,7 @@ namespace Assets.Script
 
         
 
-        public Vector3Int Lo(Vector3 worldpo) => _grid.WorldToCell(worldpo);
 
 
-       //public void CheckTileOnObject(Vector3Int position)
-       // {
-       //     GameObject tileObjects = _tilemap.GetInstantiatedObject(position);
-
-       //     Debug.Log(tileObjects);
-       // }
     }
 }

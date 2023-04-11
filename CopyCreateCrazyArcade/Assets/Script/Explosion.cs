@@ -28,14 +28,14 @@ namespace Assets.Script
 
         private void Awake()
         {
-            currentColliderScalX.x += itemCount;
-            currentColliderScalY.y += itemCount;
+            //currentColliderScalX.x += itemCount;
+            //currentColliderScalY.y += itemCount;
 
-            transform.GetChild(_upBubble).localPosition = new Vector2(0, itemCount);
-            transform.GetChild(_downBubble).localPosition = new Vector2(0, -itemCount);
+            //transform.GetChild(_upBubble).localPosition = new Vector2(0, itemCount);
+            //transform.GetChild(_downBubble).localPosition = new Vector2(0, -itemCount);
 
-            transform.GetChild(_leftBubble).localPosition = new Vector2(-itemCount,0);
-            transform.GetChild(_rightBubble).localPosition = new Vector2(itemCount,0);
+            //transform.GetChild(_leftBubble).localPosition = new Vector2(-itemCount,0);
+            //transform.GetChild(_rightBubble).localPosition = new Vector2(itemCount,0);
 
             transform.GetChild(0).localScale = currentColliderScalY;
             transform.GetChild(1).localScale = currentColliderScalX;
