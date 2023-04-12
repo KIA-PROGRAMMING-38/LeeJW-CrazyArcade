@@ -11,10 +11,12 @@ namespace Assets.Script
 {
     public class BlockManager : MonoBehaviour
     {
+        private Animator _anim;
         private Collider2D _collider;
 
         private void Awake()
         {
+            _anim = GetComponent<Animator>();
             _collider = GetComponent<Collider2D>();
         }
 
@@ -26,25 +28,33 @@ namespace Assets.Script
 
         Vector3 averageVec = new Vector3(0.5f, 0.5f, 0);
         RaycastHit2D hit;
+
+        private float checkBlockTime;
         private void Update()
         {
-         
+
             BlockMovement();
+            if(destroyAnim)
+            {
+              checkBlockTime += Time.deltaTime;
+                _anim.SetBool("BlockDestroy", true);
+                
+                if(checkBlockTime > 0.2)
+                {
+                    Destroy(gameObject);
+                    checkBlockTime = 0;
+                }
+            }
 
         }
+
+        private bool destroyAnim = false;
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Explosion"))
             {
-                if (_collider.CompareTag("NonMovingBlock"))
-                {
-                    Destroy(gameObject);
-                }
-
-                if (_collider.CompareTag("MovingBlock"))
-                {
-                    Destroy(gameObject);
-                }
+                destroyAnim = true;
             }
 
         }
