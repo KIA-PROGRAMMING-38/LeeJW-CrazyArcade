@@ -6,7 +6,8 @@ TagManager:
   tags:
   - Attack
   - Explosion
-  - block
+  - NonMovingBlock
+  - MovingBlock
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - UI
   - Attack
   - Explosion
-  - 
+  - Block
   - 
   - 
   - 
