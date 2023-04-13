@@ -50,10 +50,5 @@ namespace Assets.Script
             return _grid.LocalToCell(_localPosition);
 
         }
-
-        
-
-
-
     }
 }

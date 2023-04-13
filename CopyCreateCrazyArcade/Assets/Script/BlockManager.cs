@@ -47,12 +47,7 @@ namespace Assets.Script
             }
 
         }
-
         private bool destroyAnim = false;
-
-
-
-
         private float elapsedTime;
         Vector3 newPosition = Vector3.zero;
         Vector3 normalVec = Vector3.zero;
@@ -78,7 +73,7 @@ namespace Assets.Script
                 }
             }
         }
-
+        
         private void VectorIntTransform()
         {
             normalVec.x = Mathf.RoundToInt(normalVec.x);

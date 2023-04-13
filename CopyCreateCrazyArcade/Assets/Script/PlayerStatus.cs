@@ -10,17 +10,15 @@ namespace Assets.Script
 {
     public class PlayerStatus : MonoBehaviour
     {
-
-
         public int currentSpeed { get; private set; }
-        public int currentPower = 1;
+        public int currentAttackPower = 4;
         public int currentAttackCount = 1;
 
         public const int  maxSpeed = 8;
         public const int  maxPower = 8;
         public const int  maxAttackCount = 8;
 
-        private void Start()
+        private void Awake()
         {
             currentSpeed = 8;
         }

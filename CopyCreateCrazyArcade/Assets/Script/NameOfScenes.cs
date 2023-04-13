@@ -9,7 +9,6 @@ namespace Assets.Script
 {
     public static class NameOfScenes
     {
-
         public const string IngameLobby = "IngameLobbyScene";
         public const string CreateRoom = "CreateRoomScene";
         public const string RoomRobby = "GameRoomLobby";

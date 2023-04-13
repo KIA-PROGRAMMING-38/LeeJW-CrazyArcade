@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 4170885265491557718}
   - component: {fileID: 9068932498045576029}
   - component: {fileID: 3092314868315462826}
-  - component: {fileID: 998121626701207516}
   m_Layer: 6
   m_Name: Balloon
   m_TagString: Balloon
@@ -138,7 +137,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553b2fde4df397045bda98ccfdfd129e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asdasd: 0
+  _status: {fileID: 4891390275599695189, guid: 3aef877e6db3262459d7251867788831, type: 3}
+  explosionPrefeb: {fileID: 5899646071685716949, guid: e8b461f1be123df46a17a21c7c088d7f, type: 3}
+  explosionLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  explosionLayer2:
+    serializedVersion: 2
+    m_Bits: 320
 --- !u!58 &9068932498045576029
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -176,29 +182,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &998121626701207516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2460834896304116704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e0a61f15e6b614bbd3af39e7f44d0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bombPrefab: {fileID: 2460834896304116704}
-  Inputkey: 32
-  bombFuseTime: 2.8
-  explosionprefeb: {fileID: 5899646071685716949, guid: e8b461f1be123df46a17a21c7c088d7f, type: 3}
-  explosionLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  explosionLayer2:
-    serializedVersion: 2
-    m_Bits: 256
-  explosionLayer3:
-    serializedVersion: 2
-    m_Bits: 64
-  _blockprefeb: {fileID: 2624345572620494482, guid: 665ef952fd244f94db1fe32fb2028f73, type: 3}
