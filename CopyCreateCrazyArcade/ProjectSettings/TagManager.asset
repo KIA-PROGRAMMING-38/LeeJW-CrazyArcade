@@ -8,6 +8,7 @@ TagManager:
   - Explosion
   - NonMovingBlock
   - MovingBlock
+  - Balloon
   layers:
   - Default
   - TransparentFX
@@ -15,10 +16,10 @@ TagManager:
   - Player
   - Water
   - UI
-  - Attack
+  - Balloon
   - Explosion
   - Block
-  - 
+  - StageObject
   - 
   - 
   - 

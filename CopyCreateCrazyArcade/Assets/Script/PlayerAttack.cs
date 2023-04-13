@@ -12,9 +12,10 @@ public class PlayerAttack : MonoBehaviour
     private const float _plusPositionX = 0.42f;
     private Vector3 maxRay = new Vector3(0, 0, -1.2f);
     RaycastHit2D _raycast;
-
+    
     private void Awake()
     {
+        transform.SetParent(null);
         _input = GetComponent<PlayerInput>();
         _Balloon = Resources.Load("Balloon") as GameObject;
     }
@@ -29,6 +30,7 @@ public class PlayerAttack : MonoBehaviour
         // 현재 포지션을 셀포지션으로
         selfposition = MapManager.Instance.LocalToCellPosition(transform);
 
+
         if (_input.Attack() && _isBalloonOnTile)
         {
             
@@ -40,7 +42,6 @@ public class PlayerAttack : MonoBehaviour
             }
 
             Instantiate(_Balloon, selfposition, transform.rotation);
-
 
         }
 

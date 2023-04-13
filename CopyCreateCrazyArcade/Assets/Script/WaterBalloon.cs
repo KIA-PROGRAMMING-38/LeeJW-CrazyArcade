@@ -10,7 +10,7 @@ public class WaterBalloon : MonoBehaviour
     Animator anim;
     Collider2D _collider;
      GameObject _explosion;
-
+    public bool asdasd = false;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -18,10 +18,9 @@ public class WaterBalloon : MonoBehaviour
         _collider = GetComponent<Collider2D>();
 
         _explosion = Resources.Load("Explosion") as GameObject;
-
+        Debug.Log("블룬 어웨이크");
     }
     private bool _isExplosion = true;
-
     void Update()
     {
         elapsedTime += Time.deltaTime;
@@ -29,7 +28,6 @@ public class WaterBalloon : MonoBehaviour
 
         if (elapsedTime >= 3)
         {
-            BoomBalloon();
                
         }
 
@@ -39,7 +37,7 @@ public class WaterBalloon : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Explosion"))
         {
-            BoomBalloon();
+            //BoomBalloon();
         }
     }
 
@@ -55,6 +53,7 @@ public class WaterBalloon : MonoBehaviour
     void BoomBalloon()
     {
         Instantiate(_explosion, transform.position, transform.rotation);
+
         _isExplosion = false;
         Destroy(gameObject);
         elapsedTime = 0;

@@ -50,14 +50,7 @@ namespace Assets.Script
 
         private bool destroyAnim = false;
 
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.CompareTag("Explosion"))
-            {
-                destroyAnim = true;
-            }
 
-        }
 
 
         private float elapsedTime;
