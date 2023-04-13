@@ -10,17 +10,24 @@ namespace Assets.Script
 {
     public class PlayerStatus : MonoBehaviour
     {
+        TakeItem item;
         public int currentSpeed { get; private set; }
-        public int currentAttackPower = 4;
-        public int currentAttackCount = 1;
+        public int currentExplosionPower { get; private set; }
+        public int currentBalloonCount { get; private set; }
 
-        public const int  maxSpeed = 8;
-        public const int  maxPower = 8;
-        public const int  maxAttackCount = 8;
+        public const int  maxSpeed = 9;
+        public const int  maxExposionPower = 7;
+        public const int  maxBalloonCount = 6;
 
         private void Awake()
         {
-            currentSpeed = 8;
+            item = GetComponent<TakeItem>();
+
+            currentSpeed = 5;
+            currentExplosionPower = 1;
+            currentBalloonCount = 1;
+
+            
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -28,6 +35,13 @@ namespace Assets.Script
            if(collision.gameObject.CompareTag("Explosion"))
             {
                 Debug.Log($"{name} : 공격당했다 ");
+            }
+
+           if(collision.CompareTag("Item"))
+            {
+                int i = (int)item.kind;
+                Debug.Log(i);
+                Debug.Log($"{collision.name} 아이템 획득");
             }
         }
 

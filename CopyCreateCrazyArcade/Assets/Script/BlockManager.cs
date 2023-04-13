@@ -59,6 +59,7 @@ namespace Assets.Script
         private void OnCollisionStay2D(Collision2D collision)
         {
             normalVec = collision.contacts[0].normal;
+
             if (collision.gameObject.CompareTag("Player") && _collider.CompareTag("MovingBlock") && _trigger)
             {
 

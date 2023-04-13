@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         _moveSpeed = _status.currentSpeed * Time.deltaTime;
+
+        Debug.Log(_status.currentSpeed);
         
         CharacterMovement();
     }
