@@ -22,14 +22,7 @@ namespace Assets.Script
         public int MAX_BALLOON_COUNT { get; private set; } = 6;
         public int MAX_EXPLOSION_POWER { get; private set; } = 7;
 
-        public event Action StatusEvent;
 
-        private void Update()
-        {
-        
-
-            Debug.Log($"스피드 , 파워 , 카운트, 킥 :{currentSpeed},{currentExplosionPower},{currentBalloonCount},{kickBaloon}");
-        }
         private void OnTriggerEnter2D(Collider2D collision)
         {   
            if(collision.gameObject.CompareTag("Explosion"))
@@ -37,7 +30,7 @@ namespace Assets.Script
                 Debug.Log($"{name} : 공격당했다 ");
             }
 
-           if(collision.CompareTag("Item"))
+           if(collision.gameObject.layer == LayerMask.NameToLayer("Item"))
             {
                 item = collision.GetComponent<TakeItem>();
 

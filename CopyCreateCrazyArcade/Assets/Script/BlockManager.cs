@@ -102,7 +102,7 @@ namespace Assets.Script
                     if (hit == false)
                     {
                         // 보간으로 포지션 변경
-                        transform.position = Vector3.Lerp(transform.position, newPosition, moveTime / 5f);
+                        transform.position = Vector3.Lerp(transform.position, newPosition, moveTime / 6f);
 
                         if (moveTime > 0.8f)
                         {

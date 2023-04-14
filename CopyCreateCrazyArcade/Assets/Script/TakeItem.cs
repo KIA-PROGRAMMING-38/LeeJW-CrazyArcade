@@ -47,7 +47,7 @@ namespace Assets.Script
 
                 case ItemKind.Flask:
 
-                    if (_playerStatus.MAX_BALLOON_COUNT > _playerStatus.currentExplosionPower)
+                    if (_playerStatus.MAX_EXPLOSION_POWER > _playerStatus.currentExplosionPower)
                         _playerStatus.currentExplosionPower += 1;
                     
                     break;
@@ -58,6 +58,12 @@ namespace Assets.Script
             }
         }
 
-
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if(collision.CompareTag("Player"))
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

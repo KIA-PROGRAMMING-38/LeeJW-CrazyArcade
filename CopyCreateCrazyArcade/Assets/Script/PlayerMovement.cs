@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         _moveSpeed = _status.currentSpeed * Time.deltaTime;
-
         CharacterMovement();
 
 

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4994014920124571193}
   m_Layer: 10
   m_Name: Skate
-  m_TagString: Item
+  m_TagString: ItmeSkate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

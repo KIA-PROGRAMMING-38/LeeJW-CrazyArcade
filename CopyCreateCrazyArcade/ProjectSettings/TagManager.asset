@@ -10,6 +10,10 @@ TagManager:
   - MovingBlock
   - Balloon
   - Item
+  - ItemBalloon
+  - ItemFlask
+  - ItemShoes
+  - ItmeSkate
   layers:
   - Default
   - TransparentFX
