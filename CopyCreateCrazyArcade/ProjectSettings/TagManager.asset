@@ -9,6 +9,7 @@ TagManager:
   - NonMovingBlock
   - MovingBlock
   - Balloon
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Explosion
   - Block
   - StageObject
-  - 
+  - Item
   - 
   - 
   - 

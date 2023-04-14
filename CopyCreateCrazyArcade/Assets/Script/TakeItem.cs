@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Script
 {
+
     public class TakeItem : MonoBehaviour
     {
 
@@ -14,37 +16,48 @@ namespace Assets.Script
             Shoes,
             Flask
         }
-
-
         public ItemKind kind;
-        private int PlayerTakeItem()
+
+        private PlayerStatus _playerStatus;
+        public void PlayerTakeItem(GameObject status)
         {
+            _playerStatus = status.GetComponent<PlayerStatus>();
             switch (kind)
             {
+
                 case ItemKind.Skate:
 
-                    return 1;
-
+                    if (_playerStatus.MAX_SPEED > _playerStatus.currentSpeed)
+                        _playerStatus.currentSpeed += 1;
+                    
+                    break;
                 case ItemKind.Balloon:
 
-                    return 2;
+                    if (_playerStatus.MAX_BALLOON_COUNT > _playerStatus.currentBalloonCount)
+                        _playerStatus.currentBalloonCount += 1;
+                    
+                    break;
 
                 case ItemKind.Shoes:
-                    return 3;
+
+                    if (_playerStatus.kickBaloon == false)
+                        _playerStatus.kickBaloon = true;
+                    
+                    break;
 
                 case ItemKind.Flask:
-                    return 4;
 
-                default: return 0;
+                    if (_playerStatus.MAX_BALLOON_COUNT > _playerStatus.currentExplosionPower)
+                        _playerStatus.currentExplosionPower += 1;
+                    
+                    break;
+
+                default:
+                    break;
 
             }
         }
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.CompareTag("Player"))
-            {
-                PlayerTakeItem();
-            }
-        }
+
+
     }
 }

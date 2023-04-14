@@ -10,35 +10,39 @@ namespace Assets.Script
     {
         private float elapsedTime;
         Collider2D _collider;
-
+        private const float CLEAR_TIME = 3f;
         public Explosion explosionPrefeb;
-        public int currentPower;
+        public PlayerStatus _status;
 
-        public LayerMask explosionLayer;
-        public LayerMask explosionLayer2;
+        private int currentPower;
+
+        public LayerMask NonDestroyLayer;
+        public LayerMask destoryLayer;
 
         private const float clearTime = 0.36f;
 
         Collider2D[] resut = new Collider2D[2];
-
         private void Awake()
         {
-            currentPower = 4;
             _collider = GetComponent<Collider2D>();
+            currentPower = _status.currentExplosionPower;
         }
 
         void Update()
         {
             elapsedTime += Time.deltaTime;
-            if (elapsedTime >= 3)
+            if (elapsedTime >= CLEAR_TIME)
             {
                 BoomBalloon();
             }
 
         }
-
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if(collision.gameObject.CompareTag("Item"))
+            {
+                Destroy(collision.gameObject,CLEAR_TIME);
+            }
             if (collision.gameObject.CompareTag("Explosion"))
             {
                 // 시간 전에 물줄기에 풍선이 맞았을때
@@ -88,23 +92,27 @@ namespace Assets.Script
             position += direction;
 
             // 부술 수 없는 오브젝트 충돌시 중단
-            if (Physics2D.OverlapBox(position, Vector2.one / 2f, 0f, explosionLayer))
+            if (Physics2D.OverlapBox(position, Vector2.one / 2f, 0f, NonDestroyLayer))
             {
                 return;
             }
 
             // 오버랩 박스로 블록인경우 해당 블록삭제 추후 아이템도 삭제
-            if (resut[0] = Physics2D.OverlapBox(position, Vector2.one / 2f, 0f, explosionLayer2))
+            if (resut[0] = Physics2D.OverlapBox(position, Vector2.one / 2f, 0f, destoryLayer))
             {
-                // 풍선이라면 지나쳐서 랜더링.
-                if (resut[0].gameObject.name == "Balloon(Clone)")
+                // 블록이 아니면 지나쳐서 생성.
+                if (resut[0].gameObject.layer != LayerMask.NameToLayer("Block"))
                 {
+                    if (resut[0].gameObject.CompareTag("Item"))
+                    {
+                        Destroy(resut[0].gameObject);
+                    }
                 }
                 else
                 {
                     Animator _anim = resut[0].GetComponent<Animator>();
 
-                    _anim.SetBool("MovingDestroy", true);
+                    _anim.SetBool("BlockDestroy", true);
                     Destroy(resut[0].gameObject, clearTime);
                     return;
                 }

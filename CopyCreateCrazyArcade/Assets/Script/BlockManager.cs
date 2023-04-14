@@ -34,17 +34,17 @@ namespace Assets.Script
         {
 
             BlockMovement();
-            if(destroyAnim)
-            {
-              checkBlockTime += Time.deltaTime;
-                _anim.SetBool("BlockDestroy", true);
-                
-                if(checkBlockTime > 0.2)
-                {
-                    Destroy(gameObject);
-                    checkBlockTime = 0;
-                }
-            }
+            //if(destroyAnim)
+            //{
+            //  checkBlockTime += Time.deltaTime;
+            //    _anim.SetBool("BlockDestroy", true);
+
+            //    if(checkBlockTime > 0.2)
+            //    {
+            //        Destroy(gameObject);
+            //        checkBlockTime = 0;
+            //    }
+            //}
 
         }
         private bool destroyAnim = false;
@@ -54,12 +54,12 @@ namespace Assets.Script
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            normalVec = collision.contacts[0].normal;
+            normalVec = collision.contacts[0].normal;   
+
         }
         private void OnCollisionStay2D(Collision2D collision)
         {
             normalVec = collision.contacts[0].normal;
-
             if (collision.gameObject.CompareTag("Player") && _collider.CompareTag("MovingBlock") && _trigger)
             {
 
@@ -69,12 +69,13 @@ namespace Assets.Script
 
                 if (elapsedTime >= 0.3)
                 {
+
                     isMoving = true;
                     elapsedTime = 0;
                 }
             }
         }
-        
+
         private void VectorIntTransform()
         {
             normalVec.x = Mathf.RoundToInt(normalVec.x);
@@ -89,30 +90,36 @@ namespace Assets.Script
             if (isMoving)
             {
                 _trigger = false;
+
                 moveTime += Time.deltaTime;
                 averageVec = normalVec / 2;
                 // 노말벡터 앞에 물체가 있는지 판단.
                 hit = Physics2D.Raycast(transform.position + averageVec, normalVec, raycastDistance);
 
-                if (hit == false)
+                if (normalVec.x == 0 || normalVec.y == 0)
                 {
-                    // 보간으로 포지션 변경
-                    transform.position = Vector3.Lerp(transform.position, newPosition, moveTime / 3f);
 
-                    if (moveTime > 0.8f)
+                    if (hit == false)
                     {
-                        moveTime = 0;
-                        _trigger = true;
-                        isMoving = false;
+                        // 보간으로 포지션 변경
+                        transform.position = Vector3.Lerp(transform.position, newPosition, moveTime / 5f);
+
+                        if (moveTime > 0.8f)
+                        {
+                            moveTime = 0;
+                            isMoving = false;
+                            _trigger = true;
+                        }
 
                     }
-                }
-                else
-                {
-                    transform.position = transform.position;
-                    moveTime = 0;
-                    _trigger = true;
-                    isMoving = false;
+                    else
+                    {
+                        transform.position = transform.position;
+                        moveTime = 0;
+                        isMoving = false;
+                        _trigger = true;
+
+                    }
 
                 }
 

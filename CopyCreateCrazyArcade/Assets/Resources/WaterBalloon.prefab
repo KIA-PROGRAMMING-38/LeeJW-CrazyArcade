@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9068932498045576029}
   - component: {fileID: 3092314868315462826}
   m_Layer: 6
-  m_Name: Balloon
+  m_Name: WaterBalloon
   m_TagString: Balloon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 2083634213, guid: 7c4654ce7e4537b4285ce9ccd7724825, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,7 +122,7 @@ SpriteRenderer:
   m_Size: {x: 1.825, y: 2.1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4170885265491557718
@@ -137,14 +137,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553b2fde4df397045bda98ccfdfd129e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _status: {fileID: 4891390275599695189, guid: 3aef877e6db3262459d7251867788831, type: 3}
   explosionPrefeb: {fileID: 5899646071685716949, guid: e8b461f1be123df46a17a21c7c088d7f, type: 3}
-  explosionLayer:
+  _status: {fileID: 4891390275599695189, guid: 3aef877e6db3262459d7251867788831, type: 3}
+  NonDestroyLayer:
     serializedVersion: 2
     m_Bits: 512
-  explosionLayer2:
+  destoryLayer:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 1352
 --- !u!58 &9068932498045576029
 CircleCollider2D:
   m_ObjectHideFlags: 0

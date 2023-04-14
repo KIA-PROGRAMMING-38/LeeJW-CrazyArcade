@@ -7,13 +7,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     PlayerInput _input;
-
+    Rigidbody2D _rigidbody;
     PlayerStatus _status;
 
     private void Awake()
     {
         _input = GetComponent<PlayerInput>();   
         _status = GetComponent<PlayerStatus>();
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
     
     private float _moveSpeed;
@@ -22,9 +23,13 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveSpeed = _status.currentSpeed * Time.deltaTime;
 
-        Debug.Log(_status.currentSpeed);
-        
         CharacterMovement();
+
+
+    }
+    private void FixedUpdate()
+    {
+
     }
 
     // 대각선 이동을 제한하는 분기 설정
