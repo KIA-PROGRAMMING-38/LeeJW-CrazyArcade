@@ -1,4 +1,5 @@
 using Assets.Script;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -6,6 +7,7 @@ using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 namespace Assets.Script
 {
@@ -13,15 +15,23 @@ namespace Assets.Script
     {
 
 
-        GameObject _item;
+        GameObject[] _item = new GameObject[4];
         Collider2D[] target = new Collider2D[2];
 
+        private int _itemRandomValue;
+        private int _itemRandomSpawn;
         private Animator _anim;
         private Collider2D _collider;
 
         private void Awake()
         {
-            _item = Resources.Load("Shoes") as GameObject;
+            _item[0] = Resources.Load("Balloon") as GameObject;
+            _item[1] = Resources.Load("Flask") as GameObject;
+            _item[2] = Resources.Load("Skate") as GameObject;
+            _item[3] = Resources.Load("Shoes") as GameObject;
+
+            _itemRandomValue = Random.Range(0, 4);
+
             _anim = GetComponent<Animator>();
             _collider = GetComponent<Collider2D>();
         }
@@ -37,10 +47,14 @@ namespace Assets.Script
         private Vector3 spawnPosition;
         private void OnDestroy()
         {
+            _itemRandomSpawn = Random.Range(0, 10);
+
             spawnPosition.x = transform.position.x;
             spawnPosition.y = transform.position.y + 0.2f;
 
-            Instantiate(_item, spawnPosition, transform.rotation);
+            if(_itemRandomSpawn < 3)
+            Instantiate(_item[_itemRandomValue], spawnPosition, transform.rotation);
+
         }
         private float elapsedTime;
         Vector3 newPosition = Vector3.zero;
