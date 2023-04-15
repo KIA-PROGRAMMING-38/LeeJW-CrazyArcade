@@ -30,7 +30,6 @@ namespace Assets.Script
 
         private void Update()
         {
-            Debug.Log(attackCount);
             if (_input.Attack() && _isBalloonOnTile && attackCount > 0)
             {
                 StartCoroutine(CreateBalloon());
@@ -74,7 +73,6 @@ namespace Assets.Script
         {
             if (collision.gameObject.CompareTag("Balloon") && kickOn)
             {
-                Debug.Log("¡¯¿‘");
                 SetVector(collision);
 
                 if (normalVec.x == 0 || normalVec.y == 0)

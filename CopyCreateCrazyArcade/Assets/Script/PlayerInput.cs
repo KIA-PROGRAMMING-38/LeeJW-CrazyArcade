@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    public float _horizontal;
+    public float _vertical;
 
-    public bool MoveUp() => Input.GetKey(KeyCode.UpArrow);
-    public bool MoveDown() => Input.GetKey(KeyCode.DownArrow);
-    public bool MoveLeft() => Input.GetKey(KeyCode.LeftArrow);
-    public bool MoveRight() => Input.GetKey(KeyCode.RightArrow);
+    private void Update()
+    {
+        _horizontal = Input.GetAxisRaw("Horizontal");
+   
+        _vertical =  Input.GetAxisRaw("Vertical");
+
+    }
     public bool Attack() => Input.GetKeyDown(KeyCode.Space);
 
 }

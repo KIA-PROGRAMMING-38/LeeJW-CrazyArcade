@@ -12,6 +12,16 @@ namespace Assets.Script
 
     public class Explosion : MonoBehaviour
     {
+        Collider2D[] target = new Collider2D[2];
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
+            {
+                Destroy(collision.gameObject);
+            }
+
+        }
         public void DestroyAfter(float second)
         {
             Destroy(gameObject, second);
@@ -23,7 +33,7 @@ namespace Assets.Script
             transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward);
         }
 
-       
+
 
     }
 

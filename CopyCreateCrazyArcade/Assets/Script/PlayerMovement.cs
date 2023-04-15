@@ -9,48 +9,38 @@ public class PlayerMovement : MonoBehaviour
     PlayerInput _input;
     Rigidbody2D _rigidbody;
     PlayerStatus _status;
+    private Vector3 velocity;
 
     private void Awake()
     {
-        _input = GetComponent<PlayerInput>();   
+        _input = GetComponent<PlayerInput>();
         _status = GetComponent<PlayerStatus>();
         _rigidbody = GetComponent<Rigidbody2D>();
+
     }
-    
+
     private float _moveSpeed;
 
-    void Update()
+    private void Update()
     {
+        // 대각선 제한
+        velocity.x = _input._horizontal;
+        velocity.y = _input._vertical;
+    }
+    void FixedUpdate()
+    {
+       
+        // 대각선 이동을 방지합니다.
+        if (Mathf.Abs(velocity.x) > Mathf.Abs(velocity.y))
+        {
+            velocity.y = 0;
+        }
+        else
+        {
+            velocity.x = 0;
+        }
         _moveSpeed = _status.currentSpeed * Time.deltaTime;
-        CharacterMovement();
-
-
-    }
-    private void FixedUpdate()
-    {
-
-    }
-
-    // 대각선 이동을 제한하는 분기 설정
-    private void CharacterMovement()
-    {
-        if (_input.MoveDown())
-        {
-            transform.position -= transform.up * _moveSpeed;
-        }
-        else if (_input.MoveUp())
-        {
-            transform.position += transform.up * _moveSpeed;
-        }
-        else if (_input.MoveLeft())
-        {
-            transform.position -= transform.right * _moveSpeed;
-        }
-        else if (_input.MoveRight())
-        {
-            transform.position += transform.right * _moveSpeed;
-        }
-
+        transform.Translate(velocity * _moveSpeed);
     }
 }
 

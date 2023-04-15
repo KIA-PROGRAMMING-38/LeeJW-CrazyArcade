@@ -14,6 +14,7 @@ namespace Assets.Script
         private Collider2D _collider;
         private Rigidbody2D _rigidbody;
         private const float CLEAR_TIME = 3f;
+        private const float ITEM_CLEAR_TIME = 2F;
         public int currentPower = 1;
 
         public Explosion explosionPrefeb;
@@ -22,11 +23,11 @@ namespace Assets.Script
 
         private const float clearTime = 0.36f;
 
-        Collider2D[] resut = new Collider2D[2];
+        Collider2D[] target = new Collider2D[2];
         private void Awake()
         {
             _collider = GetComponent<Collider2D>();
-            _rigidbody= GetComponent<Rigidbody2D>();
+            _rigidbody = GetComponent<Rigidbody2D>();
         }
 
 
@@ -43,20 +44,22 @@ namespace Assets.Script
         private void OnCollisionEnter2D(Collision2D collision)
         {
             _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+
         }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            
-            if (collision.gameObject.CompareTag("Item"))
+
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
             {
-                Destroy(collision.gameObject, CLEAR_TIME);
+                // Destroy(collision.gameObject, ITEM_CLEAR_TIME);
             }
             if (collision.gameObject.CompareTag("Explosion"))
             {
                 // 시간 전에 물줄기에 풍선이 맞았을때
                 BoomBalloon();
             }
-            
+
         }
 
         private void OnTriggerExit2D(Collider2D collision)
@@ -108,22 +111,21 @@ namespace Assets.Script
             {
                 return;
             }
-
-            // 오버랩 박스로 블록인경우 해당 블록삭제
-            if (resut[0] = Physics2D.OverlapBox(position, Vector2.one / 2f, 0f, destoryLayer))
+            // 부술 수 있는 오브젝트.
+            if (target[0] = Physics2D.OverlapBox(position, Vector2.one / 2f, 0f, destoryLayer))
             {
                 // 블록이 아니면 지나쳐서 물줄기 생성 후 삭제
-                if (resut[0].gameObject.layer != LayerMask.NameToLayer("Block") &&
-                    resut[0].gameObject.layer == LayerMask.NameToLayer("Item"))
+                if (target[0].gameObject.layer == LayerMask.NameToLayer("Item"))
                 {
-                    Destroy(resut[0].gameObject);
+                    Destroy(target[0].gameObject);
                 }
-                else
+            // 오버랩 박스로 블록인경우 해당 블록삭제
+                if (target[0].gameObject.layer == LayerMask.NameToLayer("Block"))
                 {
-                    Animator _anim = resut[0].GetComponent<Animator>();
+                    Animator _anim = target[0].GetComponent<Animator>();
 
                     _anim.SetBool("BlockDestroy", true);
-                    Destroy(resut[0].gameObject, clearTime);
+                    Destroy(target[0].gameObject, clearTime);
                     return;
                 }
             }
