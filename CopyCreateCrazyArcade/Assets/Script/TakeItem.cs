@@ -17,8 +17,30 @@ namespace Assets.Script
             Flask
         }
         public ItemKind kind;
+        Vector3 spawnScale = new Vector3(1, 1, 0);
 
+        private bool asd = true;
         private PlayerStatus _playerStatus;
+        private void Awake()
+        {
+
+        }
+        float ti;
+        private void Update()
+        {
+            if (asd)
+            {
+                ti += Time.deltaTime;
+                transform.localScale = spawnScale * (ti * 1.9f);
+
+            }
+            if (ti >= 0.5f)
+            {
+                asd = false;
+            }
+
+        }
+
         public void PlayerTakeItem(GameObject status)
         {
             _playerStatus = status.GetComponent<PlayerStatus>();
@@ -29,27 +51,27 @@ namespace Assets.Script
 
                     if (_playerStatus.MAX_SPEED > _playerStatus.currentSpeed)
                         _playerStatus.currentSpeed += 1;
-                    
+
                     break;
                 case ItemKind.Balloon:
 
                     if (_playerStatus.MAX_BALLOON_COUNT > _playerStatus.currentBalloonCount)
                         _playerStatus.currentBalloonCount += 1;
-                    
+
                     break;
 
                 case ItemKind.Shoes:
 
                     if (_playerStatus.kickBaloon == false)
                         _playerStatus.kickBaloon = true;
-                    
+
                     break;
 
                 case ItemKind.Flask:
 
                     if (_playerStatus.MAX_EXPLOSION_POWER > _playerStatus.currentExplosionPower)
                         _playerStatus.currentExplosionPower += 1;
-                    
+
                     break;
 
                 default:
@@ -60,7 +82,7 @@ namespace Assets.Script
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if(collision.CompareTag("Player"))
+            if (collision.CompareTag("Player"))
             {
                 Destroy(gameObject);
             }

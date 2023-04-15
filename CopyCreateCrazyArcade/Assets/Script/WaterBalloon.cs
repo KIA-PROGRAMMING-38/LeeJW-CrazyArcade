@@ -14,7 +14,6 @@ namespace Assets.Script
         private Collider2D _collider;
         private Rigidbody2D _rigidbody;
         private const float CLEAR_TIME = 3f;
-        private const float ITEM_CLEAR_TIME = 2F;
         public int currentPower = 1;
 
         public Explosion explosionPrefeb;
@@ -50,10 +49,6 @@ namespace Assets.Script
         private void OnTriggerEnter2D(Collider2D collision)
         {
 
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
-            {
-                // Destroy(collision.gameObject, ITEM_CLEAR_TIME);
-            }
             if (collision.gameObject.CompareTag("Explosion"))
             {
                 // 시간 전에 물줄기에 풍선이 맞았을때
@@ -73,7 +68,6 @@ namespace Assets.Script
         void BoomBalloon()
         {
             // 센터 이미지
-
 
             Explosion explod = Instantiate(explosionPrefeb, transform.position, transform.rotation);
             Animator anim = explod.GetComponent<Animator>();
@@ -102,7 +96,6 @@ namespace Assets.Script
                 return;
             }
 
-
             //포지션으로부터의 방향 측정.
             position += direction;
 
@@ -111,15 +104,13 @@ namespace Assets.Script
             {
                 return;
             }
+
+           
+
             // 부술 수 있는 오브젝트.
             if (target[0] = Physics2D.OverlapBox(position, Vector2.one / 2f, 0f, destoryLayer))
-            {
-                // 블록이 아니면 지나쳐서 물줄기 생성 후 삭제
-                if (target[0].gameObject.layer == LayerMask.NameToLayer("Item"))
-                {
-                    Destroy(target[0].gameObject);
-                }
-            // 오버랩 박스로 블록인경우 해당 블록삭제
+            { 
+                // 오버랩 박스로 블록인경우 해당 블록삭제
                 if (target[0].gameObject.layer == LayerMask.NameToLayer("Block"))
                 {
                     Animator _anim = target[0].GetComponent<Animator>();
@@ -128,8 +119,14 @@ namespace Assets.Script
                     Destroy(target[0].gameObject, clearTime);
                     return;
                 }
+                // 블록이 아니면 지나쳐서 물줄기 생성 후 삭제
+                if (target[0].gameObject.layer == LayerMask.NameToLayer("Item"))
+                {
+                    Destroy(target[0].gameObject);
+                }
+            
             }
-
+           
             //물줄기 추가생성
             Explosion explosion = Instantiate(explosionPrefeb, position, transform.rotation);
             explosion.SetDirection(direction);

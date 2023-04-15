@@ -11,11 +11,17 @@ namespace Assets.Script
 {
     public class BlockManager : MonoBehaviour
     {
+
+
+        GameObject _item;
+        Collider2D[] target = new Collider2D[2];
+
         private Animator _anim;
         private Collider2D _collider;
 
         private void Awake()
         {
+            _item = Resources.Load("Shoes") as GameObject;
             _anim = GetComponent<Animator>();
             _collider = GetComponent<Collider2D>();
         }
@@ -24,54 +30,69 @@ namespace Assets.Script
         private float moveTime = 0;
         private bool _trigger = true;
 
-        private float raycastDistance = 0.05f;
-
-        Vector3 averageVec = new Vector3(0.5f, 0.5f, 0);
-        RaycastHit2D hit;
-
-        private float checkBlockTime;
         private void Update()
         {
-
             BlockMovement();
-            //if(destroyAnim)
-            //{
-            //  checkBlockTime += Time.deltaTime;
-            //    _anim.SetBool("BlockDestroy", true);
-
-            //    if(checkBlockTime > 0.2)
-            //    {
-            //        Destroy(gameObject);
-            //        checkBlockTime = 0;
-            //    }
-            //}
-
         }
-        private bool destroyAnim = false;
+        private Vector3 spawnPosition;
+        private void OnDestroy()
+        {
+            spawnPosition.x = transform.position.x;
+            spawnPosition.y = transform.position.y + 0.2f;
+
+            Instantiate(_item, spawnPosition, transform.rotation);
+        }
         private float elapsedTime;
         Vector3 newPosition = Vector3.zero;
         Vector3 normalVec = Vector3.zero;
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            normalVec = collision.contacts[0].normal;   
-
+            normalVec = collision.contacts[0].normal;
         }
+
         private void OnCollisionStay2D(Collision2D collision)
         {
+         
             normalVec = collision.contacts[0].normal;
             if (collision.gameObject.CompareTag("Player") && _collider.CompareTag("MovingBlock") && _trigger)
             {
-
-                elapsedTime += Time.deltaTime;
-
-                VectorIntTransform();
-
-                if (elapsedTime >= 0.3)
+                if (target[0] = Physics2D.OverlapBox(transform.position + normalVec, Vector2.one / 5f, 0f))
                 {
 
-                    isMoving = true;
-                    elapsedTime = 0;
+                    if (target[0].gameObject.layer == LayerMask.NameToLayer("Item"))
+                    {
+                        elapsedTime += Time.deltaTime;
+
+                        VectorIntTransform();
+
+                        if (elapsedTime >= 0.3)
+                        {
+
+                            isMoving = true;
+                            elapsedTime = 0;
+                            Destroy(target[0].gameObject);
+
+                        }
+
+
+                    }
+                
+                }
+
+                else
+                {
+                    elapsedTime += Time.deltaTime;
+
+                    VectorIntTransform();
+
+                    if (elapsedTime >= 0.3)
+                    {
+
+                        isMoving = true;
+                        elapsedTime = 0;
+                    }
+
                 }
             }
         }
@@ -89,38 +110,19 @@ namespace Assets.Script
         {
             if (isMoving)
             {
+
                 _trigger = false;
 
                 moveTime += Time.deltaTime;
-                averageVec = normalVec / 2;
-                // 노말벡터 앞에 물체가 있는지 판단.
-                hit = Physics2D.Raycast(transform.position + averageVec, normalVec, raycastDistance);
 
-                if (normalVec.x == 0 || normalVec.y == 0)
+
+                transform.position = Vector3.Lerp(transform.position, newPosition, moveTime / 6f);
+
+                if (moveTime > 0.8f)
                 {
-
-                    if (hit == false)
-                    {
-                        // 보간으로 포지션 변경
-                        transform.position = Vector3.Lerp(transform.position, newPosition, moveTime / 6f);
-
-                        if (moveTime > 0.8f)
-                        {
-                            moveTime = 0;
-                            isMoving = false;
-                            _trigger = true;
-                        }
-
-                    }
-                    else
-                    {
-                        transform.position = transform.position;
-                        moveTime = 0;
-                        isMoving = false;
-                        _trigger = true;
-
-                    }
-
+                    moveTime = 0;
+                    isMoving = false;
+                    _trigger = true;
                 }
 
 

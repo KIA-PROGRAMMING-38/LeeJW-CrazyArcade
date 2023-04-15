@@ -43,6 +43,7 @@ namespace Assets.Script
 
             if (selfposition.x > -10f)
             {
+                selfposition.y = selfposition.y + 0.05f;
                 WaterBalloon balloon = Instantiate(_Balloon, selfposition, Quaternion.identity);
                 balloon.currentPower = _status.currentExplosionPower;
             }
