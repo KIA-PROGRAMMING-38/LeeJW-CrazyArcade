@@ -11,23 +11,34 @@ namespace Assets.Script
 {
     public class PlayerStatus : MonoBehaviour
     {
-
+        Animator _anim;
         TakeItem item;
         public int currentSpeed { get; set; } = 5;
         public int currentExplosionPower { get; set; } = 1;
         public int currentBalloonCount { get; set; } = 1;
         public bool kickBalloon { get; set; } = false;
+        public bool dieWaitState { get; set; } =  false;
+
 
         public int MAX_SPEED { get; private set; } = 9;
         public int MAX_BALLOON_COUNT { get; private set; } = 6;
         public int MAX_EXPLOSION_POWER { get; private set; } = 7;
 
-
+        private void Awake()
+        {
+            _anim = GetComponent<Animator>();
+        }
         private void OnTriggerEnter2D(Collider2D collision)
-        {   
-           if(collision.gameObject.CompareTag("Explosion"))
+        {
+            if (collision.gameObject.CompareTag("Explosion"))
             {
-                Debug.Log($"{name} : 공격당했다 ");
+                _anim.SetBool("FirstDieWait", true);
+                dieWaitState = true;
+
+                if (dieWaitState)
+                {
+                    Time.timeScale = 0;
+                }
             }
 
            if(collision.gameObject.layer == LayerMask.NameToLayer("Item"))

@@ -46,7 +46,7 @@ public class IdleState : StateMachineBehaviour
 
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            animator.SetBool("IsMoving", false);
+            animator.SetBool("FirstIsMoving", false);
         }
 
         if (Input.GetKey(KeyCode.RightArrow))

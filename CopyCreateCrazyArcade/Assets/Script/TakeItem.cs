@@ -15,7 +15,9 @@ namespace Assets.Script
             Skate,
             Balloon,
             Shoes,
-            Flask
+            Flask,
+            MaxPower,
+            Needle
         }
         public ItemKind kind;
 
@@ -26,18 +28,6 @@ namespace Assets.Script
         private PlayerStatus _playerStatus;
         private float spawnTime;
         private float spawnSpeed = 1.9f;
-        private Vector3 MaxPositionY = new Vector3(0, 0.5f, 0);
-        Vector3 asdf = new Vector3(0,0.5f,0);
-        
-        private Vector3 defaultPositionY = Vector3.zero;
-
-        private void Awake()
-        {
-            defaultPositionY = transform.position;
-            MaxPositionY += defaultPositionY;
-        }
-        bool www = true;
-        float asd = 0f;
 
         private void Update()
         {
@@ -51,24 +41,6 @@ namespace Assets.Script
             {
                 spawnLimitTime = false;
             }
-
-
-            if(transform.position.y >= MaxPositionY.y)
-            {
-                transform.position -= asdf  * Time.deltaTime / 2; 
-            }
-            if(transform.position.y <= defaultPositionY.y)
-            {
-                transform.position += asdf * Time.deltaTime;
-            }
-
-        }
-        IEnumerator wowo2()
-        {
-            transform.position += MaxPositionY * Time.deltaTime * spawnSpeed;
-            yield return new WaitForSeconds(1f);
-            transform.position -= MaxPositionY * Time.deltaTime * spawnSpeed;
-            StopCoroutine(wowo2());
 
         }
 
@@ -97,6 +69,12 @@ namespace Assets.Script
 
                     break;
 
+                case ItemKind.MaxPower:
+                    _playerStatus.currentExplosionPower = _playerStatus.MAX_EXPLOSION_POWER;
+                    break;
+                case ItemKind.Needle:
+                    _playerStatus.dieWaitState = false;
+                        break;
                 default:
                     break;
 

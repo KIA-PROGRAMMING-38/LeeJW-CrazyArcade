@@ -14,24 +14,20 @@ namespace Assets.Script
         PlayerInput _input;
         PlayerStatus _status;
         public WaterBalloon _Balloon;
-        private int attackCount;
         private WaitForSeconds waitBalloon = new WaitForSeconds(3);
         bool kickOn = false;
         private Vector3 selfposition;
         private bool _isBalloonOnTile = true;
-        private int currentAttackCount = 1;
         private void Awake()
         {
             _input = GetComponent<PlayerInput>();
             _status = GetComponent<PlayerStatus>();
-            attackCount = _status.currentBalloonCount;
         }
 
 
 
         private void Update()
         {
-            Debug.Log(_status.currentBalloonCount);
 
             if (gameObject.name == "1PCharacter" && _input.FirstPlayerAttack() && _isBalloonOnTile && _status.currentBalloonCount > 0)
             {
@@ -99,11 +95,6 @@ namespace Assets.Script
             if (collision.gameObject.CompareTag("Balloon"))
             {
                 _isBalloonOnTile = false;
-            }
-            // ¾ÆÀÌÅÛ ½Àµæ½Ã ½ºÅÈ Áõ°¡
-            if (collision.CompareTag("ItemBalloon") && _status.MAX_BALLOON_COUNT > currentAttackCount)
-            {
-                currentAttackCount = _status.currentBalloonCount;
             }
             if (collision.CompareTag("ItemShoes"))
             {

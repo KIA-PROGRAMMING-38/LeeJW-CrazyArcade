@@ -32,7 +32,6 @@ namespace Assets.Script
 
         void Update()
         {
-
             elapsedTime += Time.deltaTime;
             if (elapsedTime >= CLEAR_TIME)
             {

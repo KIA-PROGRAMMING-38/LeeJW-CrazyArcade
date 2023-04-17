@@ -15,12 +15,11 @@ namespace Assets.Script
     {
 
 
-        GameObject[] _item = new GameObject[4];
+        GameObject[] _item = new GameObject[6];
         Collider2D[] target = new Collider2D[2];
 
         private int _itemRandomValue;
         private int _itemRandomSpawn;
-        private Animator _anim;
         private Collider2D _collider;
 
         private void Awake()
@@ -29,10 +28,13 @@ namespace Assets.Script
             _item[1] = Resources.Load("Flask") as GameObject;
             _item[2] = Resources.Load("Skate") as GameObject;
             _item[3] = Resources.Load("Shoes") as GameObject;
+            _item[4] = Resources.Load("MaxPower") as GameObject;
+            _item[5] = Resources.Load("Needle") as GameObject;
+
+
 
             _itemRandomValue = Random.Range(0, 4);
 
-            _anim = GetComponent<Animator>();
             _collider = GetComponent<Collider2D>();
         }
 
