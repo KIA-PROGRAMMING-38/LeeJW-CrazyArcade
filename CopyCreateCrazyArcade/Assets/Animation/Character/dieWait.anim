@@ -241,7 +241,11 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+<<<<<<< HEAD
   - time: 4.6666665
+=======
+  - time: 4.75
+>>>>>>> origin/main
     functionName: DieConfirmation
     data: 
     objectReferenceParameter: {fileID: 0}
