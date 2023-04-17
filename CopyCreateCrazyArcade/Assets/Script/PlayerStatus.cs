@@ -13,7 +13,7 @@ namespace Assets.Script
     {
         Animator _anim;
         TakeItem item;
-        public int currentSpeed { get; set; } = 5;
+        public float currentSpeed { get; set; } = 5;
         public int currentExplosionPower { get; set; } = 1;
         public int currentBalloonCount { get; set; } = 1;
         public bool kickBalloon { get; set; } = false;
@@ -32,16 +32,10 @@ namespace Assets.Script
         {
             if (collision.gameObject.CompareTag("Explosion"))
             {
-                _anim.SetBool("FirstDieWait", true);
-                dieWaitState = true;
-
-                if (dieWaitState)
-                {
-                    Time.timeScale = 0;
-                }
+                _anim.SetBool("DieWait", true);
             }
 
-           if(collision.gameObject.layer == LayerMask.NameToLayer("Item"))
+           if(collision.gameObject.layer == LayerMask.NameToLayer("Item") && dieWaitState == false)
             {
                 item = collision.GetComponent<TakeItem>();
 
@@ -50,7 +44,20 @@ namespace Assets.Script
             }
         }
 
+        public void WaitDie()
+        {
+            currentSpeed = 0.5f;
+            currentBalloonCount = 0;
+        }
+        public void DieConfirmation()
+        {
+            currentSpeed = 0;
+        }
 
+        public void GameEnd()
+        {
+            //게임 끝 조건
+        }
 
     }
 }
