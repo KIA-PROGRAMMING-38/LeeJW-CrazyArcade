@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class SecondPlayerMovement : MonoBehaviour
 {
     PlayerInput _input;
     PlayerStatus _status;
@@ -22,16 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         // 대각선 제한
-        if (gameObject.name == "1PCharacter")
-        {
-            velocity.x = _input._1PlayerPositionX;
-            velocity.y = _input._1PlayerPositionY;
-        }
-        if (gameObject.name == "2PCharacter")
-        {
-            velocity.x = _input._2PlayerPositionX;
-            velocity.y = _input._2PlayerPositionY;
-        }
+        velocity.x = _input._2PlayerPositionX;
+        velocity.y = _input._2PlayerPositionY;
     }
     void FixedUpdate()
     {

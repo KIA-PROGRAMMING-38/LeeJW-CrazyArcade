@@ -16,7 +16,7 @@ namespace Assets.Script
         public int currentSpeed { get; set; } = 5;
         public int currentExplosionPower { get; set; } = 1;
         public int currentBalloonCount { get; set; } = 1;
-        public bool kickBaloon { get; set; } = false;
+        public bool kickBalloon { get; set; } = false;
 
         public int MAX_SPEED { get; private set; } = 9;
         public int MAX_BALLOON_COUNT { get; private set; } = 6;
@@ -35,6 +35,7 @@ namespace Assets.Script
                 item = collision.GetComponent<TakeItem>();
 
                 item.PlayerTakeItem(gameObject);
+                Destroy(collision.gameObject);
             }
         }
 

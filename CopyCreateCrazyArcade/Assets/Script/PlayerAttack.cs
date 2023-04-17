@@ -14,10 +14,12 @@ namespace Assets.Script
         PlayerInput _input;
         PlayerStatus _status;
         public WaterBalloon _Balloon;
-        private int attackCount = 1;
-        private  WaitForSeconds waitBalloon = new WaitForSeconds(3);
+        private int attackCount;
+        private WaitForSeconds waitBalloon = new WaitForSeconds(3);
         bool kickOn = false;
-
+        private Vector3 selfposition;
+        private bool _isBalloonOnTile = true;
+        private int currentAttackCount = 1;
         private void Awake()
         {
             _input = GetComponent<PlayerInput>();
@@ -25,19 +27,25 @@ namespace Assets.Script
             attackCount = _status.currentBalloonCount;
         }
 
-        private Vector3 selfposition;
-        private bool _isBalloonOnTile = true;
+
 
         private void Update()
         {
-            if (_input.Attack() && _isBalloonOnTile && attackCount > 0)
+            Debug.Log(_status.currentBalloonCount);
+
+            if (gameObject.name == "1PCharacter" && _input.FirstPlayerAttack() && _isBalloonOnTile && _status.currentBalloonCount > 0)
+            {
+                StartCoroutine(CreateBalloon());
+            }
+            if (gameObject.name == "2PCharacter" && _input.SecondPlayerAttack() && _isBalloonOnTile && _status.currentBalloonCount > 0)
             {
                 StartCoroutine(CreateBalloon());
             }
         }
         private IEnumerator CreateBalloon()
         {
-            --attackCount;
+            --_status.currentBalloonCount;
+
             // 현재 포지션을 셀포지션으로
             selfposition = MapManager.Instance.LocalToCellPosition(transform);
 
@@ -49,9 +57,9 @@ namespace Assets.Script
             }
 
             yield return waitBalloon;
+                ++_status.currentBalloonCount;
 
-            ++attackCount;
-            
+
         }
         Vector2 normalVec = Vector2.zero;
 
@@ -80,7 +88,7 @@ namespace Assets.Script
                 {
                     SetConstraints(collision);
                     collision.rigidbody.velocity = normalVec;
-                    
+
                 }
             }
         }
@@ -93,9 +101,9 @@ namespace Assets.Script
                 _isBalloonOnTile = false;
             }
             // 아이템 습득시 스탯 증가
-            if (collision.CompareTag("ItemBalloon") && _status.MAX_BALLOON_COUNT > attackCount)
+            if (collision.CompareTag("ItemBalloon") && _status.MAX_BALLOON_COUNT > currentAttackCount)
             {
-                attackCount += 1;
+                currentAttackCount = _status.currentBalloonCount;
             }
             if (collision.CompareTag("ItemShoes"))
             {

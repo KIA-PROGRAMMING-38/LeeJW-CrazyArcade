@@ -73,36 +73,26 @@ namespace Assets.Script
             {
                 if (target[0] = Physics2D.OverlapBox(transform.position + normalVec, Vector2.one / 5f, 0f))
                 {
-
                     if (target[0].gameObject.layer == LayerMask.NameToLayer("Item"))
                     {
                         elapsedTime += Time.deltaTime;
-
                         VectorIntTransform();
 
                         if (elapsedTime >= 0.3)
                         {
-
                             isMoving = true;
                             elapsedTime = 0;
                             Destroy(target[0].gameObject);
-
                         }
-
-
                     }
-                
                 }
-
                 else
                 {
                     elapsedTime += Time.deltaTime;
-
                     VectorIntTransform();
 
                     if (elapsedTime >= 0.3)
                     {
-
                         isMoving = true;
                         elapsedTime = 0;
                     }
@@ -124,12 +114,8 @@ namespace Assets.Script
         {
             if (isMoving)
             {
-
                 _trigger = false;
-
                 moveTime += Time.deltaTime;
-
-
                 transform.position = Vector3.Lerp(transform.position, newPosition, moveTime / 6f);
 
                 if (moveTime > 0.8f)
@@ -138,10 +124,7 @@ namespace Assets.Script
                     isMoving = false;
                     _trigger = true;
                 }
-
-
             }
-
         }
     }
 }
