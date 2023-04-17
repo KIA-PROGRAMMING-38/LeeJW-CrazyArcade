@@ -73,7 +73,7 @@ namespace Assets.Script
                     _playerStatus.currentExplosionPower = _playerStatus.MAX_EXPLOSION_POWER;
                     break;
                 case ItemKind.Needle:
-                    _playerStatus.dieWaitState = false;
+                    _playerStatus.needleCount += 1;
                         break;
                 default:
                     break;

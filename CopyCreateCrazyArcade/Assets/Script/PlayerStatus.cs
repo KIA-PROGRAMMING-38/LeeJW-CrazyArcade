@@ -18,7 +18,10 @@ namespace Assets.Script
         public int currentBalloonCount { get; set; } = 1;
         public bool kickBalloon { get; set; } = false;
         public bool dieWaitState { get; set; } =  false;
+        public int needleCount;
 
+        public float storageSpeed;
+        public int storageAttackCount;
 
         public int MAX_SPEED { get; private set; } = 9;
         public int MAX_BALLOON_COUNT { get; private set; } = 6;
@@ -44,19 +47,31 @@ namespace Assets.Script
             }
         }
 
+        public void UseNeedle()
+        {
+            currentBalloonCount = storageAttackCount;
+            currentSpeed = storageSpeed;
+            _anim.SetBool("DieWait", false);
+            _anim.SetTrigger("Live");
+        }
         public void WaitDie()
         {
+            storageAttackCount = currentBalloonCount;
+            storageSpeed = currentSpeed;
+
             currentSpeed = 0.5f;
             currentBalloonCount = 0;
         }
         public void DieConfirmation()
         {
-            currentSpeed = 0;
-        }
+;            currentSpeed = 0f;
+            _anim.SetBool("DieWait", false);
 
+            _anim.SetBool("DieConfirmation", true);
+        }
         public void GameEnd()
         {
-            //게임 끝 조건
+            gameObject.SetActive(false);
         }
 
     }
