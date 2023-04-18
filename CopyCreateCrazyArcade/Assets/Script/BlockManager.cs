@@ -33,7 +33,7 @@ namespace Assets.Script
 
 
 
-            _itemRandomValue = Random.Range(0, 4);
+            _itemRandomValue = Random.Range(0, _item.Length);
 
             _collider = GetComponent<Collider2D>();
         }
