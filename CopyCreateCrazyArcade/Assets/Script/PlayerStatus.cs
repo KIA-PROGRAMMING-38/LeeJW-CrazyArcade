@@ -34,10 +34,7 @@ namespace Assets.Script
         {
             _anim = GetComponent<Animator>();
         }
-        private void Update()
-        {
-            Debug.Log($"{gameObject.name} {needleCount}");
-        }
+
         IEnumerator StartMoving()
         {
 

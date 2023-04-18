@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    public GameStartEvent _manager;
+
     public float _1PlayerPositionX { get; private set; }
     public float _1PlayerPositionY { get; private set; }
 
@@ -18,20 +20,24 @@ public class PlayerInput : MonoBehaviour
     }
     private void Update()
     {
-        _1PlayerPositionX = Input.GetAxisRaw("Horizontal");
-        _1PlayerPositionY = Input.GetAxisRaw("Vertical");
+        if ( _manager.gameStart == true)
+        {
+            _1PlayerPositionX = Input.GetAxisRaw("Horizontal");
+            _1PlayerPositionY = Input.GetAxisRaw("Vertical");
 
-        _2PlayerPositionX = Input.GetAxisRaw("SecondHorizontal");
-        _2PlayerPositionY = Input.GetAxisRaw("SecondVertical");
+            _2PlayerPositionX = Input.GetAxisRaw("SecondHorizontal");
+            _2PlayerPositionY = Input.GetAxisRaw("SecondVertical");
 
-        if(_status.needleCount > 0 && FirstPlayerUseItem()  && _status.dieWaitState == true)
+        }
+
+        if (_status.needleCount > 0 && FirstPlayerUseItem() && _status.dieWaitState == true)
         {
             --_status.needleCount;
             _status.UseNeedle();
 
         }
 
-         if (_status.needleCount > 0 && SecondPlayerUseItem() && _status.dieWaitState == true)
+        if (_status.needleCount > 0 && SecondPlayerUseItem() && _status.dieWaitState == true)
         {
             --_status.needleCount;
             _status.SecondUseNeedle();
