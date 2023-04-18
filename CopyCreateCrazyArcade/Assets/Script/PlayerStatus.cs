@@ -46,8 +46,9 @@ namespace Assets.Script
         {
             if (collision.gameObject.CompareTag("Player") && dieWaitState == false)
             {
-                _status = collision.gameObject.GetComponent<PlayerStatus>();
-                _status.DieConfirmation();
+              
+                _status.DieConfirmation(collision);
+                _status.GameEnd();
             }
 
         }
@@ -56,7 +57,6 @@ namespace Assets.Script
             if (collision.gameObject.CompareTag("Explosion"))
             {
                 _anim.SetBool($"{gameObject.name}DieWait", true);
-                Debug.Log($"{gameObject.name}DieWait");
 
             }
 
@@ -105,11 +105,11 @@ namespace Assets.Script
             currentSpeed = 0.5f;
             currentBalloonCount = 0;
         }
-        public void DieConfirmation()
+        public void DieConfirmation(Collision2D collision)
         {
             currentSpeed = 0f;
-            _anim.SetBool($"{gameObject.name}DieWait", false);
-            _anim.SetBool($"{gameObject.name}DieConfirmation", true);
+            _anim.SetBool($"{collision.gameObject.name}DieWait", false);
+            _anim.SetBool($"{collision.gameObject.name}DieConfirmation", true);
             Physics2D.IgnoreLayerCollision(3, 3, true);
 
         }

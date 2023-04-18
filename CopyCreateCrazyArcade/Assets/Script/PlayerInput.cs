@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    public GameStartEvent _manager;
+    public GameManager _manager;
 
     public float _1PlayerPositionX { get; private set; }
     public float _1PlayerPositionY { get; private set; }
@@ -51,5 +51,9 @@ public class PlayerInput : MonoBehaviour
     public bool FirstPlayerUseItem() => Input.GetKeyDown(KeyCode.Slash);
     public bool SecondPlayerUseItem() => Input.GetKeyDown(KeyCode.LeftControl);
 
+    public void GameEnd()
+    {
+        _manager.GameOver();
+    }
 
 }
