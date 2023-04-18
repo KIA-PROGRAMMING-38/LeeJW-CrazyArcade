@@ -6,8 +6,15 @@ public class IdleState : StateMachineBehaviour
 {
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        FirstPlayerIdle(animator);
-        SecondPlayerIdle(animator);
+        if (animator.gameObject.name == "1PCharacter")
+        {
+            FirstPlayerIdle(animator);
+        }
+        else
+        {
+            SecondPlayerIdle(animator);
+
+        }
 
     }
     void FirstPlayerIdle(Animator animator)

@@ -7,6 +7,8 @@ using UnityEditor;
 using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UIElements;
+
 namespace Assets.Script
 {
     public class PlayerAttack : MonoBehaviour
@@ -17,7 +19,8 @@ namespace Assets.Script
         private WaitForSeconds waitBalloon = new WaitForSeconds(3);
         bool kickOn = false;
         private Vector3 selfposition;
-        private bool _isBalloonOnTile = true;
+        Collider2D[] target = new Collider2D[2];
+
         private void Awake()
         {
             _input = GetComponent<PlayerInput>();
@@ -28,15 +31,24 @@ namespace Assets.Script
 
         private void Update()
         {
+            target[0] = Physics2D.OverlapBox(transform.position, Vector2.one, 0f);
+            
+                
+            
+            if (target[0].gameObject.CompareTag("Balloon") == false)
+            {
+                if (gameObject.name == "1PCharacter" && _input.FirstPlayerAttack() && _status.currentBalloonCount > 0)
+                {
+                    StartCoroutine(CreateBalloon());
+                }
+                if (gameObject.name == "2PCharacter" && _input.SecondPlayerAttack() && _status.currentBalloonCount > 0)
+                {
 
-            if (gameObject.name == "1PCharacter" && _input.FirstPlayerAttack() && _isBalloonOnTile && _status.currentBalloonCount > 0)
-            {
-                StartCoroutine(CreateBalloon());
+                    StartCoroutine(CreateBalloon());
+                }
             }
-            if (gameObject.name == "2PCharacter" && _input.SecondPlayerAttack() && _isBalloonOnTile && _status.currentBalloonCount > 0)
-            {
-                StartCoroutine(CreateBalloon());
-            }
+            
+           
         }
         private IEnumerator CreateBalloon()
         {
@@ -45,15 +57,14 @@ namespace Assets.Script
             // 현재 포지션을 셀포지션으로
             selfposition = MapManager.Instance.LocalToCellPosition(transform);
 
-            if (selfposition.x > -10f)
-            {
-                selfposition.y = selfposition.y + 0.05f;
-                WaterBalloon balloon = Instantiate(_Balloon, selfposition, Quaternion.identity);
-                balloon.currentPower = _status.currentExplosionPower;
-            }
+
+            selfposition.y = selfposition.y + 0.05f;
+            WaterBalloon balloon = Instantiate(_Balloon, selfposition, Quaternion.identity);
+            balloon.currentPower = _status.currentExplosionPower;
+
 
             yield return waitBalloon;
-                ++_status.currentBalloonCount;
+            ++_status.currentBalloonCount;
 
 
         }
@@ -91,21 +102,9 @@ namespace Assets.Script
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            // 타일 위에 불룬이 있는 판별
-            if (collision.gameObject.CompareTag("Balloon"))
-            {
-                _isBalloonOnTile = false;
-            }
             if (collision.CompareTag("ItemShoes"))
             {
                 kickOn = true;
-            }
-        }
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.gameObject.CompareTag("Balloon"))
-            {
-                _isBalloonOnTile = true;
             }
         }
 

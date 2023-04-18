@@ -24,18 +24,26 @@ public class PlayerInput : MonoBehaviour
         _2PlayerPositionX = Input.GetAxisRaw("SecondHorizontal");
         _2PlayerPositionY = Input.GetAxisRaw("SecondVertical");
 
-        if(_status.needleCount > 0 && FirstPlayerUseItem())
+        if(_status.needleCount > 0 && FirstPlayerUseItem()  && _status.dieWaitState == true)
         {
             --_status.needleCount;
             _status.UseNeedle();
-            
+
         }
 
-     
+         if (_status.needleCount > 0 && SecondPlayerUseItem() && _status.dieWaitState == true)
+        {
+            --_status.needleCount;
+            _status.SecondUseNeedle();
+
+        }
+
+
     }
     public bool FirstPlayerAttack() => Input.GetKeyDown(KeyCode.Space);
     public bool SecondPlayerAttack() => Input.GetKeyDown(KeyCode.LeftShift);
-    public bool FirstPlayerUseItem() => Input.GetKeyDown(KeyCode.LeftControl);
+    public bool FirstPlayerUseItem() => Input.GetKeyDown(KeyCode.Slash);
+    public bool SecondPlayerUseItem() => Input.GetKeyDown(KeyCode.LeftControl);
 
 
 }
