@@ -20,7 +20,7 @@ namespace Assets.Script
 
         public float currentSpeed { get; set; } = 5;
         public int currentExplosionPower { get; set; } = 1;
-        public int currentBalloonCount { get; set; } = 5;
+        public int currentBalloonCount { get; set; } = 1;
         public bool kickBalloon { get; set; } = false;
         public bool dieWaitState { get; set; } = false;
         public int needleCount { get; set; }

@@ -47,17 +47,23 @@ namespace Assets.Script
             BlockMovement();
         }
         private Vector3 spawnPosition;
-        private void OnDestroy()
+
+        private void OnDisable()
         {
             _itemRandomSpawn = Random.Range(0, 10);
 
             spawnPosition.x = transform.position.x;
             spawnPosition.y = transform.position.y + 0.2f;
 
-            if(_itemRandomSpawn < 3)
+            if(_itemRandomSpawn < 6)
             Instantiate(_item[_itemRandomValue], spawnPosition, transform.rotation);
 
         }
+        private void BlockClearEvent()
+        {
+            gameObject.SetActive(false);
+        }
+
         private float elapsedTime;
         Vector3 newPosition = Vector3.zero;
         Vector3 normalVec = Vector3.zero;
@@ -80,11 +86,11 @@ namespace Assets.Script
                         elapsedTime += Time.deltaTime;
                         VectorIntTransform();
 
-                        if (elapsedTime >= 0.3)
+                        if (elapsedTime >= 0.5)
                         {
                             isMoving = true;
                             elapsedTime = 0;
-                            Destroy(target[0].gameObject);
+                            target[0].gameObject.SetActive(false);  
                         }
                     }
                 }

@@ -13,7 +13,7 @@ namespace Assets.Script
         private float elapsedTime;
         private Collider2D _collider;
         private Rigidbody2D _rigidbody;
-        private const float CLEAR_TIME = 3f;
+        private const float BALLOON_CLEAR_TIME = 3f;
         public int currentPower = 1;
 
         public Explosion explosionPrefeb;
@@ -33,7 +33,7 @@ namespace Assets.Script
         void Update()
         {
             elapsedTime += Time.deltaTime;
-            if (elapsedTime >= CLEAR_TIME)
+            if (elapsedTime >= BALLOON_CLEAR_TIME)
             {
                 BoomBalloon();
             }
@@ -115,7 +115,7 @@ namespace Assets.Script
                     Animator _anim = target[0].GetComponent<Animator>();
 
                     _anim.SetBool("BlockDestroy", true);
-                    Destroy(target[0].gameObject, clearTime);
+                    
                     return;
                 }
                 // 블록이 아니면 지나쳐서 물줄기 생성 후 삭제
