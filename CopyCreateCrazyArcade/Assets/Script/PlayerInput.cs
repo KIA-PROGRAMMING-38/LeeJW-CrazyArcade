@@ -29,23 +29,22 @@ public class PlayerInput : MonoBehaviour
             _2PlayerPositionY = Input.GetAxisRaw("SecondVertical");
 
 
-            if (_status.needleCount > 0 && FirstPlayerUseItem() && _status.dieWaitState == true)
+            if (_status.needleCount > 0 && FirstPlayerUseItem() && _status.dieWaitState == true
+                && _status.name == "1PCharacter")
             {
                 --_status.needleCount;
                 _status.UseNeedle();
 
             }
 
-            if (_status.needleCount > 0 && SecondPlayerUseItem() && _status.dieWaitState == true)
+            if (_status.needleCount > 0 && SecondPlayerUseItem() && _status.dieWaitState == true
+                && _status.name == "2PCharacter")
             {
                 --_status.needleCount;
                 _status.SecondUseNeedle();
 
             }
 
-            if(Input.GetKeyDown(KeyCode.D)) {
-                _manager.GameOver();
-            }
 
         }
     }
@@ -59,4 +58,21 @@ public class PlayerInput : MonoBehaviour
         _manager.GameOver();
     }
 
+    public void FirstNeedleUpdate()
+    {
+        _manager.FirstNeedle();
+    }
+    public void FirstNeedleDown()
+    {
+        _manager.FirstNeedleOff();
+    }
+
+    public void SecondNeedleUpdate()
+    {
+        _manager.SecondNeedle();
+    }
+    public void SecondNeedleDown()
+    {
+        _manager.SecondNeedleOff();
+    }
 }

@@ -47,6 +47,7 @@ namespace Assets.Script
         public void PlayerTakeItem(GameObject status)
         {
             _playerStatus = status.GetComponent<PlayerStatus>();
+
             switch (kind)
             {
 
@@ -73,8 +74,19 @@ namespace Assets.Script
                     _playerStatus.currentExplosionPower = _playerStatus.MAX_EXPLOSION_POWER;
                     break;
                 case ItemKind.Needle:
+                    if(_playerStatus.needleMaxCount > _playerStatus.needleCount)
                     _playerStatus.needleCount += 1;
-                        break;
+
+                    if (_playerStatus.name == "1PCharacter")
+                    {
+                        _playerStatus._input.FirstNeedleUpdate();
+                    }
+                    if(_playerStatus.name == "2PCharacter")
+                    {
+                        _playerStatus._input.SecondNeedleUpdate();
+                    }
+
+                    break;
                 default:
                     break;
 

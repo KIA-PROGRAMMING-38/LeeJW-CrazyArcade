@@ -13,19 +13,21 @@ namespace Assets.Script
 {
     public class PlayerStatus : MonoBehaviour
     {
-        Animator _anim;
-        TakeItem item;
-       private PlayerInput _input ;
+        private Animator _anim;
+        private TakeItem item;
+        public PlayerInput _input { get; set; }
+        public PlayerStatus _status;
+
         public float currentSpeed { get; set; } = 5;
         public int currentExplosionPower { get; set; } = 1;
         public int currentBalloonCount { get; set; } = 5;
         public bool kickBalloon { get; set; } = false;
         public bool dieWaitState { get; set; } = false;
-        public int needleCount;
-        
-        public float storageSpeed;
-        public int storageAttackCount;
+        public int needleCount { get; set; }
+        public int needleMaxCount { get; private set; } = 1;
 
+        public float storageSpeed { get; set; }
+        public int storageAttackCount { get; set; }
         public int MAX_SPEED { get; private set; } = 9;
         public int MAX_BALLOON_COUNT { get; private set; } = 6;
         public int MAX_EXPLOSION_POWER { get; private set; } = 7;
@@ -36,8 +38,8 @@ namespace Assets.Script
         {
             _anim = GetComponent<Animator>();
             _input = GetComponent<PlayerInput>();
-        }
 
+        }
         IEnumerator StartMoving()
         {
 
@@ -49,9 +51,7 @@ namespace Assets.Script
         {
             if (collision.gameObject.CompareTag("Player") && dieWaitState == true)
             {
-               DieConfirmation(collision);
-                Animator an = collision.gameObject.GetComponent<Animator>();
-                an.SetTrigger($"{collision.gameObject.name}Win");
+                DieConfirmation();
             }
 
         }
@@ -82,6 +82,9 @@ namespace Assets.Script
 
             StartCoroutine(StartMoving());
 
+            _input.FirstNeedleDown();
+
+
         }
 
         public void SecondUseNeedle()
@@ -91,8 +94,9 @@ namespace Assets.Script
 
             dieWaitState = false;
             _anim.SetTrigger($"{name}Live");
-            
+
             StartCoroutine(StartMoving());
+            _input.SecondNeedleDown();
 
 
         }
@@ -107,16 +111,21 @@ namespace Assets.Script
             currentSpeed = 0.5f;
             currentBalloonCount = 0;
         }
-        public void DieConfirmation(Collision2D collision)
+        public void DieConfirmation()
         {
-
             _input.GameClear();
             currentSpeed = 0f;
             _anim.SetBool($"{name}DieWait", false);
             _anim.SetBool($"{name}DieConfirmation", true);
             Physics2D.IgnoreLayerCollision(3, 3, true);
 
+            _status._anim.SetTrigger("Win");
 
+
+        }
+        public void WinTrigger()
+        {
+            _anim.SetTrigger("Win");
 
         }
         public void GameEnd()
