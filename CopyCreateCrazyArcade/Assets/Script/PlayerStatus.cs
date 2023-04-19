@@ -49,7 +49,9 @@ namespace Assets.Script
         {
             if (collision.gameObject.CompareTag("Player") && dieWaitState == true)
             {
-               DieConfirmation();
+               DieConfirmation(collision);
+                Animator an = collision.gameObject.GetComponent<Animator>();
+                an.SetTrigger($"{collision.gameObject.name}Win");
             }
 
         }
@@ -105,13 +107,16 @@ namespace Assets.Script
             currentSpeed = 0.5f;
             currentBalloonCount = 0;
         }
-        public void DieConfirmation()
+        public void DieConfirmation(Collision2D collision)
         {
+
             _input.GameClear();
             currentSpeed = 0f;
             _anim.SetBool($"{name}DieWait", false);
             _anim.SetBool($"{name}DieConfirmation", true);
             Physics2D.IgnoreLayerCollision(3, 3, true);
+
+
 
         }
         public void GameEnd()

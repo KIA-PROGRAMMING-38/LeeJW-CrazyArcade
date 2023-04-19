@@ -3277,12 +3277,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 728780174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ad4a0ff9667ad14288574c9e9332a5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 28a6b51ab3f2bc740bd9ccf2970aae1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _start: {fileID: 897280955}
-  _end: {fileID: 1989728977}
-  gamePlay: 0
+  _manager: {fileID: 1316120118}
 --- !u!1 &732680864
 GameObject:
   m_ObjectHideFlags: 0
