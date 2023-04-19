@@ -21,16 +21,32 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        // 대각선 제한
-        if (gameObject.name == "1PCharacter")
+        if (_input._manager.gamePlay == true)
         {
-            velocity.x = _input._1PlayerPositionX;
-            velocity.y = _input._1PlayerPositionY;
+
+            if (gameObject.name == "1PCharacter")
+            {
+                velocity.x = _input._1PlayerPositionX;
+                velocity.y = _input._1PlayerPositionY;
+            }
+            if (gameObject.name == "2PCharacter")
+            {
+                velocity.x = _input._2PlayerPositionX;
+                velocity.y = _input._2PlayerPositionY;
+            }
         }
-        if (gameObject.name == "2PCharacter")
+        else
         {
-            velocity.x = _input._2PlayerPositionX;
-            velocity.y = _input._2PlayerPositionY;
+            if (gameObject.name == "1PCharacter")
+            {
+                velocity.x = 0;
+                velocity.y = 0;
+            }
+            if (gameObject.name == "2PCharacter")
+            {
+                velocity.x = 0;
+                velocity.y = 0;
+            }
         }
     }
     void FixedUpdate()

@@ -46,7 +46,6 @@ public class PlayerInput : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.D)) {
                 _manager.GameOver();
             }
-            Debug.Log(_manager.gamePlay);
 
         }
     }
@@ -57,7 +56,6 @@ public class PlayerInput : MonoBehaviour
 
     public void GameClear()
     {
-        _manager.gamePlay = false;
         _manager.GameOver();
     }
 
