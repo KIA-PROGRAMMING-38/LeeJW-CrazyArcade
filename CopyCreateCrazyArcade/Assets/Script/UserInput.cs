@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using TMPro.Examples;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UserInput : MonoBehaviour
+public  class UserInput : MonoBehaviour
 {
-    private float mouseX;
-    private float mouseY;
-    
-    void Update()
-    {
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
-       
+    public TMP_InputField[] _InputID;
 
+    public static string firstUserID;
+    public static string secondUserID;
+
+
+    public void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
     }
+
+    public void FirstUserInputID()
+    {
+        firstUserID = _InputID[0].text;
+    }
+    public void SecondUserInputID()
+    {
+        secondUserID = _InputID[1].text;
+    }
+
+    
+
 }

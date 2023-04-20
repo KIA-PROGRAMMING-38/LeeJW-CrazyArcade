@@ -1,10 +1,13 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 namespace Assets.Script
 {
@@ -12,7 +15,7 @@ namespace Assets.Script
     {
         public void FromLoginToGameLobby()
         {
-            SceneManager.LoadScene(NameOfScenes.IngameLobby);
+                SceneManager.LoadScene(NameOfScenes.IngameLobby);
         }
         public void FromLobbyToCreateRoom()
         {
@@ -26,6 +29,6 @@ namespace Assets.Script
         {
             SceneManager.LoadScene(NameOfScenes.GamePlay);
         }
-       
+
     }
 }
