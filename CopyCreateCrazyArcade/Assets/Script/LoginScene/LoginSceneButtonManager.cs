@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoginSceneByttonManager : MonoBehaviour
+public class LoginSceneButtonManager : MonoBehaviour
 {
     [SerializeField]
     private ScenesManager _scenesmanager;

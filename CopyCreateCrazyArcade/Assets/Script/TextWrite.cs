@@ -12,10 +12,5 @@ public class TextWrite : MonoBehaviour
     {
         _text[0].text = UserInput.firstUserID;
         _text[1].text = UserInput.secondUserID;
-
-        Debug.Log(_text[0].text);
-        Debug.Log(_text[1].text);
-
-
     }
 }

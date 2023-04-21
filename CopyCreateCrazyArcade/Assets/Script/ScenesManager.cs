@@ -15,20 +15,29 @@ namespace Assets.Script
     {
         public void FromLoginToGameLobby()
         {
-                SceneManager.LoadScene(NameOfScenes.IngameLobby);
+            SceneManager.LoadScene(NameOfScenes.IngameLobby);
         }
         public void FromLobbyToCreateRoom()
         {
             SceneManager.LoadScene(NameOfScenes.CreateRoom);
         }
-        public void FromCreateRoomToRoomRobby()
+        public void FromCreateRoomToDefaultWaitRoom()
         {
-            SceneManager.LoadScene(NameOfScenes.RoomRobby);
+            SceneManager.LoadScene(NameOfScenes.DefaultWaitRoom);
+        }
+        public void FromCreateRoomToMonsterWaitRoom()
+        {
+
         }
         public void FromRoomRobbyToGamePlayScene()
         {
             SceneManager.LoadScene(NameOfScenes.GamePlay);
         }
+        public void FromGameLobbyToLogin()
+        {
+            SceneManager.LoadScene(NameOfScenes.Login);
+        }
+    
 
     }
 }

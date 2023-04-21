@@ -11,11 +11,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IngameLobbyScene.unity
     guid: 22a2bf8e5d7c7e6419bbbc386fcfb1e4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CreateRoomScene.unity
     guid: 9f4d9529b77b49c469f8dc25c1d99cd5
   - enabled: 1
-    path: Assets/Scenes/GameRoomLobby.unity
+    path: Assets/Scenes/DefaultWaitRoom.unity
     guid: a55911dd780d57246ac2abd6f30acc36
   - enabled: 1
     path: Assets/Scenes/GamePlayScene.unity
