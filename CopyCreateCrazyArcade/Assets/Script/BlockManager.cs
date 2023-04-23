@@ -48,19 +48,22 @@ namespace Assets.Script
         }
         private Vector3 spawnPosition;
 
-        private void OnDisable()
+        private void ItemCreate()
         {
             _itemRandomSpawn = Random.Range(0, 10);
 
             spawnPosition.x = transform.position.x;
             spawnPosition.y = transform.position.y + 0.2f;
 
-            if(_itemRandomSpawn < 6)
-            Instantiate(_item[_itemRandomValue], spawnPosition, transform.rotation);
+            if (_itemRandomSpawn < 6)
+                Instantiate(_item[_itemRandomValue], spawnPosition, transform.rotation);
 
         }
+       
+
         private void BlockClearEvent()
         {
+            ItemCreate();
             gameObject.SetActive(false);
         }
 

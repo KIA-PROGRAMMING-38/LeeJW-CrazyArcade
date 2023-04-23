@@ -13,13 +13,14 @@ namespace Assets.Script
 {
     public class PlayerAttack : MonoBehaviour
     {
-        PlayerInput _input;
-        PlayerStatus _status;
+        private PlayerInput _input;
+        private PlayerStatus _status;
         public WaterBalloon _Balloon;
         private WaitForSeconds waitBalloon = new WaitForSeconds(3);
-        bool kickOn = false;
+        private bool kickOn = false;
         private Vector3 selfposition;
-        Collider2D[] target = new Collider2D[2];
+        private Collider2D[] target = new Collider2D[2];
+        
 
         private void Awake()
         {

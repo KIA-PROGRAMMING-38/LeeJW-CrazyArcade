@@ -26,6 +26,7 @@ namespace Assets.Script
         }
 
         private static MapManager s_instance;
+
         private Grid _grid;
 
         void Awake()

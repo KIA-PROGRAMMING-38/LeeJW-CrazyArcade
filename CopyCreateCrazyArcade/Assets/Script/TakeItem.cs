@@ -23,11 +23,11 @@ namespace Assets.Script
 
 
         private Vector3 spawnScale = new Vector3(1, 1, 0);
-
         private bool spawnLimitTime = true;
         private PlayerStatus _playerStatus;
         private float spawnTime;
         private float spawnSpeed = 1.9f;
+
 
         private void Update()
         {

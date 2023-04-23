@@ -21,39 +21,39 @@ namespace Assets.Script
         public LayerMask destoryLayer;
 
         private const float clearTime = 0.36f;
-
         Collider2D[] target = new Collider2D[2];
+
+
+
+
+        private IEnumerator myBoomCoroutine;
+        private WaitForSeconds boomWaitTime = new WaitForSeconds(3);
+
         private void Awake()
         {
             _collider = GetComponent<Collider2D>();
             _rigidbody = GetComponent<Rigidbody2D>();
+
         }
 
 
         void Update()
         {
-            elapsedTime += Time.deltaTime;
-            if (elapsedTime >= BALLOON_CLEAR_TIME)
-            {
-                BoomBalloon();
-            }
-
+            myBoomCoroutine = BoomCoroutine();
+            StartCoroutine(myBoomCoroutine);
         }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
-
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-
             if (collision.gameObject.CompareTag("Explosion"))
             {
-                // 시간 전에 물줄기에 풍선이 맞았을때
                 BoomBalloon();
             }
-
         }
 
         private void OnTriggerExit2D(Collider2D collision)
@@ -64,23 +64,25 @@ namespace Assets.Script
             }
         }
 
+        private IEnumerator BoomCoroutine()
+        {
+            yield return boomWaitTime;
+
+            BoomBalloon();
+        }
+
         void BoomBalloon()
         {
-            // 센터 이미지
 
             Explosion explod = Instantiate(explosionPrefeb, transform.position, transform.rotation);
             Animator anim = explod.GetComponent<Animator>();
+            explod.ExplosionSound();
+
             anim.SetBool("CenterExplosion", true);
-            explod.DestroyAfter(clearTime);
-
-            Destroy(gameObject);
-
+            gameObject.SetActive(false);
             CrossExplodCreate();
-
-            elapsedTime = 0;
         }
 
-        // 진행할 방향
         void CrossExplodCreate()
         {
             Explode(transform.position, Vector2.up, currentPower);
@@ -88,6 +90,7 @@ namespace Assets.Script
             Explode(transform.position, Vector2.left, currentPower);
             Explode(transform.position, Vector2.right, currentPower);
         }
+
         private void Explode(Vector2 position, Vector2 direction, int length)
         {
             if (length <= 0)
@@ -104,33 +107,32 @@ namespace Assets.Script
                 return;
             }
 
-           
+
 
             // 부술 수 있는 오브젝트.
             if (target[0] = Physics2D.OverlapBox(position, Vector2.one / 2f, 0f, destoryLayer))
-            { 
+            {
                 // 오버랩 박스로 블록인경우 해당 블록삭제
                 if (target[0].gameObject.layer == LayerMask.NameToLayer("Block"))
                 {
                     Animator _anim = target[0].GetComponent<Animator>();
 
                     _anim.SetBool("BlockDestroy", true);
-                    
+
                     return;
                 }
                 // 블록이 아니면 지나쳐서 물줄기 생성 후 삭제
                 if (target[0].gameObject.layer == LayerMask.NameToLayer("Item"))
                 {
-                    Destroy(target[0].gameObject);
+                    target[0].gameObject.SetActive(false);
                 }
-            
+
             }
-           
+
             //물줄기 추가생성
             Explosion explosion = Instantiate(explosionPrefeb, position, transform.rotation);
             explosion.SetDirection(direction);
 
-            explosion.DestroyAfter(clearTime);
             if (length == 1)
             {
                 Animator _anim = explosion.GetComponent<Animator>();

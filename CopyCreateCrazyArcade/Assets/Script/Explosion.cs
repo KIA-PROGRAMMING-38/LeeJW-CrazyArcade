@@ -12,21 +12,28 @@ namespace Assets.Script
 
     public class Explosion : MonoBehaviour
     {
-        Collider2D[] target = new Collider2D[2];
+        private WaitForSeconds destroytime = new WaitForSeconds(0.36f);
+        private AudioSource _audio;
+        public AudioClip _clip; 
 
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
-            {
-                Destroy(collision.gameObject);
-            }
 
-        }
-        public void DestroyAfter(float second)
+        private void Awake()
         {
-            Destroy(gameObject, second);
+            _audio = GetComponent<AudioSource>();
+            StartCoroutine(ClearTime());
         }
 
+        private IEnumerator ClearTime()
+        {
+            yield return destroytime;
+            gameObject.SetActive(false);
+        }
+
+        public void ExplosionSound()
+        {
+            _audio.clip = _clip;
+            _audio.Play();  
+        }
         public void SetDirection(Vector2 direction)
         {
             float angle = Mathf.Atan2(direction.y, direction.x);

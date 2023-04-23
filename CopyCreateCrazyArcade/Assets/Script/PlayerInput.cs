@@ -14,6 +14,7 @@ public class PlayerInput : MonoBehaviour
     public float _2PlayerPositionY { get; private set; }
 
     private PlayerStatus _status;
+
     private void Awake()
     {
         _status = GetComponent<PlayerStatus>();

@@ -15,8 +15,18 @@ namespace Assets.Script
     {
         private Animator _anim;
         private TakeItem item;
+
+        private AudioSource[] _audio = new AudioSource[4];
+
+
+        public AudioClip _itemClip;
+        public AudioClip _liveClip;
+        public AudioClip _dieConfirmationClip;
+        public AudioClip _dieWaitClip;
+
         public PlayerInput _input { get; set; }
         public PlayerStatus _status;
+
 
         public float currentSpeed { get; set; } = 5;
         public int currentExplosionPower { get; set; } = 1;
@@ -38,6 +48,12 @@ namespace Assets.Script
         {
             _anim = GetComponent<Animator>();
             _input = GetComponent<PlayerInput>();
+
+            _audio[0] = GetComponent<AudioSource>();
+            _audio[1] = GetComponent<AudioSource>();
+            _audio[2] = GetComponent<AudioSource>();
+            _audio[3] = GetComponent<AudioSource>();
+
 
         }
         IEnumerator StartMoving()
@@ -66,9 +82,10 @@ namespace Assets.Script
             if (collision.gameObject.layer == LayerMask.NameToLayer("Item") && dieWaitState == false)
             {
                 item = collision.GetComponent<TakeItem>();
+                _audio[0].clip = _itemClip;
 
+                _audio[0].Play();
                 item.PlayerTakeItem(gameObject);
-                Destroy(collision.gameObject);
                 collision.gameObject.SetActive(false);
             }
         }
@@ -76,6 +93,10 @@ namespace Assets.Script
         public void UseNeedle()
         {
             Physics2D.IgnoreLayerCollision(3, 3, true);
+
+            _audio[1].clip = _liveClip;
+            _audio[1].Play();
+
             _anim.SetBool($"{name}DieWait", false);
             dieWaitState = false;
             _anim.SetTrigger($"{name}Live");
@@ -103,6 +124,9 @@ namespace Assets.Script
 
         public void WaitDie()
         {
+            _audio[3].clip = _dieWaitClip;
+            _audio[3].Play();
+
             storageAttackCount = currentBalloonCount;
             storageSpeed = currentSpeed;
             Physics2D.IgnoreLayerCollision(3, 3, false);
@@ -113,8 +137,12 @@ namespace Assets.Script
         }
         public void DieConfirmation()
         {
+            _audio[2].clip = _dieConfirmationClip;
+            _audio[2].Play();
+
             _input.GameClear();
             currentSpeed = 0f;
+
             _anim.SetBool($"{name}DieWait", false);
             _anim.SetBool($"{name}DieConfirmation", true);
             Physics2D.IgnoreLayerCollision(3, 3, true);
