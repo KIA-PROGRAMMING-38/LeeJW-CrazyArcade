@@ -1,3 +1,4 @@
+using Assets.Script;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -13,8 +14,12 @@ public class GameManager : MonoBehaviour
     public GameObject _end;
     public GameObject firstPlayerNeedle;
     public GameObject secondPlayerNeedle;
-
+    public AudioSource _audio;
+    public ScenesManager _scene;
+    
     public bool gamePlay = false;
+
+    private WaitForSeconds changeTime = new WaitForSeconds(9f); 
 
     private void Awake()
     {
@@ -33,7 +38,10 @@ public class GameManager : MonoBehaviour
     {
         gamePlay = false;
         _end.gameObject.SetActive(true);
+        _audio.Stop();
+        StartCoroutine(SceneChange());
     }
+
     public void FirstNeedle()
     {
         firstPlayerNeedle.SetActive(true);
@@ -42,7 +50,7 @@ public class GameManager : MonoBehaviour
     {
         secondPlayerNeedle.SetActive(true);
     }
-
+    
     public void FirstNeedleOff()
     {
         firstPlayerNeedle.SetActive(false);
@@ -52,6 +60,11 @@ public class GameManager : MonoBehaviour
         secondPlayerNeedle.SetActive(false);
     }
 
+    IEnumerator SceneChange()
+    {
+        yield return changeTime;
+        _scene.FromCreateRoomToDefaultWaitRoom();
+    }
 
 
 }
