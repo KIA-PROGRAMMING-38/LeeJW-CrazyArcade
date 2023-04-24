@@ -19,16 +19,7 @@ public class GameData : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        Debug.Log($"{defaultMode} 디폴트");
-        Debug.Log($"{monsterMode} 몬스터");
-
     }
 
 
-    private void Update()
-    {
-        Debug.Log($"{defaultMode} 디폴트");
-        Debug.Log($"{monsterMode} 몬스터");
-    }
 }

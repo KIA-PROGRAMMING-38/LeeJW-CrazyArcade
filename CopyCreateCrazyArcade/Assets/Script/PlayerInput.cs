@@ -1,6 +1,7 @@
 using Assets.Script;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
@@ -14,7 +15,6 @@ public class PlayerInput : MonoBehaviour
     public float _2PlayerPositionY { get; private set; }
 
     private PlayerStatus _status;
-
     private void Awake()
     {
         _status = GetComponent<PlayerStatus>();
@@ -54,6 +54,10 @@ public class PlayerInput : MonoBehaviour
     public bool FirstPlayerUseItem() => Input.GetKeyDown(KeyCode.Slash);
     public bool SecondPlayerUseItem() => Input.GetKeyDown(KeyCode.LeftControl);
 
+    public void PlayerCountSub()
+    {
+        _manager.PlayerDie();
+    }
     public void GameClear()
     {
         _manager.GameOver();

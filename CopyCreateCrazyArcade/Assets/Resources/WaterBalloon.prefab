@@ -114,7 +114,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 2083634213, guid: 7c4654ce7e4537b4285ce9ccd7724825, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -146,7 +146,6 @@ MonoBehaviour:
   destoryLayer:
     serializedVersion: 2
     m_Bits: 1288
-  gds: {fileID: 8300000, guid: 95c20c015da11d04cb5e81a4c550e28c, type: 3}
 --- !u!50 &3092314868315462826
 Rigidbody2D:
   serializedVersion: 4

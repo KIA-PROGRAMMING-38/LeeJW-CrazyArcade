@@ -24,6 +24,7 @@ namespace Assets.Script
         public AudioClip _dieConfirmationClip;
         public AudioClip _dieWaitClip;
 
+
         public PlayerInput _input { get; set; }
         public PlayerStatus _status;
 
@@ -43,9 +44,11 @@ namespace Assets.Script
         public int MAX_EXPLOSION_POWER { get; private set; } = 7;
 
         private WaitForSeconds moveOnTim = new WaitForSeconds(1);
+        private GameData _gamedata;
 
         private void Awake()
         {
+            _gamedata = FindAnyObjectByType<GameData>();
             _anim = GetComponent<Animator>();
             _input = GetComponent<PlayerInput>();
 
@@ -67,7 +70,21 @@ namespace Assets.Script
         {
             if (collision.gameObject.CompareTag("Player") && dieWaitState == true)
             {
-                DieConfirmation();
+                if (_gamedata.defaultMode)
+                {
+                    DieConfirmation();
+                }
+                if (_gamedata.monsterMode)
+                {
+                    if (gameObject.name == "1PCharacter")
+                    {
+                        SecondUseNeedle();
+                    }
+                    else
+                    {
+                        UseNeedle();
+                    }
+                }
             }
 
         }
@@ -137,20 +154,41 @@ namespace Assets.Script
         }
         public void DieConfirmation()
         {
-            _audio[2].clip = _dieConfirmationClip;
-            _audio[2].Play();
+            if (_gamedata.defaultMode)
+            {
+                _audio[2].clip = _dieConfirmationClip;
+                _audio[2].Play();
 
-            _input.GameClear();
-            currentSpeed = 0f;
+                _input.GameClear();
+                currentSpeed = 0f;
 
-            _anim.SetBool($"{name}DieWait", false);
-            _anim.SetBool($"{name}DieConfirmation", true);
-            Physics2D.IgnoreLayerCollision(3, 3, true);
+                _anim.SetBool($"{name}DieWait", false);
+                _anim.SetBool($"{name}DieConfirmation", true);
 
-            _status._anim.SetTrigger("Win");
+                Physics2D.IgnoreLayerCollision(3, 3, true);
+
+                _status._anim.SetTrigger("Win");
+
+            }
+            if (_gamedata.monsterMode)
+            {
+
+                _audio[2].clip = _dieConfirmationClip;
+                _audio[2].Play();
+
+                _input.PlayerCountSub();
+                _input.GameClear();
+                currentSpeed = 0f;
+
+                _anim.SetBool($"{name}DieWait", false);
+                _anim.SetBool($"{name}DieConfirmation", true);
+
+                Physics2D.IgnoreLayerCollision(3, 3, true);
+            }
 
 
         }
+
         public void WinTrigger()
         {
             _anim.SetTrigger("Win");
