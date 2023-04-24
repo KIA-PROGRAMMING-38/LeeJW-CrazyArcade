@@ -15,9 +15,9 @@ public class InGameSceneManager : MonoBehaviour
     private GameObject defaultImage;
     [SerializeField]
     private GameObject monsterImage;
+    private GameData gameData;
 
-    private bool defaultMode;
-    private bool monsterMode;
+
 
     private void Awake()
     {
@@ -25,6 +25,11 @@ public class InGameSceneManager : MonoBehaviour
         defaultImage.SetActive(false);
         monsterImage.SetActive(false);
         _createRoom.transform.GetChild(0).gameObject.SetActive(false);
+
+
+        gameData = FindObjectOfType<GameData>();
+        gameData.defaultMode = false;
+        gameData.monsterMode = false;
     }
 
     public void CreateRoomWindow()
@@ -34,19 +39,19 @@ public class InGameSceneManager : MonoBehaviour
     }
     public void NextScene()
     {
-        if (defaultMode == false && monsterMode == false)
+        if (gameData.defaultMode == false && gameData.monsterMode == false)
         {
             _createRoom.transform.GetChild(0).gameObject.SetActive(true);
 
         }
-        if (defaultMode)
+        if (gameData.defaultMode)
         {
             _scenesManager.FromCreateRoomToDefaultWaitRoom();
         }
 
-        else if (monsterMode)
+        else if (gameData.monsterMode)
         {
-            _scenesManager.FromCreateRoomToMonsterWaitRoom();
+            _scenesManager.FromCreateRoomToDefaultWaitRoom();
         }
 
     }
@@ -57,8 +62,8 @@ public class InGameSceneManager : MonoBehaviour
         _createButton.SetActive(true);
         defaultImage.SetActive(false);
         monsterImage.SetActive(false);
-        defaultMode = false;
-        monsterMode = false;
+        gameData.defaultMode = false;
+        gameData.monsterMode = false;
         _createRoom.transform.GetChild(0).gameObject.SetActive(false);
 
     }
@@ -71,8 +76,8 @@ public class InGameSceneManager : MonoBehaviour
     {
         defaultImage.SetActive(true);
         monsterImage.SetActive(false);
-        defaultMode = true;
-        monsterMode = false;
+        gameData.defaultMode = true;
+        gameData.monsterMode = false;
         _createRoom.transform.GetChild(0).gameObject.SetActive(false);
 
     }
@@ -80,8 +85,8 @@ public class InGameSceneManager : MonoBehaviour
     {
         monsterImage.SetActive(true);
         defaultImage.SetActive(false);
-        monsterMode = true;
-        defaultMode = false;
+        gameData.monsterMode = true;
+        gameData.defaultMode = false;
         _createRoom.transform.GetChild(0).gameObject.SetActive(false);
 
     }

@@ -5,21 +5,23 @@ using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
+
     public GameObject _start;
     public GameObject _end;
     public GameObject firstPlayerNeedle;
     public GameObject secondPlayerNeedle;
     public AudioSource _audio;
     public ScenesManager _scene;
-    
+
     public bool gamePlay = false;
 
-    private WaitForSeconds changeTime = new WaitForSeconds(9f); 
+    private WaitForSeconds changeTime = new WaitForSeconds(9f);
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
         secondPlayerNeedle.gameObject.SetActive(false);
 
     }
+
     public void GameStart()
     {
         gamePlay = true;
@@ -50,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
         secondPlayerNeedle.SetActive(true);
     }
-    
+
     public void FirstNeedleOff()
     {
         firstPlayerNeedle.SetActive(false);

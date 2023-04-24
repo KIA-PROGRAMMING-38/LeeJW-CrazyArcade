@@ -16,7 +16,16 @@ public  class UserInput : MonoBehaviour
 
     public void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        var objs = FindObjectsOfType<UserInput>();
+        if (objs.Length == 1)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     public void FirstUserInputID()
@@ -27,7 +36,7 @@ public  class UserInput : MonoBehaviour
     {
         secondUserID = _InputID[1].text;
     }
-
+    
     
 
 }
