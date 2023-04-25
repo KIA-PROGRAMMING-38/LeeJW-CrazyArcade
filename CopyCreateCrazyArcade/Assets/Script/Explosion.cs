@@ -40,8 +40,9 @@ namespace Assets.Script
             transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward);
         }
 
-
-
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+        }
     }
 
 }

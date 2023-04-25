@@ -16,6 +16,7 @@ TagManager:
   - ItmeSkate
   - ItmeMaxFlask
   - ItemNeedle
+  - Monster
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - Block
   - StageObject
   - Item
-  - 
+  - Monster
   - 
   - 
   - 

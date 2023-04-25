@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(SceneChange());
         }
 
-        if(_gameData.monsterMode && playerCount == 0)
+        if (_gameData.monsterMode && playerCount == 0)
         {
             gamePlay = false;
             _end.gameObject.SetActive(true);
