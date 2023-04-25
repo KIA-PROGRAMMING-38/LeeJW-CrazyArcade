@@ -120,7 +120,6 @@ namespace Assets.Script
 
             StartCoroutine(StartMoving());
 
-            _input.FirstNeedleDown();
 
 
         }
@@ -134,8 +133,6 @@ namespace Assets.Script
             _anim.SetTrigger($"{name}Live");
 
             StartCoroutine(StartMoving());
-            _input.SecondNeedleDown();
-
 
         }
 

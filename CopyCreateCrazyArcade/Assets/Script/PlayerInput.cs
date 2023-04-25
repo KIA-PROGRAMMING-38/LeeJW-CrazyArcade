@@ -35,7 +35,7 @@ public class PlayerInput : MonoBehaviour
             {
                 --_status.needleCount;
                 _status.UseNeedle();
-
+                FirstNeedleDown();
             }
 
             if (_status.needleCount > 0 && SecondPlayerUseItem() && _status.dieWaitState == true
@@ -43,6 +43,7 @@ public class PlayerInput : MonoBehaviour
             {
                 --_status.needleCount;
                 _status.SecondUseNeedle();
+                SecondNeedleDown();
 
             }
 

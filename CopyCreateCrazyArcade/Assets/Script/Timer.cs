@@ -23,7 +23,7 @@ public class Timer : MonoBehaviour
 
         elapsedTime += Time.deltaTime;
 
-        long _rT = 180 -(long)elapsedTime;
+        long _rT = 5 -(long)elapsedTime;
         DateTimeOffset _timer = DateTimeOffset.FromUnixTimeSeconds(_rT);
 
         if(timeCheck)

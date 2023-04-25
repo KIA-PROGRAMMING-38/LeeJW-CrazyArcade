@@ -35,13 +35,21 @@ public class GameRoomManager : MonoBehaviour
     public void PreviousWindowButton()
     {
         _selectMap.SetActive(false);
-
-        _pirateButton.transform.GetChild(0).gameObject.SetActive(false);
-        _pirateButton.transform.GetChild(1).gameObject.SetActive(false);
+        if (gameData.defaultMode)
+        {
+            _pirateButton.transform.GetChild(0).gameObject.SetActive(false);
+            _pirateButton.transform.GetChild(1).gameObject.SetActive(false);
+        }
+        if (gameData.monsterMode)
+        {
+            _monsterButton.transform.GetChild(0).gameObject.SetActive(false);
+            _monsterButton.transform.GetChild(1).gameObject.SetActive(false);
+        }
         _gameRoomScene.transform.GetChild(0).gameObject.SetActive(false);
+        _gameRoomScene.transform.GetChild(1).gameObject.SetActive(false);
 
-        _gameRoomScene.transform.GetChild(1).gameObject.SetActive(true);
         _gameRoomScene.transform.GetChild(2).gameObject.SetActive(true);
+        _gameRoomScene.transform.GetChild(3).gameObject.SetActive(true);
         pirate = false;
         monster = false;
 
@@ -50,6 +58,7 @@ public class GameRoomManager : MonoBehaviour
     public void SelectMapButton()
     {
         _selectMap.SetActive(true);
+
         if (gameData.defaultMode)
         {
             _monsterButton.gameObject.SetActive(false);
@@ -58,8 +67,8 @@ public class GameRoomManager : MonoBehaviour
         {
             _pirateButton.gameObject.SetActive(false);
         }
-        _gameRoomScene.transform.GetChild(1).gameObject.SetActive(false);
         _gameRoomScene.transform.GetChild(2).gameObject.SetActive(false);
+        _gameRoomScene.transform.GetChild(3).gameObject.SetActive(false);
 
     }
 
@@ -83,16 +92,17 @@ public class GameRoomManager : MonoBehaviour
     }
     public void NextButton()
     {
-        _gameRoomScene.transform.GetChild(1).gameObject.SetActive(true);
         _gameRoomScene.transform.GetChild(2).gameObject.SetActive(true);
+        _gameRoomScene.transform.GetChild(3).gameObject.SetActive(true);
         _selectMap.SetActive(false);
+
         if (pirate)
         {
             _gameRoomScene.transform.GetChild(0).gameObject.SetActive(true);
         }
         if (monster)
         {
-            _gameRoomScene.transform.GetChild(3).gameObject.SetActive(true);
+            _gameRoomScene.transform.GetChild(1).gameObject.SetActive(true);
         }
     }
     public void NextScene()
