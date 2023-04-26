@@ -10,7 +10,7 @@ public class MonsterMove : MonoBehaviour
     private Vector3 shearchRandge = new Vector3(0, 1, 0);
     private float speed = 1.5f;
     private float moveSpeed;
-    private Collider2D[] target = new Collider2D[2];
+    private Collider2D[] target = new Collider2D[4];
     private int random;
     private Animator _anim;
 
@@ -24,33 +24,51 @@ public class MonsterMove : MonoBehaviour
         if (random == 2)
             speed = 2f;
     }
+    private void Update()
+    {
+        target[0] = Physics2D.OverlapBox(transform.position + moveDirection / 2, Vector2.one / 5f, 0f);
+        target[1] = Physics2D.OverlapBox(transform.position - moveDirection / 2, Vector2.one / 5f, 0f);
+        target[2] = Physics2D.OverlapBox(transform.position + shearchRandge / 2, Vector2.one / 5f, 0f);
+        target[3] = Physics2D.OverlapBox(transform.position - shearchRandge / 2, Vector2.one / 5f, 0f);
+
+
+        if (target[0] != null && !target[0].CompareTag("Player"))
+        {
+            RandomSpeed();
+            moveDirection = -moveDirection;
+        }
+        if (target[1] != null && target[1].CompareTag("Player"))
+        {
+            moveDirection = -moveDirection;
+        }
+        if (target[0] != null && target[2] == null)
+        {
+            moveDirection = shearchRandge;
+        }
+         if (target[0] != null && target[3] == null)
+        {
+            moveDirection = -shearchRandge;
+            Debug.Log("sad");
+        }
+        if (target[0] != null && target[2] != null)
+        {
+            moveDirection = -shearchRandge;
+        }
+        if (target[3] != null)
+        {
+            moveDirection = saveDirection;
+        }
+
+
+        _anim.SetFloat("PositionX", moveDirection.x);
+        _anim.SetFloat("PositionY", moveDirection.y);
+
+    }
 
     private void FixedUpdate()
     {
         moveSpeed = Time.deltaTime * speed;
         transform.Translate(moveDirection * moveSpeed);
-
-        target[0] = Physics2D.OverlapBox(transform.position + moveDirection / 2, Vector2.one / 5f, 0f);
-
-        if (target[0] != null && !target[0].CompareTag("Player"))
-        {
-            RandomSpeed();
-            target[0] = Physics2D.OverlapBox(transform.position + shearchRandge / 2, Vector2.one / 5f, 0f);
-            target[0] = Physics2D.OverlapBox(transform.position - shearchRandge / 2, Vector2.one / 5f, 0f);
-            moveDirection = -moveDirection;
-
-            if (target[0] == null)
-            {
-                moveDirection = shearchRandge;
-            }
-            if (target[0] != null)
-            {
-                moveDirection = saveDirection;
-            }
-
-        }
-        _anim.SetFloat("PositionX", moveDirection.x);
-        _anim.SetFloat("PositionY", moveDirection.y);
     }
 
     private void RandomSpeed()
