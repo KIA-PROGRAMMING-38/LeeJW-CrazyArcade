@@ -20,7 +20,7 @@ namespace Assets.Script
         private bool kickOn = false;
         private Vector3 selfposition;
         private Collider2D[] target = new Collider2D[2];
-        
+
 
         private void Awake()
         {
@@ -33,9 +33,9 @@ namespace Assets.Script
         private void Update()
         {
             target[0] = Physics2D.OverlapBox(transform.position, Vector2.one, 0f);
-            
-                
-            
+
+
+
             if (target[0].gameObject.CompareTag("Balloon") == false)
             {
                 if (gameObject.name == "1PCharacter" && _input.FirstPlayerAttack() && _status.currentBalloonCount > 0)
@@ -48,8 +48,8 @@ namespace Assets.Script
                     StartCoroutine(CreateBalloon());
                 }
             }
-            
-           
+
+
         }
         private IEnumerator CreateBalloon()
         {
@@ -69,7 +69,7 @@ namespace Assets.Script
 
 
         }
-        Vector2 normalVec = Vector2.zero;
+        Vector3 normalVec = Vector3.zero;
 
         //노말벡터 및 공식 적용
         ContactPoint2D[] point = new ContactPoint2D[1];
@@ -77,7 +77,7 @@ namespace Assets.Script
         {
             collision.GetContacts(point);
             normalVec = point[0].normal * -1;
-            normalVec = normalVec * 8;
+            normalVec = normalVec * 10;
         }
         // 제약해제
         private void SetConstraints(Collision2D collision)
@@ -100,7 +100,10 @@ namespace Assets.Script
                 }
             }
         }
+        private void bubbleMove(Collision2D collision)
+        {
 
+        }
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("ItemShoes"))

@@ -6,16 +6,24 @@ using UnityEngine;
 public class MonsterMove : MonoBehaviour
 {
     private Vector3 moveDirection = new Vector3(1, 0, 0);
-    private Vector3 saveDirection = new Vector3(1, 0, 0);
-    private Vector3 shearchRandge = new Vector3(0, 1, 0);
+    private Vector3[] directions = new Vector3[4];
+
     private float speed = 1.5f;
     private float moveSpeed;
-    private Collider2D[] target = new Collider2D[4];
-    private int random;
-    private Animator _anim;
 
+    private int random;
+
+    private Animator _anim;
+    private float distance = 0.5f;
+    private int currentDirectionIndex = 0;
+    private bool setOff = true;
     private void Awake()
     {
+        directions[0] = new Vector3(1, 0, 0);
+        directions[1] = new Vector3(-1, 0, 0);
+        directions[2] = new Vector3(0, 1, 0);
+        directions[3] = new Vector3(0, -1, 0);
+
         _anim = GetComponent<Animator>();
 
         random = Random.Range(0, 3);
@@ -26,51 +34,63 @@ public class MonsterMove : MonoBehaviour
     }
     private void Update()
     {
-        target[0] = Physics2D.OverlapBox(transform.position + moveDirection / 2, Vector2.one / 5f, 0f);
-        target[1] = Physics2D.OverlapBox(transform.position - moveDirection / 2, Vector2.one / 5f, 0f);
-        target[2] = Physics2D.OverlapBox(transform.position + shearchRandge / 2, Vector2.one / 5f, 0f);
-        target[3] = Physics2D.OverlapBox(transform.position - shearchRandge / 2, Vector2.one / 5f, 0f);
-
-
-        if (target[0] != null && !target[0].CompareTag("Player"))
-        {
-            RandomSpeed();
-            moveDirection = -moveDirection;
-        }
-        if (target[1] != null && target[1].CompareTag("Player"))
-        {
-            moveDirection = -moveDirection;
-        }
-        if (target[0] != null && target[2] == null)
-        {
-            moveDirection = shearchRandge;
-        }
-         if (target[0] != null && target[3] == null)
-        {
-            moveDirection = -shearchRandge;
-            Debug.Log("sad");
-        }
-        if (target[0] != null && target[2] != null)
-        {
-            moveDirection = -shearchRandge;
-        }
-        if (target[3] != null)
-        {
-            moveDirection = saveDirection;
-        }
-
-
         _anim.SetFloat("PositionX", moveDirection.x);
         _anim.SetFloat("PositionY", moveDirection.y);
-
     }
-
+    float elap;
     private void FixedUpdate()
     {
-        moveSpeed = Time.deltaTime * speed;
-        transform.Translate(moveDirection * moveSpeed);
+        if (setOff)
+        {
+            moveSpeed = Time.deltaTime * speed;
+            transform.Translate(moveDirection * moveSpeed);
+
+        }
+
+        elap += Time.deltaTime;
+
+        if (elap >= 0.25f)
+        {
+            CanMove();
+            MoveForward();
+            elap = 0;
+        }
+
     }
 
+    // 앞으로 이동할 수 있는지 확인한다.
+    bool CanMove()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + (moveDirection / 2), moveDirection, distance);
+        if (hit.collider != null && hit.collider.gameObject.layer != LayerMask.NameToLayer("Player"))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    // 이동 방향을 정한다.
+    void SetDirection()
+    {
+        if (moveDirection == directions[currentDirectionIndex])
+            currentDirectionIndex = Random.Range(0, 4);
+    }
+
+    void MoveForward()
+    {
+        if (false == CanMove())
+        {
+            RandomSpeed();
+            SetDirection();
+            moveDirection = directions[currentDirectionIndex];
+            return;
+        }
+
+
+    }
     private void RandomSpeed()
     {
         random = Random.Range(0, 3);
@@ -86,7 +106,9 @@ public class MonsterMove : MonoBehaviour
     {
         if (collision.CompareTag("Explosion"))
         {
-            gameObject.SetActive(false);
+            setOff = false;
+            transform.position = collision.transform.position;
+            _anim.SetTrigger("MonsterDie");
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -94,8 +116,17 @@ public class MonsterMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerStatus _status = collision.gameObject.GetComponent<PlayerStatus>();
+            collision.collider.isTrigger = true;
             _status.DieConfirmation();
         }
 
+
+
     }
+
+    void SetFalse()
+    {
+        gameObject.SetActive(false);
+    }
+
 }

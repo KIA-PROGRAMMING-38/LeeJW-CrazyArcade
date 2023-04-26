@@ -181,6 +181,8 @@ namespace Assets.Script
                 _anim.SetBool($"{name}DieConfirmation", true);
 
                 Physics2D.IgnoreLayerCollision(3, 3, true);
+
+
             }
 
 
