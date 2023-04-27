@@ -11,8 +11,8 @@ namespace Assets.Script
     public class WaterBalloon : MonoBehaviour
     {
         private float elapsedTime;
-        private Collider2D _collider;
-        private Rigidbody2D _rigidbody;
+        public Collider2D _collider;
+        public Rigidbody2D _rigidbody;
         private const float BALLOON_CLEAR_TIME = 3f;
         public int currentPower = 1;
 

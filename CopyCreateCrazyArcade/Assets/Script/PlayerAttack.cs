@@ -2,6 +2,7 @@ using Assets.Script;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Xml.Schema;
 using UnityEditor;
 using UnityEditor.Search;
@@ -20,12 +21,13 @@ namespace Assets.Script
         private bool kickOn = false;
         private Vector3 selfposition;
         private Collider2D[] target = new Collider2D[2];
-
+        private Rigidbody2D _rigid;
 
         private void Awake()
         {
             _input = GetComponent<PlayerInput>();
             _status = GetComponent<PlayerStatus>();
+            _rigid = GetComponent<Rigidbody2D>();
         }
 
 
@@ -96,13 +98,18 @@ namespace Assets.Script
                 {
                     SetConstraints(collision);
                     collision.rigidbody.velocity = normalVec;
-
+                    _rigid.constraints = RigidbodyConstraints2D.FreezeAll;
                 }
             }
         }
-        private void bubbleMove(Collision2D collision)
+        private void OnCollisionExit2D(Collision2D collision)
         {
+            if (collision.gameObject.CompareTag("Balloon")&& kickOn)
+            {
+                _rigid.constraints = RigidbodyConstraints2D.None;
+                _rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
 
+            }
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {

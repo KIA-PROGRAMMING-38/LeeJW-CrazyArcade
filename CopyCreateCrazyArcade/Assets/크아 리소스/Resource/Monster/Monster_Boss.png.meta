@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,7 +103,1561 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Monster_Boss_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2484
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a876f34cd1d652541a0130d40582219f
+      internalID: 903362650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_1
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 2484
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52f4b1e1ba533c2429034516ad28e241
+      internalID: -438056374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_2
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 2484
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d8d83d230404d843bf984daffc94346
+      internalID: 505994944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_3
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 2484
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ba32091235a6eb4b978f314694e9a6e
+      internalID: 454548849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_4
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 2484
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 872afb59d2c4fee44afcbbbc522ff46d
+      internalID: 905280052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_5
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 2484
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff7a2088eab8feb45811808d7371144a
+      internalID: 2130568251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2277
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e388ce221c40fb54a8b9853355a9570c
+      internalID: -1171190488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_7
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 2277
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a1c87dbf3ae3ef4a8389b1f497653de
+      internalID: -2095718859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_8
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 2277
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50bcfbc6aa6530842978f6c88fe0a77c
+      internalID: 1644164385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 2277
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33c89b86dbaeea64ebc8033aebe476bd
+      internalID: -211309102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_10
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 2277
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c2a34a85a467be46893de385f3bcb3a
+      internalID: -1927270378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_11
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 2277
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc498a9b3bdeb7745a65a7773595946d
+      internalID: 1074621208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2070
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6962124b32edd5940973ab4c119bae48
+      internalID: -1119879324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_13
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 2070
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3794b2ee7b62dd2418b04499f3c92cc5
+      internalID: -1249263662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_14
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 2070
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39891521060895f4b84c98d0e49c70fa
+      internalID: -1876170642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_15
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 2070
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb8cc7c6e8f12694b810ea180810b564
+      internalID: 1352120254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_16
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 2070
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40d38fae23cd49e4a9c09e9e8470ba49
+      internalID: -103083124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_17
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 2070
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae8f1c0f78a1caa45ac93f552edd52e0
+      internalID: 65500118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1863
+        width: 120
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db40def131f86dd43b895a3340a36c13
+      internalID: -1714977031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_19
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 1863
+        width: 120
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d30a9acc4688dcc4db088c2243d8f29d
+      internalID: 1660134048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_20
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 1863
+        width: 120
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b75566d16115c5f46b8e5e50701567a1
+      internalID: -529071680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_21
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 1863
+        width: 120
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dcf77eec0188ec44b80fe4dcf240a1b
+      internalID: 1394284014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_22
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 1863
+        width: 120
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcc1df7998efe6c41ae2ac61a60a6623
+      internalID: 649341577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_23
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1863
+        width: 120
+        height: 204
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfac88ed3ef667a43a1a38d0a79881c8
+      internalID: -870604615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1656
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5a7d125755da11499ee3f8da8fc44f7
+      internalID: -1250451534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_25
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 1656
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 490d7b455bc7dc74884ad721d086eed1
+      internalID: -568057476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_26
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 1656
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65ae43c57b696b44da90fe250e4103ca
+      internalID: 2043770744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_27
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 1656
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c021d118876827445b1647360f28458e
+      internalID: 1081868253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_28
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1656
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd7fd7620e8a0bc4e95cd5af9b712bd4
+      internalID: -458836506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1449
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 176aaeb4f71e93a4ba4bbf8960a57dca
+      internalID: 1577523643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_30
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 1449
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f05aba0eb0f6c944b9ccb816c6b35a4
+      internalID: -431553111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_31
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 1449
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a38aba6fef7044c41b7415270c41752b
+      internalID: 1210102793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_32
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 1449
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3c0e5bf5a99ca84e933f034b5312f0d
+      internalID: 1172987441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_33
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 1449
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aab521b98d1f67408e44aeee6b7329c
+      internalID: -1854916054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_34
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1449
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e95aae4e7d3a14549bd503b799d194b1
+      internalID: 1738070989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1242
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47c5907fe066dab4d8f19c2978d1818b
+      internalID: -995745372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_36
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 1242
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8545c5d717e0dd408844b68ccde7d18
+      internalID: -2138449644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_37
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 1242
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b2dc971f2030ac4ea7d72cbea2da304
+      internalID: 1739868252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_38
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 1242
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7c036fb1c1c98a44a47da04ea7938a4
+      internalID: 1494674168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_39
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 1242
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b7d194bb71a7db4baf150a4374b5c86
+      internalID: -496553414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_40
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1242
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb5dd7bc3198e1f45b4d49825f677cee
+      internalID: -1697751359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_41
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1035
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83faecd92f52c8947be0fe6a339ac50e
+      internalID: 616793890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_42
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 1035
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e217b75524a10848ba8eef00a6eceeb
+      internalID: -390168954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_43
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 1035
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c8be7c3c93f2144db3eb15143a5512c
+      internalID: 1102568508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_44
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 1035
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ef51a1c46dcddf45989844be5d50330
+      internalID: 2076363305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_45
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 1035
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17a9049e335cb954bb0a028897cca2f4
+      internalID: -1264425648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_46
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1035
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8926ef75020aee4f9cb9d64aa019693
+      internalID: -1793064648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_47
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 828
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4700f34133fc0af4fa61e903be54c830
+      internalID: -1312770273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_48
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 828
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e71f15bcb3f74ee4dbc78a63f3557e2e
+      internalID: 1117776523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_49
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 828
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc9280507c2c9b14886cbde1b96fc99d
+      internalID: -871201827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_50
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 828
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c831ddb9029c4aa469bd8f9209006dc2
+      internalID: 1268683586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_51
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 828
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc718b73e0f4a124483794fb459bae3b
+      internalID: -1285149411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_52
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 828
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 242dfe3fdbe8d21449985c6fa94dce59
+      internalID: 1789650169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_53
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 621
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e03a27050d3b540498eac62516752cf4
+      internalID: 1696756378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_54
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 621
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bcad21eab97a224299a5a45b24d7a33
+      internalID: 1411803089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_55
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 621
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0677920fec59d0b4f8f92a98919dc7d1
+      internalID: -635635812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_56
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 621
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1239a17ffea42d747adcc23f452a29e1
+      internalID: -756503411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_57
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 621
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 000cb2b3f2708d143860c4bea3ecbd2a
+      internalID: -2136966182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_58
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 621
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ba93a63fe34acd44bfdf44441864924
+      internalID: -1435497045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_59
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 414
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba5bb3f8fc4c90c468ff591bb1311b22
+      internalID: -994797131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_60
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 414
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1de7a8f879e7054096fcfbea1ee9431
+      internalID: 95843812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_61
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 414
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91d4e19dc5521cc4dba259bc94d18c96
+      internalID: 1925610705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_62
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 414
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9914883e8d0fdc549bf9910ebde3596c
+      internalID: -1766755045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_63
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 414
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f7eb0bfffeb8e418c07da48a73b212
+      internalID: -108052573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_64
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 414
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87bef3f78ea6e8a45ae4d73762a8d00a
+      internalID: -76090825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_65
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 207
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c62f332b22d7a934b9ba0248b4fe44b5
+      internalID: 858141042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_66
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 207
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef1185e4cb6d363458adba7f21327e59
+      internalID: 1672967097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_67
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 207
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 257c54e96328f2547a3486cc0991ce30
+      internalID: -165854369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_68
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 207
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6527c8152ac5134b8d8715487504245
+      internalID: 2056637204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_69
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 207
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d7eeb53a65e89c469372632782fccbb
+      internalID: -919945909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_70
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 207
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ac4104ab9676d64ea3cc497011173f3
+      internalID: -2037668952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_71
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc658d862c0635c40a4f8f92546a9144
+      internalID: 1508519430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_72
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a9dde67793270d4785c6d6ec8e31d7d
+      internalID: 2060608506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Monster_Boss_73
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 120
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55ee3afe2c9e09f46a560c9f5e3667a9
+      internalID: 1820372984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -114,7 +1668,81 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Monster_Boss_0: 903362650
+      Monster_Boss_1: -438056374
+      Monster_Boss_10: -1927270378
+      Monster_Boss_11: 1074621208
+      Monster_Boss_12: -1119879324
+      Monster_Boss_13: -1249263662
+      Monster_Boss_14: -1876170642
+      Monster_Boss_15: 1352120254
+      Monster_Boss_16: -103083124
+      Monster_Boss_17: 65500118
+      Monster_Boss_18: -1714977031
+      Monster_Boss_19: 1660134048
+      Monster_Boss_2: 505994944
+      Monster_Boss_20: -529071680
+      Monster_Boss_21: 1394284014
+      Monster_Boss_22: 649341577
+      Monster_Boss_23: -870604615
+      Monster_Boss_24: -1250451534
+      Monster_Boss_25: -568057476
+      Monster_Boss_26: 2043770744
+      Monster_Boss_27: 1081868253
+      Monster_Boss_28: -458836506
+      Monster_Boss_29: 1577523643
+      Monster_Boss_3: 454548849
+      Monster_Boss_30: -431553111
+      Monster_Boss_31: 1210102793
+      Monster_Boss_32: 1172987441
+      Monster_Boss_33: -1854916054
+      Monster_Boss_34: 1738070989
+      Monster_Boss_35: -995745372
+      Monster_Boss_36: -2138449644
+      Monster_Boss_37: 1739868252
+      Monster_Boss_38: 1494674168
+      Monster_Boss_39: -496553414
+      Monster_Boss_4: 905280052
+      Monster_Boss_40: -1697751359
+      Monster_Boss_41: 616793890
+      Monster_Boss_42: -390168954
+      Monster_Boss_43: 1102568508
+      Monster_Boss_44: 2076363305
+      Monster_Boss_45: -1264425648
+      Monster_Boss_46: -1793064648
+      Monster_Boss_47: -1312770273
+      Monster_Boss_48: 1117776523
+      Monster_Boss_49: -871201827
+      Monster_Boss_5: 2130568251
+      Monster_Boss_50: 1268683586
+      Monster_Boss_51: -1285149411
+      Monster_Boss_52: 1789650169
+      Monster_Boss_53: 1696756378
+      Monster_Boss_54: 1411803089
+      Monster_Boss_55: -635635812
+      Monster_Boss_56: -756503411
+      Monster_Boss_57: -2136966182
+      Monster_Boss_58: -1435497045
+      Monster_Boss_59: -994797131
+      Monster_Boss_6: -1171190488
+      Monster_Boss_60: 95843812
+      Monster_Boss_61: 1925610705
+      Monster_Boss_62: -1766755045
+      Monster_Boss_63: -108052573
+      Monster_Boss_64: -76090825
+      Monster_Boss_65: 858141042
+      Monster_Boss_66: 1672967097
+      Monster_Boss_67: -165854369
+      Monster_Boss_68: 2056637204
+      Monster_Boss_69: -919945909
+      Monster_Boss_7: -2095718859
+      Monster_Boss_70: -2037668952
+      Monster_Boss_71: 1508519430
+      Monster_Boss_72: 2060608506
+      Monster_Boss_73: 1820372984
+      Monster_Boss_8: 1644164385
+      Monster_Boss_9: -211309102
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
