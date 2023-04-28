@@ -5873,7 +5873,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1947822594}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BalloonSpaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6015,9 +6015,9 @@ GameObject:
   - component: {fileID: 1974812275}
   - component: {fileID: 1974812274}
   - component: {fileID: 1974812277}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Monster_Boss_0
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6062,7 +6062,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: -1927270378, guid: 85a46603d0625ae4da5120e01dffb8b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6082,7 +6082,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1974812271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: 6, z: 0}
+  m_LocalPosition: {x: -8, y: 6.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6124,8 +6124,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009994268, y: -0.56965005}
-  m_Size: {x: 2.8203301, y: 3.9557483}
+  m_Offset: {x: 0.009994268, y: -0.53355956}
+  m_Size: {x: 2.8203301, y: 3.3061233}
   m_Direction: 0
 --- !u!114 &1974812276
 MonoBehaviour:
@@ -6140,6 +6140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Balloon: {fileID: 4170885265491557718, guid: 207f9c0d9300c564d80ade7b371304cd, type: 3}
+  _Explosion: {fileID: 5899646071685716949, guid: e8b461f1be123df46a17a21c7c088d7f, type: 3}
 --- !u!95 &1974812277
 Animator:
   serializedVersion: 5
