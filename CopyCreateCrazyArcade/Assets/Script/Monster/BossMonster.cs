@@ -20,9 +20,10 @@ public class BossMonster : MonoBehaviour
     private int savePositionY;
     private int randomPattern;
     private int explosionLength = 5;
-
     private float moveSpeed;
     private float speed = 2f;
+
+    private bool phase;
 
     private Animator _anim;
 
@@ -34,9 +35,11 @@ public class BossMonster : MonoBehaviour
 
     private bool IsOnMove = true;
     private bool IsOnAttack = false;
+    private bool _isHit = false;
 
     private void Awake()
     {
+
         _anim = GetComponent<Animator>();
 
 
@@ -63,15 +66,6 @@ public class BossMonster : MonoBehaviour
 
         randomPattern = Random.Range(0, 3);
 
-        //if (randomPattern == 0)
-        //{
-        //    movesRandomPositionX = Random.Range(0, 4);
-        //}
-        //else
-        //{
-        //    movesRandomPositionY = Random.Range(0, 3);
-        //}
-        //BossMovement();
     }
 
     private void Update()
@@ -90,6 +84,8 @@ public class BossMonster : MonoBehaviour
         {
             BossMovement();
         }
+
+        _isHit = false;
     }
 
 
@@ -114,7 +110,10 @@ public class BossMonster : MonoBehaviour
 
         IsOnMove = true;
     }
-
+    private void PhaseUpdate()
+    {
+        speed += 2;
+    }
     private void SetAttackDirection()
     {
         if (transform.position == moves[1, 1])
@@ -189,24 +188,6 @@ public class BossMonster : MonoBehaviour
             }
         }
     }
-    private void BossMovement()
-    {
-        savePositionX = movesRandomPositionX;
-        savePositionY = movesRandomPositionY;
-
-        saveTransformPosition = transform.position;
-
-
-        saveTransformPosition = moves[movesRandomPositionY, movesRandomPositionX] - saveTransformPosition;
-        _anim.SetFloat("PositionX", saveTransformPosition.x);
-        _anim.SetFloat("PositionY", saveTransformPosition.y);
-
-        transform.position = Vector3.MoveTowards(transform.position, moves[movesRandomPositionY, movesRandomPositionX], moveSpeed);
-
-        IsOnAttack = true;
-
-
-    }
     private void SetRandomPosition()
     {
         if (randomPattern == 0)
@@ -230,6 +211,24 @@ public class BossMonster : MonoBehaviour
             }
 
         }
+    }
+    private void BossMovement()
+    {
+        savePositionX = movesRandomPositionX;
+        savePositionY = movesRandomPositionY;
+
+        saveTransformPosition = transform.position;
+
+
+        saveTransformPosition = moves[movesRandomPositionY, movesRandomPositionX] - saveTransformPosition;
+        _anim.SetFloat("PositionX", saveTransformPosition.x);
+        _anim.SetFloat("PositionY", saveTransformPosition.y);
+
+        transform.position = Vector3.MoveTowards(transform.position, moves[movesRandomPositionY, movesRandomPositionX], moveSpeed);
+
+        IsOnAttack = true;
+
+
     }
     private void BoxExplosionAttack()
     {
@@ -260,7 +259,6 @@ public class BossMonster : MonoBehaviour
         // 최대 길이에서 재귀적으로 최대길이를 줄여나가는것.
         Explode(position, direction, length - 1);
     }
-
     IEnumerator Attack(Vector2 direction)
     {
         CanAttack(direction);
@@ -270,6 +268,11 @@ public class BossMonster : MonoBehaviour
         CanAttack(direction);
 
     }
+    private void OnDamage()
+    {
+        transform.GetChild(1).GetChild(2).GetChild(bossHP - 1).gameObject.SetActive(false);
+        --bossHP;
+    }
     private Vector2 CanAttack(Vector2 direction)
     {
 
@@ -277,16 +280,24 @@ public class BossMonster : MonoBehaviour
         balloon.currentPower = 3;
         balloon._collider.isTrigger = false;
         balloon._rigidbody.constraints = RigidbodyConstraints2D.None;
-        //Vector2 normal = saveTransformPosition;
-        //normal.Normalize();
-
         balloon._rigidbody.velocity = direction * 10;
         return attackDirection = direction;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Explosion"))
-            Debug.Log("물줄기");
+        if (collision.CompareTag("Explosion") && _isHit == false)
+        {
+            if (bossHP > 0)
+            {
+                _isHit = true;
+                OnDamage();
+            }
+
+
+
+        }
     }
 }

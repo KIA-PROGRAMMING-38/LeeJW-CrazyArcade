@@ -43,7 +43,7 @@ namespace Assets.Script
         public int MAX_BALLOON_COUNT { get; private set; } = 6;
         public int MAX_EXPLOSION_POWER { get; private set; } = 7;
 
-        private WaitForSeconds moveOnTim = new WaitForSeconds(1);
+        private WaitForSeconds moveOnTime = new WaitForSeconds(1);
         private GameData _gamedata;
 
         private void Awake()
@@ -62,7 +62,7 @@ namespace Assets.Script
         IEnumerator StartMoving()
         {
 
-            yield return moveOnTim;
+            yield return moveOnTime;
             currentBalloonCount = storageAttackCount;
             currentSpeed = storageSpeed;
         }
@@ -92,6 +92,8 @@ namespace Assets.Script
         {
             if (collision.gameObject.CompareTag("Explosion"))
             {
+                Debug.Log("플레이어 맞음");
+
                 _anim.SetBool($"{gameObject.name}DieWait", true);
 
             }
@@ -141,7 +143,6 @@ namespace Assets.Script
             _audio[3].clip = _dieWaitClip;
             _audio[3].Play();
 
-            storageAttackCount = currentBalloonCount;
             storageSpeed = currentSpeed;
             Physics2D.IgnoreLayerCollision(3, 3, false);
             dieWaitState = true;

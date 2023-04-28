@@ -54,13 +54,17 @@ namespace Assets.Script
                 case ItemKind.Skate:
 
                     if (_playerStatus.MAX_SPEED > _playerStatus.currentSpeed)
-                        _playerStatus.currentSpeed += 1;
+                        _playerStatus.currentSpeed += 0.5f;
 
                     break;
                 case ItemKind.Balloon:
 
                     if (_playerStatus.MAX_BALLOON_COUNT > _playerStatus.currentBalloonCount)
+                    {
                         _playerStatus.currentBalloonCount += 1;
+                        _playerStatus.storageAttackCount = _playerStatus.currentBalloonCount;
+                        Debug.Log(_playerStatus.storageAttackCount);
+                    }
 
                     break;
                 case ItemKind.Flask:

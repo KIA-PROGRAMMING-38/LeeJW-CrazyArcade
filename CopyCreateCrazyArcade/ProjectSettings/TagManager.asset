@@ -17,6 +17,7 @@ TagManager:
   - ItmeMaxFlask
   - ItemNeedle
   - Monster
+  - BossExplosion
   layers:
   - Default
   - TransparentFX
