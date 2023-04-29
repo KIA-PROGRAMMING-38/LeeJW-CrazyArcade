@@ -250,6 +250,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1852983332668329073, guid: 13a6b2e06fdd623439f35bc44605391d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 765838992, guid: c43d8a3f4a421874c87a07b22834ab39, type: 3}
+    - target: {fileID: 1980534078568880277, guid: 13a6b2e06fdd623439f35bc44605391d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1662658494, guid: c43d8a3f4a421874c87a07b22834ab39, type: 3}
+    - target: {fileID: 7634017145076137629, guid: 13a6b2e06fdd623439f35bc44605391d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1662658494, guid: c43d8a3f4a421874c87a07b22834ab39, type: 3}
     - target: {fileID: 8106200292815342396, guid: 13a6b2e06fdd623439f35bc44605391d, type: 3}
       propertyPath: m_SortingOrder
       value: 5
@@ -301,6 +313,10 @@ PrefabInstance:
     - target: {fileID: 8106200293036987445, guid: 13a6b2e06fdd623439f35bc44605391d, type: 3}
       propertyPath: m_Name
       value: Monster_Boss_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106200293036987445, guid: 13a6b2e06fdd623439f35bc44605391d, type: 3}
+      propertyPath: m_TagString
+      value: BossMonster
       objectReference: {fileID: 0}
     - target: {fileID: 8106200293152782035, guid: 13a6b2e06fdd623439f35bc44605391d, type: 3}
       propertyPath: m_LocalPosition.x

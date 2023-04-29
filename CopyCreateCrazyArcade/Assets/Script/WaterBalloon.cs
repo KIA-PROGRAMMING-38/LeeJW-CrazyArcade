@@ -10,7 +10,6 @@ namespace Assets.Script
 {
     public class WaterBalloon : MonoBehaviour
     {
-        private float elapsedTime;
         public Collider2D _collider;
         public Rigidbody2D _rigidbody;
         private const float BALLOON_CLEAR_TIME = 3f;
@@ -20,10 +19,7 @@ namespace Assets.Script
         public LayerMask NonDestroyLayer;
         public LayerMask destoryLayer;
 
-        private const float clearTime = 0.36f;
         Collider2D[] target = new Collider2D[2];
-
-
 
 
         private IEnumerator myBoomCoroutine;
@@ -71,9 +67,8 @@ namespace Assets.Script
             BoomBalloon();
         }
 
-        void BoomBalloon()
+        public void BoomBalloon()
         {
-
             Explosion explod = Instantiate(explosionPrefeb, transform.position, transform.rotation);
             Animator anim = explod.GetComponent<Animator>();
             explod.ExplosionSound();

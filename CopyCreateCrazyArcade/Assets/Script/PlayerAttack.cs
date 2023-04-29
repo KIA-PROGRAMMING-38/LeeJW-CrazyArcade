@@ -17,6 +17,7 @@ namespace Assets.Script
         private PlayerInput _input;
         private PlayerStatus _status;
         public WaterBalloon _Balloon;
+
         private WaitForSeconds waitBalloon = new WaitForSeconds(3);
         private bool kickOn = false;
         private Vector3 selfposition;
@@ -57,18 +58,14 @@ namespace Assets.Script
         {
             --_status.currentBalloonCount;
 
-            // 현재 포지션을 셀포지션으로
             selfposition = MapManager.Instance.LocalToCellPosition(transform);
-
 
             selfposition.y = selfposition.y + 0.05f;
             WaterBalloon balloon = Instantiate(_Balloon, selfposition, Quaternion.identity);
             balloon.currentPower = _status.currentExplosionPower;
 
-
             yield return waitBalloon;
             ++_status.currentBalloonCount;
-
 
         }
         Vector3 normalVec = Vector3.zero;
@@ -104,7 +101,7 @@ namespace Assets.Script
         }
         private void OnCollisionExit2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Balloon")&& kickOn)
+            if (collision.gameObject.CompareTag("Balloon") && kickOn)
             {
                 _rigid.constraints = RigidbodyConstraints2D.None;
                 _rigid.constraints = RigidbodyConstraints2D.FreezeRotation;

@@ -23,16 +23,20 @@ public class BossMonster : MonoBehaviour
     private float moveSpeed;
     private float speed = 2f;
 
-    private bool phase;
-
     private Animator _anim;
+    private Collider2D _collider;
 
     public WaterBalloon _Balloon;
 
     public Explosion _Explosion;
     private Vector3[] explodePosition = new Vector3[4];
-    IEnumerator state;
 
+    IEnumerator state;
+    IEnumerator AttackCoroutine;
+    private WaitForSeconds attackCoolTime = new WaitForSeconds(0.5f);
+    private WaitForSeconds stateCoolTime = new WaitForSeconds(3);
+
+    private bool waitDie;
     private bool IsOnMove = true;
     private bool IsOnAttack = false;
     private bool _isHit = false;
@@ -41,7 +45,7 @@ public class BossMonster : MonoBehaviour
     {
 
         _anim = GetComponent<Animator>();
-
+        _collider = GetComponent<Collider2D>();
 
         explodePosition[0] = new Vector3(3f, -3.5f, 0);
         explodePosition[1] = new Vector3(3, -4.5f, 0);
@@ -106,10 +110,11 @@ public class BossMonster : MonoBehaviour
 
         SetRandomPosition();
 
-        yield return new WaitForSeconds(3);
+        yield return stateCoolTime;
 
         IsOnMove = true;
     }
+
     private void PhaseUpdate()
     {
         speed += 2;
@@ -119,8 +124,12 @@ public class BossMonster : MonoBehaviour
         if (transform.position == moves[1, 1])
         {
             int i = Random.Range(0, 2);
+
             if (i == 0)
-                StartCoroutine(Attack(Vector2.right));
+            {
+                AttackCoroutine = Attack(Vector2.right);
+                StartCoroutine(AttackCoroutine);
+            }
             else
             {
                 BoxExplosionAttack();
@@ -131,7 +140,10 @@ public class BossMonster : MonoBehaviour
         {
             int i = Random.Range(0, 2);
             if (i == 0)
-                StartCoroutine(Attack(Vector2.left));
+            {
+                AttackCoroutine = Attack(Vector2.left);
+                StartCoroutine(AttackCoroutine);
+            }
             else
             {
                 BoxExplosionAttack();
@@ -141,10 +153,14 @@ public class BossMonster : MonoBehaviour
         {
             int i = Random.Range(0, 2);
             if (i == 0)
-                StartCoroutine(Attack(Vector2.right));
+            {
+                AttackCoroutine = Attack(Vector2.right);
+                StartCoroutine(AttackCoroutine);
+            }
             else
             {
-                StartCoroutine(Attack(Vector2.down));
+                AttackCoroutine = Attack(Vector2.down);
+                StartCoroutine(AttackCoroutine);
 
             }
         }
@@ -153,27 +169,41 @@ public class BossMonster : MonoBehaviour
         {
             int i = Random.Range(0, 2);
             if (i == 0)
-                StartCoroutine(Attack(Vector2.left));
+            {
+                AttackCoroutine = Attack(Vector2.left);
+                StartCoroutine(AttackCoroutine);
+            }
             else
             {
-                StartCoroutine(Attack(Vector2.down));
+                AttackCoroutine = Attack(Vector2.down);
+                StartCoroutine(AttackCoroutine);
 
             }
         }
         if (transform.position == moves[1, 0])
-            StartCoroutine(Attack(Vector2.right));
+        {
+            AttackCoroutine = Attack(Vector2.right);
+            StartCoroutine(AttackCoroutine);
+        }
 
         if (transform.position == moves[1, 3])
-            StartCoroutine(Attack(Vector2.left));
+        {
+            AttackCoroutine = Attack(Vector2.left);
+            StartCoroutine(AttackCoroutine);
+        }
 
         if (transform.position == moves[2, 0] || transform.position == moves[2, 1])
         {
             int i = Random.Range(0, 2);
             if (i == 0)
-                StartCoroutine(Attack(Vector2.up));
+            {
+                AttackCoroutine = Attack(Vector2.up);
+                StartCoroutine(AttackCoroutine);
+            }
             else
             {
-                StartCoroutine(Attack(Vector2.right));
+                AttackCoroutine = Attack(Vector2.right);
+                StartCoroutine(AttackCoroutine);
             }
         }
 
@@ -181,10 +211,14 @@ public class BossMonster : MonoBehaviour
         {
             int i = Random.Range(0, 2);
             if (i == 0)
-                StartCoroutine(Attack(Vector2.left));
+            {
+                AttackCoroutine = Attack(Vector2.left);
+                StartCoroutine(AttackCoroutine);
+            }
             else
             {
-                StartCoroutine(Attack(Vector2.up));
+                AttackCoroutine = Attack(Vector2.up);
+                StartCoroutine(AttackCoroutine);
             }
         }
     }
@@ -230,6 +264,7 @@ public class BossMonster : MonoBehaviour
 
 
     }
+
     private void BoxExplosionAttack()
     {
 
@@ -262,22 +297,64 @@ public class BossMonster : MonoBehaviour
     IEnumerator Attack(Vector2 direction)
     {
         CanAttack(direction);
-        yield return new WaitForSeconds(0.5f);
+        yield return attackCoolTime;
         CanAttack(direction);
-        yield return new WaitForSeconds(0.5f);
+        yield return attackCoolTime;
         CanAttack(direction);
 
     }
+
     private void OnDamage()
     {
+        _anim.SetBool("Hit", true);
+        _collider.enabled = false;
+
         transform.GetChild(1).GetChild(2).GetChild(bossHP - 1).gameObject.SetActive(false);
         --bossHP;
+        if (bossHP == 3)
+            PhaseUpdate();
+
+        if (bossHP == 8)
+        {
+            
+            IsBossWaitDie();
+        }
+    }
+    private void IsBossWaitDie()
+    {
+        _collider.enabled = true;
+
+        IsOnMove = false;
+        IsOnAttack= false;
+        StopCoroutine(state);
+        StopCoroutine(AttackCoroutine);
+
+        waitDie = true;
+
+        _anim.SetTrigger("Die");
+    }
+
+    private void IsBossDieConfirm()
+    {
+        _anim.SetTrigger("DieConfirm");
+    }
+
+    private void SetFalse()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OffDamage()
+    {
+        _collider.enabled = true;
+        _anim.SetBool("Hit", false);
     }
     private Vector2 CanAttack(Vector2 direction)
     {
 
         WaterBalloon balloon = Instantiate(_Balloon, transform.GetChild(0).position, Quaternion.identity);
         balloon.currentPower = 3;
+        balloon.tag = "BossBalloon";
         balloon._collider.isTrigger = false;
         balloon._rigidbody.constraints = RigidbodyConstraints2D.None;
         balloon._rigidbody.velocity = direction * 10;
@@ -286,18 +363,34 @@ public class BossMonster : MonoBehaviour
 
 
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Explosion") && _isHit == false)
         {
             if (bossHP > 0)
             {
-                _isHit = true;
                 OnDamage();
+                _isHit = true;
             }
+        }
 
+        if (collision.CompareTag("Balloon"))
+        {
+            WaterBalloon balloon = collision.GetComponent<WaterBalloon>();
+            balloon.BoomBalloon();
+        }
 
-
+        if (collision.CompareTag("Player"))
+        {
+            if (waitDie)
+            {
+                IsBossDieConfirm();
+            }
+            else
+            {
+                PlayerStatus status = collision.gameObject.GetComponent<PlayerStatus>();
+                status.DieConfirmation();
+            }
         }
     }
 }
