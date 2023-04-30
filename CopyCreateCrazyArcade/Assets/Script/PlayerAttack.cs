@@ -23,15 +23,18 @@ namespace Assets.Script
         private Vector3 selfposition;
         private Collider2D[] target = new Collider2D[2];
         private Rigidbody2D _rigid;
-
+        private ObjectPool<WaterBalloon> _balloonPool;
         private void Awake()
         {
             _input = GetComponent<PlayerInput>();
             _status = GetComponent<PlayerStatus>();
             _rigid = GetComponent<Rigidbody2D>();
+
+            _balloonPool = new ObjectPool<WaterBalloon>(CreatePoolBalloon, TakeBalloonFromPool, ReturnBalloonToPool,
+                (balloon) => Destroy(balloon.gameObject), 20, 100);
         }
 
-
+     
 
         private void Update()
         {
@@ -41,19 +44,22 @@ namespace Assets.Script
 
             if (target[0].gameObject.CompareTag("Balloon") == false)
             {
-                if (gameObject.name == "1PCharacter" && _input.FirstPlayerAttack() && _status.currentBalloonCount > 0)
+                if (gameObject.name == "1PCharacter(Clone)" && _input.FirstPlayerAttack() && _status.currentBalloonCount > 0)
                 {
                     StartCoroutine(CreateBalloon());
                 }
-                if (gameObject.name == "2PCharacter" && _input.SecondPlayerAttack() && _status.currentBalloonCount > 0)
+                if (gameObject.name == "2PCharacter(Clone)" && _input.SecondPlayerAttack() && _status.currentBalloonCount > 0)
                 {
 
                     StartCoroutine(CreateBalloon());
                 }
             }
 
+          
+
 
         }
+        
         private IEnumerator CreateBalloon()
         {
             --_status.currentBalloonCount;
@@ -61,8 +67,10 @@ namespace Assets.Script
             selfposition = MapManager.Instance.LocalToCellPosition(transform);
 
             selfposition.y = selfposition.y + 0.05f;
-            WaterBalloon balloon = Instantiate(_Balloon, selfposition, Quaternion.identity);
+            //WaterBalloon balloon = Instantiate(_Balloon, selfposition, Quaternion.identity);
+            WaterBalloon balloon = GetBalloonFromPool();
             balloon.currentPower = _status.currentExplosionPower;
+
 
             yield return waitBalloon;
             ++_status.currentBalloonCount;
@@ -70,7 +78,6 @@ namespace Assets.Script
         }
         Vector3 normalVec = Vector3.zero;
 
-        //노말벡터 및 공식 적용
         ContactPoint2D[] point = new ContactPoint2D[1];
         private void SetVector(Collision2D collision)
         {
@@ -78,7 +85,6 @@ namespace Assets.Script
             normalVec = point[0].normal * -1;
             normalVec = normalVec * 10;
         }
-        // 제약해제
         private void SetConstraints(Collision2D collision)
         {
             collision.rigidbody.constraints = RigidbodyConstraints2D.None;
@@ -116,5 +122,20 @@ namespace Assets.Script
             }
         }
 
+
+        private WaterBalloon CreatePoolBalloon()
+        {
+            WaterBalloon balloon = Instantiate(_Balloon);
+            balloon.Pool = _balloonPool;
+            return balloon;
+        }
+        private WaterBalloon GetBalloonFromPool()
+        {
+            Debug.Assert(_balloonPool != null);
+            WaterBalloon balloon = _balloonPool.Get();
+            return balloon;
+        }
+        private void TakeBalloonFromPool(WaterBalloon balloon) => balloon.gameObject.SetActive(true);
+        private void ReturnBalloonToPool(WaterBalloon balloon) => balloon.gameObject.SetActive(false);
     }
 }

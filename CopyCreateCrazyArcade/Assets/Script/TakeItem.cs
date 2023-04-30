@@ -21,13 +21,11 @@ namespace Assets.Script
         }
         public ItemKind kind;
 
-
         private Vector3 spawnScale = new Vector3(1, 1, 0);
         private bool spawnLimitTime = true;
         private PlayerStatus _playerStatus;
         private float spawnTime;
         private float spawnSpeed = 1.9f;
-
 
         private void Update()
         {
@@ -47,7 +45,6 @@ namespace Assets.Script
         public void PlayerTakeItem(GameObject status)
         {
             _playerStatus = status.GetComponent<PlayerStatus>();
-
             switch (kind)
             {
 
@@ -63,7 +60,6 @@ namespace Assets.Script
                     {
                         _playerStatus.currentBalloonCount += 1;
                         _playerStatus.storageAttackCount = _playerStatus.currentBalloonCount;
-                        Debug.Log(_playerStatus.storageAttackCount);
                     }
 
                     break;
@@ -81,11 +77,11 @@ namespace Assets.Script
                     if(_playerStatus.needleMaxCount > _playerStatus.needleCount)
                     _playerStatus.needleCount += 1;
 
-                    if (_playerStatus.name == "1PCharacter")
+                    if (_playerStatus.name == "1PCharacter(Clone)")
                     {
                         _playerStatus._input.FirstNeedleUpdate();
                     }
-                    if(_playerStatus.name == "2PCharacter")
+                    if(_playerStatus.name == "2PCharacter(Clone)")
                     {
                         _playerStatus._input.SecondNeedleUpdate();
                     }

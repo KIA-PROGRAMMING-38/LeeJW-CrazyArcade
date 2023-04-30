@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +25,7 @@ namespace Assets.Script
 
 
         public PlayerInput _input { get; set; }
-        public PlayerStatus _status;
+        private PlayerStatus _status;
 
 
         public float currentSpeed { get; set; } = 5;
@@ -37,14 +36,18 @@ namespace Assets.Script
         public int needleCount { get; set; }
         public int needleMaxCount { get; private set; } = 1;
 
-        public float storageSpeed { get; set; }
-        public int storageAttackCount { get; set; }
+        public float storageSpeed { get; set; } = 5;
+        public int storageAttackCount { get; set; } = 1;
         public int MAX_SPEED { get; private set; } = 9;
         public int MAX_BALLOON_COUNT { get; private set; } = 6;
         public int MAX_EXPLOSION_POWER { get; private set; } = 7;
 
+        public bool firstDie;
+        public bool secondDie;
+
         private WaitForSeconds moveOnTime = new WaitForSeconds(1);
         private GameData _gamedata;
+
 
         private void Awake()
         {
@@ -56,9 +59,8 @@ namespace Assets.Script
             _audio[1] = GetComponent<AudioSource>();
             _audio[2] = GetComponent<AudioSource>();
             _audio[3] = GetComponent<AudioSource>();
-
-
         }
+
         IEnumerator StartMoving()
         {
 
@@ -76,7 +78,7 @@ namespace Assets.Script
                 }
                 if (_gamedata.monsterMode)
                 {
-                    if (gameObject.name == "1PCharacter")
+                    if (gameObject.name == "1PCharacter(Clone)")
                     {
                         SecondUseNeedle();
                     }
@@ -129,8 +131,11 @@ namespace Assets.Script
         public void SecondUseNeedle()
         {
             Physics2D.IgnoreLayerCollision(3, 3, true);
-            _anim.SetBool($"{name}DieWait", false);
 
+            _audio[1].clip = _liveClip;
+            _audio[1].Play();
+
+            _anim.SetBool($"{name}DieWait", false);
             dieWaitState = false;
             _anim.SetTrigger($"{name}Live");
 
@@ -158,6 +163,7 @@ namespace Assets.Script
                 _audio[2].Play();
 
                 _input.GameClear();
+                _input.IsPlayerWin();
                 currentSpeed = 0f;
 
                 _anim.SetBool($"{name}DieWait", false);
@@ -165,7 +171,8 @@ namespace Assets.Script
 
                 Physics2D.IgnoreLayerCollision(3, 3, true);
 
-                _status._anim.SetTrigger("Win");
+                _input.playerLive = false;
+
 
             }
             if (_gamedata.monsterMode)
@@ -175,7 +182,6 @@ namespace Assets.Script
                 _audio[2].Play();
 
                 _input.PlayerCountSub();
-                _input.GameClear();
                 currentSpeed = 0f;
 
                 _anim.SetBool($"{name}DieWait", false);

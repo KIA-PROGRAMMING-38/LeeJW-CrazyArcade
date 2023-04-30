@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     public GameManager _manager;
+    public bool playerLive = true;
 
     public float _1PlayerPositionX { get; private set; }
     public float _1PlayerPositionY { get; private set; }
@@ -15,8 +16,10 @@ public class PlayerInput : MonoBehaviour
     public float _2PlayerPositionY { get; private set; }
 
     private PlayerStatus _status;
+    
     private void Awake()
     {
+        _manager = FindAnyObjectByType<GameManager>();
         _status = GetComponent<PlayerStatus>();
     }
     private void Update()
@@ -31,7 +34,7 @@ public class PlayerInput : MonoBehaviour
 
 
             if (_status.needleCount > 0 && FirstPlayerUseItem() && _status.dieWaitState == true
-                && _status.name == "1PCharacter")
+                && _status.name == "1PCharacter(Clone)")
             {
                 --_status.needleCount;
                 _status.UseNeedle();
@@ -39,7 +42,7 @@ public class PlayerInput : MonoBehaviour
             }
 
             if (_status.needleCount > 0 && SecondPlayerUseItem() && _status.dieWaitState == true
-                && _status.name == "2PCharacter")
+                && _status.name == "2PCharacter(Clone)")
             {
                 --_status.needleCount;
                 _status.SecondUseNeedle();
@@ -58,6 +61,10 @@ public class PlayerInput : MonoBehaviour
     public void PlayerCountSub()
     {
         _manager.PlayerDie();
+    }
+    public void IsPlayerWin()
+    {
+        _manager.playerLive = false;
     }
     public void GameClear()
     {

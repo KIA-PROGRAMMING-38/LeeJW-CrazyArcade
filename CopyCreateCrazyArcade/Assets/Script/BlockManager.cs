@@ -14,7 +14,7 @@ namespace Assets.Script
     public class BlockManager : MonoBehaviour
     {
 
-
+        private GameData _gameData;
         GameObject[] _item = new GameObject[6];
         Collider2D[] target = new Collider2D[2];
 
@@ -24,6 +24,7 @@ namespace Assets.Script
 
         private void Awake()
         {
+            _gameData = FindObjectOfType<GameData>();
             _item[0] = Resources.Load("Balloon") as GameObject;
             _item[1] = Resources.Load("Flask") as GameObject;
             _item[2] = Resources.Load("Skate") as GameObject;
@@ -32,8 +33,11 @@ namespace Assets.Script
             _item[5] = Resources.Load("Needle") as GameObject;
 
 
+            if (_gameData.defaultMode)
+                _itemRandomValue = Random.Range(0, _item.Length);
 
-            _itemRandomValue = Random.Range(0, _item.Length);
+            if (_gameData.monsterMode)
+                _itemRandomValue = Random.Range(0, 3);
 
             _collider = GetComponent<Collider2D>();
         }
@@ -59,7 +63,7 @@ namespace Assets.Script
                 Instantiate(_item[_itemRandomValue], spawnPosition, transform.rotation);
 
         }
-       
+
 
         private void BlockClearEvent()
         {
@@ -78,7 +82,7 @@ namespace Assets.Script
 
         private void OnCollisionStay2D(Collision2D collision)
         {
-         
+
             normalVec = collision.contacts[0].normal;
             if (collision.gameObject.CompareTag("Player") && _collider.CompareTag("MovingBlock") && _trigger)
             {
@@ -93,7 +97,7 @@ namespace Assets.Script
                         {
                             isMoving = true;
                             elapsedTime = 0;
-                            target[0].gameObject.SetActive(false);  
+                            target[0].gameObject.SetActive(false);
                         }
                     }
                 }

@@ -98,15 +98,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -1320240181, guid: 8847f1d534127d043bafb064f8a0c311, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.975, y: 1.4}
+  m_Size: {x: 0.95, y: 1.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2341197870395125101
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a135f1d35d785d849a9e6967bc5455e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  count: 6
 --- !u!50 &2341197870395125103
 Rigidbody2D:
   serializedVersion: 4
@@ -141,7 +142,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!58 &2341197870395125102
 CircleCollider2D:
   m_ObjectHideFlags: 0

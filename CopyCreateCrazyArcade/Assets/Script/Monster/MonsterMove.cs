@@ -1,28 +1,32 @@
 using Assets.Script;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class MonsterMove : MonoBehaviour
 {
+    
     private Vector3 moveDirection = new Vector3(1, 0, 0);
     private Vector3[] directions = new Vector3[4];
-
     private float speed = 1.5f;
     private float moveSpeed;
-
     private int random;
+    public int count = 6;
 
     private Animator _anim;
     private float distance = 0.5f;
     private int currentDirectionIndex = 0;
     private bool setOff = true;
+    private GameManager _manager;
     private void Awake()
     {
         directions[0] = new Vector3(1, 0, 0);
         directions[1] = new Vector3(-1, 0, 0);
         directions[2] = new Vector3(0, 1, 0);
         directions[3] = new Vector3(0, -1, 0);
+
+        _manager = FindAnyObjectByType<GameManager>();
 
         _anim = GetComponent<Animator>();
 
@@ -58,10 +62,9 @@ public class MonsterMove : MonoBehaviour
 
     }
 
-    // 앞으로 이동할 수 있는지 확인한다.
     bool CanMove()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + (moveDirection / 2), moveDirection, distance);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + (moveDirection/2), moveDirection, distance);
         if (hit.collider != null && hit.collider.gameObject.layer != LayerMask.NameToLayer("Player"))
         {
             return false;
@@ -72,7 +75,6 @@ public class MonsterMove : MonoBehaviour
         }
     }
 
-    // 이동 방향을 정한다.
     void SetDirection()
     {
         if (moveDirection == directions[currentDirectionIndex])
@@ -109,6 +111,7 @@ public class MonsterMove : MonoBehaviour
             setOff = false;
             transform.position = collision.transform.position;
             _anim.SetTrigger("MonsterDie");
+            
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -120,13 +123,14 @@ public class MonsterMove : MonoBehaviour
             _status.DieConfirmation();
         }
 
-
-
     }
 
-    void SetFalse()
+    public void SetFalse()
     {
         gameObject.SetActive(false);
+        _manager.monsterCount -= 1;
+
     }
+
 
 }

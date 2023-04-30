@@ -24,12 +24,12 @@ public class PlayerMovement : MonoBehaviour
         if (_input._manager.gamePlay == true)
         {
 
-            if (gameObject.name == "1PCharacter")
+            if (gameObject.name == "1PCharacter(Clone)")
             {
                 velocity.x = _input._1PlayerPositionX;
                 velocity.y = _input._1PlayerPositionY;
             }
-            if (gameObject.name == "2PCharacter")
+            if (gameObject.name == "2PCharacter(Clone)")
             {
                 velocity.x = _input._2PlayerPositionX;
                 velocity.y = _input._2PlayerPositionY;
@@ -37,12 +37,12 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (gameObject.name == "1PCharacter")
+            if (gameObject.name == "1PCharacter(Clone)")
             {
                 velocity.x = 0;
                 velocity.y = 0;
             }
-            if (gameObject.name == "2PCharacter")
+            if (gameObject.name == "2PCharacter(Clone)")
             {
                 velocity.x = 0;
                 velocity.y = 0;

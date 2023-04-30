@@ -9,6 +9,8 @@ using UnityEngine.EventSystems;
 
 public class BossMonster : MonoBehaviour
 {
+    private GameManager _manager;
+
     private int bossHP = 10;
     private Vector3[,] moves = new Vector3[3, 4];
     private Vector3 saveTransformPosition;
@@ -28,6 +30,7 @@ public class BossMonster : MonoBehaviour
 
     public WaterBalloon _Balloon;
 
+
     public Explosion _Explosion;
     private Vector3[] explodePosition = new Vector3[4];
 
@@ -35,6 +38,10 @@ public class BossMonster : MonoBehaviour
     IEnumerator AttackCoroutine;
     private WaitForSeconds attackCoolTime = new WaitForSeconds(0.5f);
     private WaitForSeconds stateCoolTime = new WaitForSeconds(3);
+    private AudioSource[] _audio = new AudioSource[2];
+
+    public AudioClip _waitDieClip;
+    public AudioClip _dieconfirmClip;
 
     private bool waitDie;
     private bool IsOnMove = true;
@@ -43,6 +50,10 @@ public class BossMonster : MonoBehaviour
 
     private void Awake()
     {
+
+        _manager = FindAnyObjectByType<GameManager>();
+        _audio[0] = GetComponent<AudioSource>();
+        _audio[1] = GetComponent<AudioSource>();
 
         _anim = GetComponent<Animator>();
         _collider = GetComponent<Collider2D>();
@@ -76,20 +87,24 @@ public class BossMonster : MonoBehaviour
     {
         moveSpeed = speed * Time.deltaTime;
 
-        if (transform.position == moves[movesRandomPositionY, movesRandomPositionX])
+        if (_manager.gamePlay)
         {
-            if (IsOnAttack)
-            {
-                state = StateHelper();
-                StartCoroutine(state);
-            }
-        }
-        if (IsOnMove)
-        {
-            BossMovement();
-        }
 
-        _isHit = false;
+            if (transform.position == moves[movesRandomPositionY, movesRandomPositionX])
+            {
+                if (IsOnAttack)
+                {
+                    state = StateHelper();
+                    StartCoroutine(state);
+                }
+            }
+            if (IsOnMove)
+            {
+                BossMovement();
+            }
+
+            _isHit = false;
+        }
     }
 
 
@@ -311,21 +326,23 @@ public class BossMonster : MonoBehaviour
 
         transform.GetChild(1).GetChild(2).GetChild(bossHP - 1).gameObject.SetActive(false);
         --bossHP;
+
         if (bossHP == 3)
             PhaseUpdate();
 
-        if (bossHP == 8)
+        if (bossHP == 0)
         {
-            
             IsBossWaitDie();
         }
     }
     private void IsBossWaitDie()
     {
+        _audio[0].clip = _waitDieClip;
+        _audio[0].Play();
         _collider.enabled = true;
 
         IsOnMove = false;
-        IsOnAttack= false;
+        IsOnAttack = false;
         StopCoroutine(state);
         StopCoroutine(AttackCoroutine);
 
@@ -336,7 +353,10 @@ public class BossMonster : MonoBehaviour
 
     private void IsBossDieConfirm()
     {
+        _audio[1].clip = _dieconfirmClip;
+        _audio[1].Play();
         _anim.SetTrigger("DieConfirm");
+        _manager.monsterCount = 0;
     }
 
     private void SetFalse()
