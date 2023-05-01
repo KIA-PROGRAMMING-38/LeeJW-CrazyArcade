@@ -1,11 +1,6 @@
 using Assets.Script;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading;
-using TMPro.EditorUtilities;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Assets.Script
 {

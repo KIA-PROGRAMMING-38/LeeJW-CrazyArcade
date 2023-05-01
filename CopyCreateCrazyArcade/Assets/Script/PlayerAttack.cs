@@ -1,14 +1,6 @@
 using Assets.Script;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Xml.Schema;
-using UnityEditor;
-using UnityEditor.Search;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 namespace Assets.Script
 {
