@@ -119,7 +119,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 5
   m_Sprite: {fileID: 429859705, guid: af9c863234ee5114cb96d1c95a9755f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -181,7 +181,8 @@ MonoBehaviour:
   _liveClip: {fileID: 8300000, guid: f6adadba21100604698d4ccec45bf126, type: 3}
   _dieConfirmationClip: {fileID: 8300000, guid: 5a538d81a089895489d69f82e83c379f, type: 3}
   _dieWaitClip: {fileID: 8300000, guid: 1fe445faf22b07c4bab3f2e68acd2a34, type: 3}
-  _status: {fileID: 4264249175827100592, guid: 19a9e5cb562c9d344aa01d178c4b5a18, type: 3}
+  firstDie: 0
+  secondDie: 0
 --- !u!114 &537883274738480955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _manager: {fileID: 0}
+  playerLive: 1
 --- !u!114 &537883274738480954
 MonoBehaviour:
   m_ObjectHideFlags: 0

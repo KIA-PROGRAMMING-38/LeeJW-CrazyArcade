@@ -1,6 +1,7 @@
 using Assets.Script;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using TMPro.EditorUtilities;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace Assets.Script
         public LayerMask NonDestroyLayer;
         public LayerMask destoryLayer;
         public ObjectPool<WaterBalloon> Pool { private get; set; }
+        private ObjectPool<Explosion> _explosionPool;
 
         Collider2D[] target = new Collider2D[2];
 
@@ -28,6 +30,9 @@ namespace Assets.Script
 
         private void Awake()
         {
+            _explosionPool = new ObjectPool<Explosion>(CreatePoolExplosion, TakeExplosionFromPool, ReturnExplosionToPool,
+               (explosion) => Destroy(explosion.gameObject), 150, 500);
+
             _collider = GetComponent<Collider2D>();
             _rigidbody = GetComponent<Rigidbody2D>();
 
@@ -70,12 +75,12 @@ namespace Assets.Script
 
         public void BoomBalloon()
         {
-            Explosion explod = Instantiate(explosionPrefeb, transform.position, transform.rotation);
+            Explosion explod = GetExplosionFromPool();
             Animator anim = explod.GetComponent<Animator>();
             explod.ExplosionSound();
 
             anim.SetBool("CenterExplosion", true);
-            gameObject.SetActive(false);
+            Pool.Release(this);
             CrossExplodCreate();
         }
 
@@ -85,8 +90,8 @@ namespace Assets.Script
             Explode(transform.position, Vector2.down, currentPower);
             Explode(transform.position, Vector2.left, currentPower);
             Explode(transform.position, Vector2.right, currentPower);
+           
         }
-
         private void Explode(Vector2 position, Vector2 direction, int length)
         {
             if (length <= 0)
@@ -118,7 +123,8 @@ namespace Assets.Script
 
             }
 
-            Explosion explosion = Instantiate(explosionPrefeb, position, transform.rotation);
+            Explosion explosion = GetExplosionFromPool();
+            explosion.transform.position = position;
             explosion.SetDirection(direction);
 
             if (length == 1)
@@ -130,6 +136,20 @@ namespace Assets.Script
             Explode(position, direction, length - 1);
         }
 
+        private Explosion CreatePoolExplosion()
+        {
+            Explosion explosion = Instantiate(explosionPrefeb, transform.position, transform.rotation);
+            explosion.Pool = _explosionPool;
+            return explosion;
+        }
+        private Explosion GetExplosionFromPool()
+        {
+            Debug.Assert(_explosionPool != null);
+            Explosion explosion = _explosionPool.Get();
+            return explosion;
+        }
+        private void TakeExplosionFromPool(Explosion explosion) => explosion.gameObject.SetActive(true);
+        private void ReturnExplosionToPool(Explosion explosion) => explosion.gameObject.SetActive(false);
 
     }
 }

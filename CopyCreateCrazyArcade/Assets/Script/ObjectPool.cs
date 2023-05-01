@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Pool;
 
 
-// 크아 물풍선을 이런식으로 하면 괜찮을듯.
 public class ObjectPool<T> : IObjectPool<T> where T : class
 {
     private readonly Stack<T> _pool;
@@ -16,7 +15,6 @@ public class ObjectPool<T> : IObjectPool<T> where T : class
     private readonly Action<T> _actionOnDestroy;
     public int CountAll { get; private set; }
     public int CountInactive => _pool.Count;
-    public int CountActive => CountAll - CountInactive;
 
     public ObjectPool(Func<T> createFunc, Action<T> actionOnGet = null,
         Action<T> actionOnRelease = null, Action<T> actionOnDestroy = null,
@@ -28,7 +26,7 @@ public class ObjectPool<T> : IObjectPool<T> where T : class
         }
         if (maxSize <= 0)
         {
-            throw new ArgumentException("Max size must ve greator in Bullet ");
+            throw new ArgumentException("Max size must ve greator in GameObject ");
         }
         _pool = new Stack<T>(defaultCapacity);
         _createFunc = createFunc;

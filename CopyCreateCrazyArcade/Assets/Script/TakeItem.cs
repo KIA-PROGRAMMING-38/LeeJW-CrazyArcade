@@ -10,6 +10,8 @@ namespace Assets.Script
     public class TakeItem : MonoBehaviour
     {
 
+        public ObjectPool<TakeItem> Pool { private get; set; }
+
         public enum ItemKind
         {
             Skate,
@@ -41,7 +43,13 @@ namespace Assets.Script
             }
 
         }
-
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if(collision.CompareTag("Player"))
+            {
+                Pool.Release(this);
+            }
+        }
         public void PlayerTakeItem(GameObject status)
         {
             _playerStatus = status.GetComponent<PlayerStatus>();

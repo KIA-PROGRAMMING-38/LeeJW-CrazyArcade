@@ -14,8 +14,8 @@ namespace Assets.Script
     {
         private WaitForSeconds destroytime = new WaitForSeconds(0.36f);
         private AudioSource _audio;
-        public AudioClip _clip; 
-
+        public AudioClip _clip;
+        public ObjectPool<Explosion> Pool;
 
         private void Awake()
         {
@@ -26,7 +26,8 @@ namespace Assets.Script
         private IEnumerator ClearTime()
         {
             yield return destroytime;
-            gameObject.SetActive(false);
+            Pool.Release(this);   
+           
         }
 
         public void ExplosionSound()

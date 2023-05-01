@@ -2,6 +2,7 @@ using Assets.Script;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
@@ -15,29 +16,20 @@ namespace Assets.Script
     {
 
         private GameData _gameData;
-        GameObject[] _item = new GameObject[6];
+        public TakeItem[] _item;
         Collider2D[] target = new Collider2D[2];
-
+        private ObjectPool<TakeItem> itemPool;
         private int _itemRandomValue;
         private int _itemRandomSpawn;
         private Collider2D _collider;
 
+        
+
         private void Awake()
         {
             _gameData = FindObjectOfType<GameData>();
-            _item[0] = Resources.Load("Balloon") as GameObject;
-            _item[1] = Resources.Load("Flask") as GameObject;
-            _item[2] = Resources.Load("Skate") as GameObject;
-            _item[3] = Resources.Load("Shoes") as GameObject;
-            _item[4] = Resources.Load("MaxPower") as GameObject;
-            _item[5] = Resources.Load("Needle") as GameObject;
-
-
-            if (_gameData.defaultMode)
-                _itemRandomValue = Random.Range(0, _item.Length);
-
-            if (_gameData.monsterMode)
-                _itemRandomValue = Random.Range(0, 3);
+            itemPool = new ObjectPool<TakeItem>(CreatePoolItem, TakeItemFromPool, ReturnItemToPool,
+              (item) => Destroy(item.gameObject), 30, 50);
 
             _collider = GetComponent<Collider2D>();
         }
@@ -60,8 +52,7 @@ namespace Assets.Script
             spawnPosition.y = transform.position.y + 0.2f;
 
             if (_itemRandomSpawn < 6)
-                Instantiate(_item[_itemRandomValue], spawnPosition, transform.rotation);
-
+                GetItemFromPool();
         }
 
 
@@ -141,5 +132,33 @@ namespace Assets.Script
                 }
             }
         }
+
+        private TakeItem CreatePoolItem()
+        {
+            _itemRandomValue = Random.Range(0, _item.Length);
+
+            if (_gameData.defaultMode)
+            {
+                TakeItem item = Instantiate(_item[_itemRandomValue], transform.position, transform.rotation);
+                item.Pool = itemPool;
+                return item;
+            }
+
+            else
+            {
+                TakeItem item = Instantiate(_item[_itemRandomValue - 3], transform.position, transform.rotation);
+                item.Pool = itemPool;
+                return item;
+            }
+
+        }
+        private TakeItem GetItemFromPool()
+        {
+            Debug.Assert(itemPool != null);
+            TakeItem item = itemPool.Get();
+            return item;
+        }
+        private void TakeItemFromPool(TakeItem item) => item.gameObject.SetActive(true);
+        private void ReturnItemToPool(TakeItem item) => item.gameObject.SetActive(false);
     }
 }

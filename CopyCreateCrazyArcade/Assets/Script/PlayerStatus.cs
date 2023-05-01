@@ -94,8 +94,6 @@ namespace Assets.Script
         {
             if (collision.gameObject.CompareTag("Explosion"))
             {
-                Debug.Log("플레이어 맞음");
-
                 _anim.SetBool($"{gameObject.name}DieWait", true);
 
             }
@@ -104,10 +102,10 @@ namespace Assets.Script
             {
                 item = collision.GetComponent<TakeItem>();
                 _audio[0].clip = _itemClip;
-
                 _audio[0].Play();
+
                 item.PlayerTakeItem(gameObject);
-                collision.gameObject.SetActive(false);
+              
             }
         }
 

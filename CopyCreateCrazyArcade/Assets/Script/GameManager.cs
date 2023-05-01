@@ -57,9 +57,9 @@ public class GameManager : MonoBehaviour
     
     private WaitForSeconds changeTime = new WaitForSeconds(9f);
     private WaitForSeconds cameraOffitime = new WaitForSeconds(1f);
+
     private void Awake()
     {
-
         _gameData = FindAnyObjectByType<GameData>();
 
 
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
         yield return cameraOffitime;
         _camera.targetDisplay = 0;
         gamePlay = true;
-
+        
 
         _gameStart.SetActive(true);
         timer.elapsedTime = 0;

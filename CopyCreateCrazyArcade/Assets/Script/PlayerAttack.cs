@@ -67,7 +67,6 @@ namespace Assets.Script
             selfposition = MapManager.Instance.LocalToCellPosition(transform);
 
             selfposition.y = selfposition.y + 0.05f;
-            //WaterBalloon balloon = Instantiate(_Balloon, selfposition, Quaternion.identity);
             WaterBalloon balloon = GetBalloonFromPool();
             balloon.currentPower = _status.currentExplosionPower;
 
@@ -125,7 +124,7 @@ namespace Assets.Script
 
         private WaterBalloon CreatePoolBalloon()
         {
-            WaterBalloon balloon = Instantiate(_Balloon);
+            WaterBalloon balloon = Instantiate(_Balloon , selfposition,transform.rotation);
             balloon.Pool = _balloonPool;
             return balloon;
         }
