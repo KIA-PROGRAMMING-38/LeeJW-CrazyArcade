@@ -18,7 +18,6 @@ namespace Assets.Script
 
 
         public PlayerInput _input { get; set; }
-        private PlayerStatus _status;
 
 
         public float currentSpeed { get; set; } = 5;
@@ -183,8 +182,8 @@ namespace Assets.Script
             }
 
 
-        }
-
+     
+   }
         public void WinTrigger()
         {
             _anim.SetTrigger("Win");

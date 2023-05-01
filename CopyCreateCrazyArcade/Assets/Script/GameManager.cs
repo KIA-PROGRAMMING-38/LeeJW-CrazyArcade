@@ -150,10 +150,10 @@ public class GameManager : MonoBehaviour
     private float elap;
     IEnumerator IsStageOne()
     {
-        _camera.targetDisplay = 1;
+        _camera.gameObject.SetActive(false);
         gamePlay = false;
         yield return cameraOffitime;
-        _camera.targetDisplay = 0;
+        _camera.gameObject.SetActive(true);
         gamePlay = true;
 
 
@@ -173,11 +173,11 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator IsStageTwo()
     {
-        _camera.targetDisplay = 1;
+        _camera.gameObject.SetActive(false);
         gamePlay = false;
 
         yield return cameraOffitime;
-        _camera.targetDisplay = 0;
+        _camera.gameObject.SetActive(true);
         gamePlay = true;
 
 

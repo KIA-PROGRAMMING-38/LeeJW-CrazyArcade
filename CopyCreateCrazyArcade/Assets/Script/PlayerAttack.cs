@@ -22,7 +22,8 @@ namespace Assets.Script
             _status = GetComponent<PlayerStatus>();
             _rigid = GetComponent<Rigidbody2D>();
 
-            _balloonPool = new ObjectPool<WaterBalloon>(CreatePoolBalloon, TakeBalloonFromPool, ReturnBalloonToPool,
+            _balloonPool = new ObjectPool<WaterBalloon>(CreatePoolBalloon, 
+                TakeBalloonFromPool, ReturnBalloonToPool,
                 (balloon) => Destroy(balloon.gameObject), 20, 100);
         }
 

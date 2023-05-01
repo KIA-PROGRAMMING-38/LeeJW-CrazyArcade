@@ -11,11 +11,12 @@ namespace Assets.Script
         public TakeItem[] _item;
         Collider2D[] target = new Collider2D[2];
         private ObjectPool<TakeItem> itemPool;
-        private int _itemRandomValue;
-        private int _itemRandomSpawn;
         private Collider2D _collider;
         private Vector3 savePosition;
-        private int count = 10;
+        private int _itemRandomSpawn;
+        private int _itemRandomValue;
+
+        private int count = 3;
 
         private void Awake()
         {
@@ -27,16 +28,12 @@ namespace Assets.Script
             savePosition = transform.position;
             savePosition.y = savePosition.y + 0.2f;
 
-            if(_gameData.stage3)
+            if (_gameData.stage3)
             {
-                for(int i = 0; i < count; ++i)
+                for (int i = -7; i < count; ++i)
                 {
-                    randomPositionX = Random.Range(-8, 4);
-                    randomPositionY = Random.Range(-1, 1);
-
-
                     TakeItem item = GetItemFromPool();
-                    item.transform.position = new Vector3(randomPositionX, randomPositionY + 0.2f, 0);
+                    item.transform.position = new Vector3(i, -1.2f, 0);
                     
                 }
             }
@@ -45,13 +42,9 @@ namespace Assets.Script
         private bool isMoving = false;
         private float moveTime = 0;
         private bool _trigger = true;
-        private int randomPositionX;
-        private int randomPositionY;
         private void Update()
         {
             BlockMovement();
-
-            
         }
         private Vector3 spawnPosition;
 
@@ -158,7 +151,7 @@ namespace Assets.Script
             else
             {
                 _itemRandomValue = Random.Range(0, 3);
-
+                Debug.Log(_itemRandomValue);
                 TakeItem item = Instantiate(_item[_itemRandomValue], savePosition, transform.rotation);
                 item.Pool = itemPool;
                 return item;

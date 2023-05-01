@@ -91,32 +91,26 @@ namespace Assets.Script
         private void Explode(Vector2 position, Vector2 direction, int length)
         {
             if (length <= 0)
-            {
                 return;
-            }
-
+            
             position += direction;
 
             if (Physics2D.OverlapBox(position, Vector2.one / 2f, 0f, NonDestroyLayer))
             {
                 return;
             }
-            
             if (target[0] = Physics2D.OverlapBox(position, Vector2.one / 2f, 0f, destoryLayer))
             {
                 if (target[0].gameObject.layer == LayerMask.NameToLayer("Block"))
                 {
                     Animator _anim = target[0].GetComponent<Animator>();
-
                     _anim.SetBool("BlockDestroy", true);
-
                     return;
                 }
                 if (target[0].gameObject.layer == LayerMask.NameToLayer("Item"))
                 {
                     target[0].gameObject.SetActive(false);
                 }
-
             }
 
             Explosion explosion = GetExplosionFromPool();
