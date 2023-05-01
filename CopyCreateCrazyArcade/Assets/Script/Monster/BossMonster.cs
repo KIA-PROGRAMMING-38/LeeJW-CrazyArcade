@@ -38,22 +38,33 @@ public class BossMonster : MonoBehaviour
     IEnumerator AttackCoroutine;
     private WaitForSeconds attackCoolTime = new WaitForSeconds(0.5f);
     private WaitForSeconds stateCoolTime = new WaitForSeconds(3);
-    private AudioSource[] _audio = new AudioSource[2];
+    private AudioSource[] _audio = new AudioSource[3];
 
     public AudioClip _waitDieClip;
     public AudioClip _dieconfirmClip;
+    public AudioClip explodeSound;
 
     private bool waitDie;
     private bool IsOnMove = true;
     private bool IsOnAttack = false;
     private bool _isHit = false;
 
+    private ObjectPool<WaterBalloon> _balloonPool;
+    private ObjectPool<Explosion> _explosionPool;
+
     private void Awake()
     {
+
+        _balloonPool = new ObjectPool<WaterBalloon>(CreatePoolBalloon, TakeBalloonFromPool, ReturnBalloonToPool,
+               (balloon) => Destroy(balloon.gameObject), 20, 100);
+
+        _explosionPool = new ObjectPool<Explosion>(CreatePoolExplosion, TakeExplosionFromPool, ReturnExplosionToPool,
+               (explosion) => Destroy(explosion.gameObject), 150, 500);
 
         _manager = FindAnyObjectByType<GameManager>();
         _audio[0] = GetComponent<AudioSource>();
         _audio[1] = GetComponent<AudioSource>();
+        _audio[2] = GetComponent<AudioSource>();
 
         _anim = GetComponent<Animator>();
         _collider = GetComponent<Collider2D>();
@@ -279,10 +290,14 @@ public class BossMonster : MonoBehaviour
 
 
     }
-
+    public void ExplosionSound()
+    {
+        _audio[2].clip = explodeSound;
+        _audio[2].Play();
+    }
     private void BoxExplosionAttack()
     {
-
+        
         Explode(transform.GetChild(0).position + explodePosition[0], Vector2.up, explosionLength + 2);
         Explode(transform.GetChild(0).position - explodePosition[1], Vector2.down, explosionLength + 2);
         Explode(transform.GetChild(0).position + explodePosition[2], Vector2.left, explosionLength);
@@ -295,18 +310,13 @@ public class BossMonster : MonoBehaviour
             return;
         }
 
-        //포지션으로부터의 방향 측정.
         position += direction;
-
-
-        //물줄기 추가생성
-        Explosion explosion = Instantiate(_Explosion, position, transform.rotation);
+        Explosion explosion = GetExplosionFromPool();
+        explosion.transform.position = position;
         explosion.SetDirection(direction);
 
         Animator _anim = explosion.GetComponent<Animator>();
         _anim.SetBool("CenterExplosion", true);
-
-        // 최대 길이에서 재귀적으로 최대길이를 줄여나가는것.
         Explode(position, direction, length - 1);
     }
     IEnumerator Attack(Vector2 direction)
@@ -335,6 +345,7 @@ public class BossMonster : MonoBehaviour
             IsBossWaitDie();
         }
     }
+
     private void IsBossWaitDie()
     {
         _audio[0].clip = _waitDieClip;
@@ -372,12 +383,14 @@ public class BossMonster : MonoBehaviour
     private Vector2 CanAttack(Vector2 direction)
     {
 
-        WaterBalloon balloon = Instantiate(_Balloon, transform.GetChild(0).position, Quaternion.identity);
+        WaterBalloon balloon = GetBalloonFromPool();
         balloon.currentPower = 3;
         balloon.tag = "BossBalloon";
         balloon._collider.isTrigger = false;
         balloon._rigidbody.constraints = RigidbodyConstraints2D.None;
         balloon._rigidbody.velocity = direction * 10;
+        ((BoxCollider2D)balloon._collider).size = new Vector3(1.1f, 1f, 0);
+        
         return attackDirection = direction;
     }
 
@@ -413,4 +426,34 @@ public class BossMonster : MonoBehaviour
             }
         }
     }
+
+    private WaterBalloon CreatePoolBalloon()
+    {
+        WaterBalloon balloon = Instantiate(_Balloon, transform.GetChild(0).position, transform.rotation);
+        balloon.Pool = _balloonPool;
+        return balloon;
+    }
+    private WaterBalloon GetBalloonFromPool()
+    {
+        Debug.Assert(_balloonPool != null);
+        WaterBalloon balloon = _balloonPool.Get();
+        return balloon;
+    }
+    private void TakeBalloonFromPool(WaterBalloon balloon) => balloon.gameObject.SetActive(true);
+    private void ReturnBalloonToPool(WaterBalloon balloon) => balloon.gameObject.SetActive(false);
+
+    private Explosion CreatePoolExplosion()
+    {
+        Explosion explosion = Instantiate(_Explosion, transform.position, transform.rotation);
+        explosion.Pool = _explosionPool;
+        return explosion;
+    }
+    private Explosion GetExplosionFromPool()
+    {
+        Debug.Assert(_explosionPool != null);
+        Explosion explosion = _explosionPool.Get();
+        return explosion;
+    }
+    private void TakeExplosionFromPool(Explosion explosion) => explosion.gameObject.SetActive(true);
+    private void ReturnExplosionToPool(Explosion explosion) => explosion.gameObject.SetActive(false);
 }

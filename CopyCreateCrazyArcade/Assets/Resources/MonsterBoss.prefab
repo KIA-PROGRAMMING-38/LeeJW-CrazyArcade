@@ -1412,8 +1412,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Balloon: {fileID: 4170885265491557718, guid: 207f9c0d9300c564d80ade7b371304cd, type: 3}
   _Explosion: {fileID: 5899646071685716949, guid: e8b461f1be123df46a17a21c7c088d7f, type: 3}
-  _waitDieClip: {fileID: 0}
-  _dieconfirmClip: {fileID: 0}
+  _waitDieClip: {fileID: 8300000, guid: 1fe445faf22b07c4bab3f2e68acd2a34, type: 3}
+  _dieconfirmClip: {fileID: 8300000, guid: 5a538d81a089895489d69f82e83c379f, type: 3}
+  explodeSound: {fileID: 8300000, guid: 95c20c015da11d04cb5e81a4c550e28c, type: 3}
 --- !u!70 &8106200293036987433
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ namespace Assets.Script
         private int _itemRandomValue;
         private int _itemRandomSpawn;
         private Collider2D _collider;
-
+        private Vector3 savePosition;
         
 
         private void Awake()
@@ -32,6 +32,8 @@ namespace Assets.Script
               (item) => Destroy(item.gameObject), 30, 50);
 
             _collider = GetComponent<Collider2D>();
+            savePosition = transform.position;
+            savePosition.y = savePosition.y + 0.2f;
         }
 
         private bool isMoving = false;
@@ -139,14 +141,14 @@ namespace Assets.Script
 
             if (_gameData.defaultMode)
             {
-                TakeItem item = Instantiate(_item[_itemRandomValue], transform.position, transform.rotation);
+                TakeItem item = Instantiate(_item[_itemRandomValue], savePosition, transform.rotation);
                 item.Pool = itemPool;
                 return item;
             }
 
             else
             {
-                TakeItem item = Instantiate(_item[_itemRandomValue - 3], transform.position, transform.rotation);
+                TakeItem item = Instantiate(_item[_itemRandomValue - 3], savePosition, transform.rotation);
                 item.Pool = itemPool;
                 return item;
             }

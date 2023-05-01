@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
 {
 
     public GameObject _start;
-    public GameObject _end;
+    public GameObject _endWin;
+    public GameObject _endLose;
     public GameObject firstPlayerNeedle;
     public GameObject secondPlayerNeedle;
     public AudioSource _audio;
@@ -63,7 +64,10 @@ public class GameManager : MonoBehaviour
         _gameData = FindAnyObjectByType<GameData>();
 
 
-        _end.gameObject.SetActive(false);
+
+        _endWin.gameObject.SetActive(false);
+        _endLose.gameObject.SetActive(false);
+
         firstPlayerNeedle.gameObject.SetActive(false);
         secondPlayerNeedle.gameObject.SetActive(false);
 
@@ -126,10 +130,17 @@ public class GameManager : MonoBehaviour
             StartCoroutine(IsStageTwo());
 
         }
-        if (_gameData.stage3 && monsterCount == 0 || playerCount == 0)
+        if (_gameData.stage3 && monsterCount == 0 )
         {
             playerLive = false;
             GameOver();
+            
+        }
+        if(playerCount == 0)
+        {
+            playerLive = false;
+            GameLose();
+
         }
 
 
@@ -190,11 +201,18 @@ public class GameManager : MonoBehaviour
     {
         timer.timeCheck = false;
         gamePlay = false;
-        _end.gameObject.SetActive(true);
+        _endWin.gameObject.SetActive(true);
         _audio.Stop();
         StartCoroutine(SceneChange());
     }
-
+    public void GameLose()
+    {
+        timer.timeCheck = false;
+        gamePlay = false;
+        _endLose.gameObject.SetActive(true);
+        _audio.Stop();
+        StartCoroutine(SceneChange());
+    }
     public void FirstNeedle()
     {
         firstPlayerNeedle.SetActive(true);

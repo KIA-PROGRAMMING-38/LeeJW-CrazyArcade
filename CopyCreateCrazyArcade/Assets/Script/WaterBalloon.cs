@@ -13,6 +13,7 @@ namespace Assets.Script
     {
         public Collider2D _collider;
         public Rigidbody2D _rigidbody;
+
         private const float BALLOON_CLEAR_TIME = 3f;
         public int currentPower = 1;
 
