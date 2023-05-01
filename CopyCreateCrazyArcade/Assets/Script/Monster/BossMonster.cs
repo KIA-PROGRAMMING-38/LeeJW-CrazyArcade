@@ -127,8 +127,8 @@ public class BossMonster : MonoBehaviour
         IsOnMove = false;
         randomPattern = Random.Range(0, 2);
         SetAttackDirection();
-        _anim.SetFloat("PositionX", attackDirection.x);
-        _anim.SetFloat("PositionY", attackDirection.y);
+        _anim.SetFloat(StringHelper.PositionX, attackDirection.x);
+        _anim.SetFloat(StringHelper.PositionY, attackDirection.y);
 
 
 
@@ -281,8 +281,8 @@ public class BossMonster : MonoBehaviour
 
 
         saveTransformPosition = moves[movesRandomPositionY, movesRandomPositionX] - saveTransformPosition;
-        _anim.SetFloat("PositionX", saveTransformPosition.x);
-        _anim.SetFloat("PositionY", saveTransformPosition.y);
+        _anim.SetFloat(StringHelper.PositionX, saveTransformPosition.x);
+        _anim.SetFloat(StringHelper.PositionY, saveTransformPosition.y);
 
         transform.position = Vector3.MoveTowards(transform.position, moves[movesRandomPositionY, movesRandomPositionX], moveSpeed);
 
@@ -316,7 +316,7 @@ public class BossMonster : MonoBehaviour
         explosion.SetDirection(direction);
 
         Animator _anim = explosion.GetComponent<Animator>();
-        _anim.SetBool("CenterExplosion", true);
+        _anim.SetBool(StringHelper.CenterExplosion, true);
         Explode(position, direction, length - 1);
     }
     IEnumerator Attack(Vector2 direction)
@@ -331,7 +331,7 @@ public class BossMonster : MonoBehaviour
 
     private void OnDamage()
     {
-        _anim.SetBool("Hit", true);
+        _anim.SetBool(StringHelper.Hit, true);
         _collider.enabled = false;
 
         transform.GetChild(1).GetChild(2).GetChild(bossHP - 1).gameObject.SetActive(false);
@@ -366,7 +366,7 @@ public class BossMonster : MonoBehaviour
     {
         _audio[1].clip = _dieconfirmClip;
         _audio[1].Play();
-        _anim.SetTrigger("DieConfirm");
+        _anim.SetTrigger(StringHelper.dieConfirm);
         _manager.monsterCount = 0;
     }
 
@@ -385,7 +385,7 @@ public class BossMonster : MonoBehaviour
 
         WaterBalloon balloon = GetBalloonFromPool();
         balloon.currentPower = 3;
-        balloon.tag = "BossBalloon";
+        balloon.tag = StringHelper.BossBalloon;
         balloon._collider.isTrigger = false;
         balloon._rigidbody.constraints = RigidbodyConstraints2D.None;
         balloon._rigidbody.velocity = direction * 10;
@@ -398,7 +398,7 @@ public class BossMonster : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Explosion") && _isHit == false)
+        if (collision.CompareTag(StringHelper.Explosion) && _isHit == false)
         {
             if (bossHP > 0)
             {
@@ -407,13 +407,13 @@ public class BossMonster : MonoBehaviour
             }
         }
 
-        if (collision.CompareTag("Balloon"))
+        if (collision.CompareTag(StringHelper.Balloon))
         {
             WaterBalloon balloon = collision.GetComponent<WaterBalloon>();
             balloon.BoomBalloon();
         }
 
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag(StringHelper.Player))
         {
             if (waitDie)
             {

@@ -169,7 +169,6 @@ namespace Assets.Script
 
                 Physics2D.IgnoreLayerCollision(3, 3, true);
 
-                _input.playerLive = false;
 
 
             }

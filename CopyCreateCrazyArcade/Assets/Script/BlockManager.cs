@@ -23,7 +23,7 @@ namespace Assets.Script
         private int _itemRandomSpawn;
         private Collider2D _collider;
         private Vector3 savePosition;
-        
+        private int count = 10;
 
         private void Awake()
         {
@@ -34,15 +34,32 @@ namespace Assets.Script
             _collider = GetComponent<Collider2D>();
             savePosition = transform.position;
             savePosition.y = savePosition.y + 0.2f;
+
+            if(_gameData.stage3)
+            {
+                for(int i = 0; i < count; ++i)
+                {
+                    randomPositionX = Random.Range(-8, 4);
+                    randomPositionY = Random.Range(-1, 1);
+
+
+                    TakeItem item = GetItemFromPool();
+                    item.transform.position = new Vector3(randomPositionX, randomPositionY + 0.2f, 0);
+                    
+                }
+            }
         }
 
         private bool isMoving = false;
         private float moveTime = 0;
         private bool _trigger = true;
-
+        private int randomPositionX;
+        private int randomPositionY;
         private void Update()
         {
             BlockMovement();
+
+            
         }
         private Vector3 spawnPosition;
 
@@ -137,10 +154,10 @@ namespace Assets.Script
 
         private TakeItem CreatePoolItem()
         {
-            _itemRandomValue = Random.Range(0, _item.Length);
 
             if (_gameData.defaultMode)
             {
+                _itemRandomValue = Random.Range(0, _item.Length);
                 TakeItem item = Instantiate(_item[_itemRandomValue], savePosition, transform.rotation);
                 item.Pool = itemPool;
                 return item;
@@ -148,7 +165,9 @@ namespace Assets.Script
 
             else
             {
-                TakeItem item = Instantiate(_item[_itemRandomValue - 3], savePosition, transform.rotation);
+                _itemRandomValue = Random.Range(0, 3);
+
+                TakeItem item = Instantiate(_item[_itemRandomValue], savePosition, transform.rotation);
                 item.Pool = itemPool;
                 return item;
             }

@@ -10,6 +10,7 @@ using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,10 +27,10 @@ public class GameManager : MonoBehaviour
     public int playerCount = 2;
     public int monsterCount = 6;
     public Camera _camera;
-
     private int stage2MonsterCount = 8;
 
     private GameData _gameData;
+
     private GameObject pirateMap;
     private GameObject monsterStage1;
     private GameObject monsterStage2;
@@ -43,8 +44,8 @@ public class GameManager : MonoBehaviour
     private Vector3 monsterModeSecondPosition = new Vector3(3, 1.5f, 0);
     private Vector3 stage2FirstPosition = new Vector3(-3, 0.5f, 0);
     private Vector3 stage2SecondPosition = new Vector3(-1, 2.5f, 0);
-    private Vector3 stage3FirstPosition = new Vector3(-6, -2.5f, 0);
-    private Vector3 stage3SecondPosition = new Vector3(1, 2.5f, 0);
+    private Vector3 stage3FirstPosition = new Vector3(-6, -3.5f, 0);
+    private Vector3 stage3SecondPosition = new Vector3(1, -3.5f, 0);
 
     private int firstRandom;
     private int secondRandom;
@@ -55,14 +56,14 @@ public class GameManager : MonoBehaviour
 
     public bool gamePlay = false;
     public bool playerLive = true;
-    
+
     private WaitForSeconds changeTime = new WaitForSeconds(9f);
     private WaitForSeconds cameraOffitime = new WaitForSeconds(1f);
 
     private void Awake()
     {
-        _gameData = FindAnyObjectByType<GameData>();
 
+        _gameData = FindObjectOfType<GameData>();
 
 
         _endWin.gameObject.SetActive(false);
@@ -130,21 +131,24 @@ public class GameManager : MonoBehaviour
             StartCoroutine(IsStageTwo());
 
         }
-        if (_gameData.stage3 && monsterCount == 0 )
+        if (_gameData.stage3 && monsterCount == 0)
         {
             playerLive = false;
             GameOver();
-            
-        }
-        if(playerCount == 0)
-        {
-            playerLive = false;
-            GameLose();
 
+        }
+        if (playerCount == 0)
+        {
+            elap += Time.deltaTime;
+            if (elap > 2.5f)
+            {
+                GameLose();
+            }
         }
 
 
     }
+    private float elap;
     IEnumerator IsStageOne()
     {
         _camera.targetDisplay = 1;
@@ -152,7 +156,7 @@ public class GameManager : MonoBehaviour
         yield return cameraOffitime;
         _camera.targetDisplay = 0;
         gamePlay = true;
-        
+
 
         _gameStart.SetActive(true);
         timer.elapsedTime = 0;
@@ -166,6 +170,7 @@ public class GameManager : MonoBehaviour
         stage = Instantiate(monsterStage2);
         firstSave = Instantiate(firstPlayer, stage2FirstPosition, transform.rotation);
         secondSave = Instantiate(secondPlayer, stage2SecondPosition, transform.rotation);
+
     }
     IEnumerator IsStageTwo()
     {
@@ -241,4 +246,5 @@ public class GameManager : MonoBehaviour
         playerCount--;
     }
 
+ 
 }

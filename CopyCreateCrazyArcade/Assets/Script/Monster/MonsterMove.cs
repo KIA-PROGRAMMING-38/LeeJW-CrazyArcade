@@ -38,8 +38,8 @@ public class MonsterMove : MonoBehaviour
     }
     private void Update()
     {
-        _anim.SetFloat("PositionX", moveDirection.x);
-        _anim.SetFloat("PositionY", moveDirection.y);
+        _anim.SetFloat(StringHelper.PositionX, moveDirection.x);
+        _anim.SetFloat(StringHelper.PositionY, moveDirection.y);
     }
     float elap;
     private void FixedUpdate()
@@ -65,7 +65,7 @@ public class MonsterMove : MonoBehaviour
     bool CanMove()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position + (moveDirection/2), moveDirection, distance);
-        if (hit.collider != null && hit.collider.gameObject.layer != LayerMask.NameToLayer("Player"))
+        if (hit.collider != null && hit.collider.gameObject.layer != LayerMask.NameToLayer(StringHelper.Player))
         {
             return false;
         }
@@ -106,17 +106,17 @@ public class MonsterMove : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Explosion"))
+        if (collision.CompareTag(StringHelper.Explosion))
         {
             setOff = false;
             transform.position = collision.transform.position;
-            _anim.SetTrigger("MonsterDie");
+            _anim.SetTrigger(StringHelper.monsterDie);
             
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag(StringHelper.Player))
         {
             PlayerStatus _status = collision.gameObject.GetComponent<PlayerStatus>();
             collision.collider.isTrigger = true;

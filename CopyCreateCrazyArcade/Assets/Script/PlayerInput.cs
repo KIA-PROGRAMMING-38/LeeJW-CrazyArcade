@@ -7,7 +7,6 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     public GameManager _manager;
-    public bool playerLive = true;
 
     public float _1PlayerPositionX { get; private set; }
     public float _1PlayerPositionY { get; private set; }
