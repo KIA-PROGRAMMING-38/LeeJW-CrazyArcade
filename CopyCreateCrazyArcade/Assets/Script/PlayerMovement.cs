@@ -24,12 +24,12 @@ public class PlayerMovement : MonoBehaviour
         if (_input._manager.gamePlay == true)
         {
 
-            if (gameObject.name == "1PCharacter(Clone)")
+            if (gameObject.name == StringHelper.FirstPlayer)
             {
                 velocity.x = _input._1PlayerPositionX;
                 velocity.y = _input._1PlayerPositionY;
             }
-            if (gameObject.name == "2PCharacter(Clone)")
+            if (gameObject.name == StringHelper.SecondPlayer)
             {
                 velocity.x = _input._2PlayerPositionX;
                 velocity.y = _input._2PlayerPositionY;
@@ -37,12 +37,12 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (gameObject.name == "1PCharacter(Clone)")
+            if (gameObject.name == StringHelper.FirstPlayer)
             {
                 velocity.x = 0;
                 velocity.y = 0;
             }
-            if (gameObject.name == "2PCharacter(Clone)")
+            if (gameObject.name == StringHelper.SecondPlayer)
             {
                 velocity.x = 0;
                 velocity.y = 0;
@@ -52,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
 
-        // 대각선 이동을 방지합니다.
         if (Mathf.Abs(velocity.x) > Mathf.Abs(velocity.y))
         {
             velocity.y = 0;

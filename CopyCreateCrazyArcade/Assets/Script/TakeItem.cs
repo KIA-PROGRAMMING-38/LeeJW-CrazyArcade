@@ -45,7 +45,7 @@ namespace Assets.Script
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if(collision.CompareTag("Player"))
+            if(collision.CompareTag(StringHelper.Player))
             {
                 Pool.Release(this);
             }
@@ -85,11 +85,11 @@ namespace Assets.Script
                     if(_playerStatus.needleMaxCount > _playerStatus.needleCount)
                     _playerStatus.needleCount += 1;
 
-                    if (_playerStatus.name == "1PCharacter(Clone)")
+                    if (_playerStatus.name == StringHelper.FirstPlayer)
                     {
                         _playerStatus._input.FirstNeedleUpdate();
                     }
-                    if(_playerStatus.name == "2PCharacter(Clone)")
+                    if(_playerStatus.name == StringHelper.SecondPlayer)
                     {
                         _playerStatus._input.SecondNeedleUpdate();
                     }

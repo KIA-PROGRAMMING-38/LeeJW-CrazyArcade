@@ -355,7 +355,7 @@ public class BossMonster : MonoBehaviour
 
         waitDie = true;
 
-        _anim.SetTrigger("Die");
+        _anim.SetTrigger(StringHelper.Die);
     }
 
     private void IsBossDieConfirm()
@@ -374,7 +374,7 @@ public class BossMonster : MonoBehaviour
     private void OffDamage()
     {
         _collider.enabled = true;
-        _anim.SetBool("Hit", false);
+        _anim.SetBool(StringHelper.Hit, false);
     }
     private Vector2 CanAttack(Vector2 direction)
     {

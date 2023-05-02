@@ -79,7 +79,7 @@ namespace Assets.Script
         {
 
             normalVec = collision.contacts[0].normal;
-            if (collision.gameObject.CompareTag("Player") && _collider.CompareTag("MovingBlock") && _trigger)
+            if (collision.gameObject.CompareTag(StringHelper.Player) && _collider.CompareTag(StringHelper.MovingBlock) && _trigger)
             {
                 if (target[0] = Physics2D.OverlapBox(transform.position + normalVec, Vector2.one / 5f, 0f))
                 {

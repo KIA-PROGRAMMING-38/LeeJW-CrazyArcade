@@ -48,7 +48,7 @@ namespace Assets.Script
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Explosion"))
+            if (collision.gameObject.CompareTag(StringHelper.Explosion))
             {
                 BoomBalloon();
             }
@@ -56,7 +56,7 @@ namespace Assets.Script
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Player"))
+            if (collision.gameObject.CompareTag(StringHelper.Player))
             {
                 _collider.isTrigger = false;
             }
@@ -75,7 +75,7 @@ namespace Assets.Script
             Animator anim = explod.GetComponent<Animator>();
             explod.ExplosionSound();
 
-            anim.SetBool("CenterExplosion", true);
+            anim.SetBool(StringHelper.CenterExplosion, true);
             Pool.Release(this);
             CrossExplodCreate();
         }
@@ -101,13 +101,13 @@ namespace Assets.Script
             }
             if (target[0] = Physics2D.OverlapBox(position, Vector2.one / 2f, 0f, destoryLayer))
             {
-                if (target[0].gameObject.layer == LayerMask.NameToLayer("Block"))
+                if (target[0].gameObject.layer == LayerMask.NameToLayer(StringHelper.Block))
                 {
                     Animator _anim = target[0].GetComponent<Animator>();
-                    _anim.SetBool("BlockDestroy", true);
+                    _anim.SetBool(StringHelper.BlockDestroy, true);
                     return;
                 }
-                if (target[0].gameObject.layer == LayerMask.NameToLayer("Item"))
+                if (target[0].gameObject.layer == LayerMask.NameToLayer(StringHelper.Item))
                 {
                     target[0].gameObject.SetActive(false);
                 }
@@ -120,7 +120,7 @@ namespace Assets.Script
             if (length == 1)
             {
                 Animator _anim = explosion.GetComponent<Animator>();
-                _anim.SetBool("MiddleExplosion", true);
+                _anim.SetBool(StringHelper.MiddleExplosion, true);
 
             }
             Explode(position, direction, length - 1);

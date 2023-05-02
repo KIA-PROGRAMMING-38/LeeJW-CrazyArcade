@@ -62,7 +62,7 @@ namespace Assets.Script
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Player") && dieWaitState == true)
+            if (collision.gameObject.CompareTag(StringHelper.Player) && dieWaitState == true)
             {
                 if (_gamedata.defaultMode)
                 {
@@ -70,7 +70,7 @@ namespace Assets.Script
                 }
                 if (_gamedata.monsterMode)
                 {
-                    if (gameObject.name == "1PCharacter(Clone)")
+                    if (gameObject.name == StringHelper.FirstPlayer)
                     {
                         SecondUseNeedle();
                     }
@@ -84,13 +84,13 @@ namespace Assets.Script
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Explosion"))
+            if (collision.gameObject.CompareTag(StringHelper.Explosion))
             {
                 _anim.SetBool($"{gameObject.name}DieWait", true);
 
             }
 
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Item") && dieWaitState == false)
+            if (collision.gameObject.layer == LayerMask.NameToLayer(StringHelper.Item) && dieWaitState == false)
             {
                 item = collision.GetComponent<TakeItem>();
                 _audio[0].clip = _itemClip;
@@ -108,9 +108,9 @@ namespace Assets.Script
             _audio[1].clip = _liveClip;
             _audio[1].Play();
 
-            _anim.SetBool($"{name}DieWait", false);
+            _anim.SetBool($"{name}{StringHelper.DieWait}", false);
             dieWaitState = false;
-            _anim.SetTrigger($"{name}Live");
+            _anim.SetTrigger($"{name}{StringHelper.Live}");
 
             StartCoroutine(StartMoving());
 
@@ -125,9 +125,9 @@ namespace Assets.Script
             _audio[1].clip = _liveClip;
             _audio[1].Play();
 
-            _anim.SetBool($"{name}DieWait", false);
+            _anim.SetBool($"{name}{StringHelper.DieWait}", false);
             dieWaitState = false;
-            _anim.SetTrigger($"{name}Live");
+            _anim.SetTrigger($"{name}{StringHelper.Live}");
 
             StartCoroutine(StartMoving());
 
@@ -156,8 +156,8 @@ namespace Assets.Script
                 _input.IsPlayerWin();
                 currentSpeed = 0f;
 
-                _anim.SetBool($"{name}DieWait", false);
-                _anim.SetBool($"{name}DieConfirmation", true);
+                _anim.SetBool($"{name}{StringHelper.DieWait}", false);
+                _anim.SetBool($"{name}{StringHelper.DieConfirmation}", true);
 
                 Physics2D.IgnoreLayerCollision(3, 3, true);
 
@@ -173,8 +173,8 @@ namespace Assets.Script
                 _input.PlayerCountSub();
                 currentSpeed = 0f;
 
-                _anim.SetBool($"{name}DieWait", false);
-                _anim.SetBool($"{name}DieConfirmation", true);
+                _anim.SetBool($"{name}{StringHelper.DieWait}", false);
+                _anim.SetBool($"{name}{StringHelper.DieConfirmation}", true);
 
                 Physics2D.IgnoreLayerCollision(3, 3, true);
 
@@ -186,7 +186,7 @@ namespace Assets.Script
    }
         public void WinTrigger()
         {
-            _anim.SetTrigger("Win");
+            _anim.SetTrigger(StringHelper.Win);
 
         }
         public void GameEnd()

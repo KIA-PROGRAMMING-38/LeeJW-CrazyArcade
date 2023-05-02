@@ -35,13 +35,13 @@ namespace Assets.Script
 
 
 
-            if (target[0].gameObject.CompareTag("Balloon") == false)
+            if (target[0].gameObject.CompareTag(StringHelper.Balloon) == false)
             {
-                if (gameObject.name == "1PCharacter(Clone)" && _input.FirstPlayerAttack() && _status.currentBalloonCount > 0)
+                if (gameObject.name == StringHelper.FirstPlayer && _input.FirstPlayerAttack() && _status.currentBalloonCount > 0)
                 {
                     StartCoroutine(CreateBalloon());
                 }
-                if (gameObject.name == "2PCharacter(Clone)" && _input.SecondPlayerAttack() && _status.currentBalloonCount > 0)
+                if (gameObject.name == StringHelper.SecondPlayer && _input.SecondPlayerAttack() && _status.currentBalloonCount > 0)
                 {
 
                     StartCoroutine(CreateBalloon());
@@ -85,7 +85,7 @@ namespace Assets.Script
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Balloon") && kickOn)
+            if (collision.gameObject.CompareTag(StringHelper.Balloon) && kickOn)
             {
                 SetVector(collision);
 
@@ -99,7 +99,7 @@ namespace Assets.Script
         }
         private void OnCollisionExit2D(Collision2D collision)
         {
-            if (collision.gameObject.CompareTag("Balloon") && kickOn)
+            if (collision.gameObject.CompareTag(StringHelper.Balloon) && kickOn)
             {
                 _rigid.constraints = RigidbodyConstraints2D.None;
                 _rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -108,7 +108,7 @@ namespace Assets.Script
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("ItemShoes"))
+            if (collision.CompareTag(StringHelper.ItemShoes))
             {
                 kickOn = true;
             }

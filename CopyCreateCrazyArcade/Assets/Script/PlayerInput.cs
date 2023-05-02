@@ -33,7 +33,7 @@ public class PlayerInput : MonoBehaviour
 
 
             if (_status.needleCount > 0 && FirstPlayerUseItem() && _status.dieWaitState == true
-                && _status.name == "1PCharacter(Clone)")
+                && _status.name == StringHelper.FirstPlayer)
             {
                 --_status.needleCount;
                 _status.UseNeedle();
@@ -41,7 +41,7 @@ public class PlayerInput : MonoBehaviour
             }
 
             if (_status.needleCount > 0 && SecondPlayerUseItem() && _status.dieWaitState == true
-                && _status.name == "2PCharacter(Clone)")
+                && _status.name == StringHelper.SecondPlayer)
             {
                 --_status.needleCount;
                 _status.SecondUseNeedle();
